@@ -1,3 +1,35 @@
+Hi there!
+
+My name is Matt and this is my second semester as a Grad Student here at Northeastern. I an originally 
+from Acton, Massachusetts, and am currently living in North Hampton, New Hampshire. I am currently 
+enrolled in Managing Software Development and the Co-op Seminar alongside Web Development. I did my undergrad
+at Miami University, which is in Ohio, about an hour drive's north of Cincinnati. I entered college with 
+an undeclared engineering major, and settled on Computer Science during my Sophomore year. I took two Web
+Development courses at Miami and found the topic super interesting! I can't wait to learn more and become a 
+better Web Developer this semester!
+
+The purpose of this repository is to store the source code for Web Application that we are currently working
+on. Using this repository allows multiple parties to access the code in order to review, edit, make comments
+on, while keeping everything in one place. GitHub allows all contributers of a project, such as this, to 
+checkout others' updates as well as push their own updates. Creating different branches allows users to work
+off of the master branch, which means things can be tweaked or broken without risk of harming the original.
+When branches are perfected and ready to be added to the master branch, it is simple to merge the two branches
+and have a newly updated working copy of the application.
+
+https://webdev-marcotte-matthew.herokuapp.com/test
+
+
+
+
+
+
+
+
+
+
+
+=====================================================================================
+
 # AngularFourMEANSeed
 
 After you clone this repository and run "npm install"
