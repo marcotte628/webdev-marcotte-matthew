@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Meta tags for making website for mobile-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="initial-scale=1, user-scalable=no">
+
+
+  <meta charset="UTF-8">
+
+  <title> Edit Website </title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+   <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
+
+  <link href="../../css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+      <!--back arrow in nav bar-->
+        <p class="navbar-text pull-left">
+          <a href="website-list.html" class="navbar-link">
+            <span class="glyphicon glyphicon-chevron-left banner"></span>
+          </a>
+        </p>
+
+       <!--heading on the nav bar-->
+        <p class="navbar-header">
+          <a class="navbar-brand thick">
+            <b class="banner">Edit Websites</b>
+          </a>
+        </p>
+
+
+        <!--check symobl on nav bar-->
+          <p class="navbar-text pull-right">
+            <a href="website-list.html" class="navbar-link">
+              <span class="glyphicon glyphicon-ok banner"></span>
+            </a>
+          </p>
+  </nav>
+
+  <div class="container post-nav">
+    <form>
+    <div class="form-group">
+        <label for="website_name">Website Name</label>
+        <input type="text" class="form-control" id="website_name" placeholder="Blogger">
+    </div>
+  </form>
+
+    <div class="form-group">
+        <label for="site_description">Website Description</label>
+        <textarea type="text" rows="10" class="form-control" id="site_description">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+	</textarea>
+    </div>
+  </form>
+
+  <a class="btn btn-danger btn-block"
+     href="website-list.html" >Delete</a>
+  </div>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a href="../user/profile.html">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>
+
+</body>
+</html>
