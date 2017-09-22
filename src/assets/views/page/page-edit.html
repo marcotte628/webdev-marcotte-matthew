@@ -5,12 +5,11 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="initial-scale=1, user-scalable=no">
-
-
   <meta charset="UTF-8">
 
   <title> Edit Page </title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+        rel="stylesheet"/>
    <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
 
   <link href="../../css/style.css" rel="stylesheet"/>
@@ -41,26 +40,28 @@
             <b class="banner">Edit Page</b>
           </a>
         </p>
+    </div>
   </nav>
 
   <div class="container post-nav">
+
+    <!-- Inputs for Page Name and Title-->
     <form>
-    <div class="form-group">
+      <div class="form-group">
         <label for="page_name">Name</label>
         <input type="text" class="form-control" id="page_name" placeholder="Blog Post">
-    </div>
-  </form>
+      </div>
 
-    <div class="form-group">
+      <div class="form-group">
         <label for="page_title">Title</label>
         <input type="text" class="form-control" id="page_title" placeholder="Page Title">
-    </div>
-  </form>
+      </div>
 
-<a class="btn btn-danger btn-block"
-     href="page-list.html" >Delete</a>
-  
-</div>
+    <!-- Delete Button-->
+      <a class="btn btn-danger btn-block"
+         href="page-list.html"> Delete </a>
+    </form>
+  </div>
 
 
 <!-- Footer -->

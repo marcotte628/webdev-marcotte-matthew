@@ -5,12 +5,11 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="initial-scale=1, user-scalable=no">
-
-
   <meta charset="UTF-8">
 
   <title> New Page </title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+        rel="stylesheet"/>
    <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
 
   <link href="../../css/style.css" rel="stylesheet"/>
@@ -22,38 +21,39 @@
     <div class="container-fluid">
 
       <!--back arrow in nav bar-->
-        <p class="navbar-text pull-left">
-          <a href="page-list.html" class="navbar-link">
-            <span class="glyphicon glyphicon-chevron-left banner"></span>
-          </a>
-        </p>
+      <p class="navbar-text pull-left">
+        <a href="page-list.html" class="navbar-link">
+          <span class="glyphicon glyphicon-chevron-left banner"></span>
+        </a>
+      </p>
 
-       <!--heading on the nav bar-->
+      <!--check symbol on nav bar-->
+        <p class="navbar-text pull-right">
+          <a href="page-list.html" class="navbar-link">
+            <span class="glyphicon glyphicon-ok banner"></span>
+          </a>
+       </p>
+
+      <!--heading on the nav bar-->
         <p class="navbar-header">
           <a class="navbar-brand thick">
             <b class="banner">New Page</b>
           </a>
         </p>
-
-        <!--check symbol on nav bar-->
-          <p class="navbar-text pull-right">
-            <a href="page-list.html" class="navbar-link">
-              <span class="glyphicon glyphicon-ok banner"></span>
-            </a>
-          </p>
+    </div>
   </nav>
 
   <div class="container post-nav">
+    <!-- Form for Page Name and Title -->
     <form>
     <div class="form-group">
-        <label for="page_name">Name</label>
-        <input type="text" class="form-control" id="page_name" placeholder="Page Name">
+      <label for="page_name">Name</label>
+      <input type="text" class="form-control" id="page_name" placeholder="Page Name">
     </div>
-  </form>
 
     <div class="form-group">
-        <label for="page_title">Title</label>
-        <input type="text" class="form-control" id="page_title" placeholder="Page Title">
+      <label for="page_title">Title</label>
+      <input type="text" class="form-control" id="page_title" placeholder="Page Title">
     </div>
   </form>
   </div>

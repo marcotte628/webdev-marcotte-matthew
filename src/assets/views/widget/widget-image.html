@@ -5,13 +5,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="initial-scale=1, user-scalable=no">
-
-
   <meta charset="UTF-8">
 
   <title> Add Heading Widget </title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-   <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+        rel="stylesheet"/>
+  <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
 
   <link href="../../css/style.css" rel="stylesheet"/>
 </head>
@@ -43,44 +42,43 @@
           </p>
   </nav>
 
+  <!-- Form for entering Name, Text, URL, Width, and File of Image -->
   <div class="container post-nav">
-     <form>
+    <form>
       <div class="form-group">
           <label for="image_name">Name</label>
-          <input type="text" class="form-control" id="image_name" placeholder="Name of Image">
+          <input type="text" class="form-control" 
+                 id="image_name" placeholder="Name of Image">
       </div>
-    </form>
 
-    <form>
-     <div class="form-group">
+      <div class="form-group">
          <label for="image_text">Text</label>
-         <input type="text" class="form-control" id="image_text" placeholder="Text to be shown with image">
-     </div>
-   </form>
+         <input type="text" class="form-control" 
+                id="image_text" placeholder="Text to be shown with image">
+      </div>
 
-    <form>
       <div class="form-group">
           <label for="image_url">URL</label>
-          <input type="text" class="form-control" id="image_url" placeholder="https://example.com/image.png">
+          <input type="text" class="form-control" 
+                 id="image_url" placeholder="https://example.com/image.png">
+      </div>
+
+      <div class="form-group">
+         <label for="image_width">Width</label>
+         <input type="text" class="form-control" 
+                id="image_width" placeholder="100%">
+      </div>
+
+   
+      <div class="form-group">
+         <label for="image_file">Text</label>
+         <input type="file" class="form-control" id="image_file">
       </div>
     </form>
 
-    <form>
-     <div class="form-group">
-         <label for="image_width">Width</label>
-         <input type="text" class="form-control" id="image_width" placeholder="100%">
-     </div>
-   </form>
-
-   <form>
-     <div class="form-group">
-         <label for="image_file">Text</label>
-         <input type="file" class="form-control" id="image_file">
-     </div>
-   </form>
-	
-     <a class="btn btn-primary btn-block" href="widget-list.html"> Upload Image </a>
-     <a class="btn btn-danger btn-block" href="widget-list.html"> Delete </a>
+    <!-- Buttons for Upload and Delete Image -->	
+    <a class="btn btn-primary btn-block" href="widget-list.html"> Upload Image </a>
+    <a class="btn btn-danger btn-block" href="widget-list.html"> Delete </a>
   </div>
 
 <!-- Footer -->

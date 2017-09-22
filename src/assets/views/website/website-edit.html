@@ -5,13 +5,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="initial-scale=1, user-scalable=no">
-
-
   <meta charset="UTF-8">
 
   <title> Edit Website </title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-   <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+        rel="stylesheet"/>
+  <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
 
   <link href="../../css/style.css" rel="stylesheet"/>
 </head>
@@ -41,54 +40,61 @@
             <b class="banner">Edit Websites</b>
           </a>
         </p>
-
+    </div>
   </nav>
 
   <div class="container-fluid post-nav">
 
     <div class="row">
-      <div class="col-sm-3 hidden-sm">
+      <!-- List of Websites for left side of page -->
+      <div class="col-sm-3 hidden-xs">
         <div class="form-group">
           <a href="../page/page-list.html"> Address Book App </a>
-          <a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+          <a href="website-edit.html">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+          </a>
         </div>
 
         <div class="form-group">
           <a href="../page/page-list.html"> Blogger </a>
-          <a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+          <a href="website-edit.html">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+          </a>
         </div>
 
         <div class="form-group">
           <a href="../page/page-list.html"> Blogging App </a>
-          <a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+          <a href="website-edit.html">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+          </a>
         </div>
 
         <div class="form-group">
           <a href="../page/page-list.html"> Script Testing App </a>
-          <a href="website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a>
-      </div>
+          <a href="website-edit.html">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+          </a>
+        </div>
     </div>
 
+    <!-- Form for Website Name and Description for right side -->
     <div class="col-sm-9">
-    
-      <form>
-        <div class="form-group">
-          <label for="website_name">Website Name</label>
-          <input type="text" class="form-control" id="website_name" placeholder="Blogger">
-        </div>
+        <form>
+          <div class="form-group">
+            <label for="website_name">Website Name</label>
+            <input type="text" class="form-control" id="website_name" placeholder="Blogger">
+          </div>
 
-        <div class="form-group">
-          <label for="site_description">Website Description</label>
-          <textarea type="text" rows="10" class="form-control" id="site_description">
-            ENTER INFO HERE
-          </textarea>
-        </div>
-        <a class="btn btn-danger btn-block" href="website-list.html" >Delete</a>
-      </form>
+          <div class="form-group">
+            <label for="site_description">Website Description</label>
+            <textarea type="text" rows="10" class="form-control" placeholder="Description" 
+                      id="site_description"></textarea>
+          </div>
+          <a class="btn btn-danger btn-block" href="website-list.html">Delete</a>
+        </form>
 
-    </div>
-  </div>
-  </div>
+     </div>
+   </div>
 
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
