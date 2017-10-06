@@ -1,0 +1,37 @@
+
+
+  <div class="container post-nav">
+  <!-- Form for entering Name, Text, and Size of Widget -->
+    <form>
+      <div class="form-group">
+          <label for="heading_name">Name</label>
+          <input [(ngModel)]="widgetName"
+                 type="text"
+                 class="form-control"
+                 id="heading_name">
+      </div>
+
+     <div class="form-group">
+         <label for="heading_text">Text</label>
+         <input [(ngModel)]="widgetText"
+                type="text"
+                class="form-control"
+                id="heading_text">
+     </div>
+
+    <div class="form-group">
+        <label for="heading_size">Size</label>
+        <input [(ngModel)]="widgetSize"
+               type="number"
+               min="1"
+               max="7"
+               step="1"
+               class="form-control"
+               id="heading_size">
+    </div>
+  </form>
+
+  <a class="btn btn-danger btn-block"
+     [routerLink]="['/user/:uid/website/:wid/page/widget']" >Delete</a>
+
+  </div>

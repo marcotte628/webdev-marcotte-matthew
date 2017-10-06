@@ -1,0 +1,89 @@
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+    <!--back arrow in nav bar-->
+      <p class="navbar-text pull-left">
+        <a [routerLink]="['/user/:uid/website']" class="navbar-link">
+          <span class="glyphicon glyphicon-chevron-left banner"></span>
+        </a>
+      </p>
+
+      <!--check symbol on nav bar-->
+        <p class="navbar-text pull-right">
+          <a [routerLink]="['/user/:uid/website/new']" class="navbar-link">
+            <span class="glyphicon glyphicon-ok banner"></span>
+          </a>
+        </p>
+
+      <!--heading on the nav bar-->
+        <p class="navbar-header">
+          <a class="navbar-brand thick">
+            <b class="banner">New Websites</b>
+          </a>
+        </p>
+    </div>
+  </nav>
+
+<div class="container post-nav">
+
+    <div class="row">
+      <!-- List of Websites for left side of page -->
+      <div class="col-sm-3 hidden-xs">
+        <div class="form-group">
+          <a [routerLink]="['/user/:uid/website/:wid/page']"> Address Book App </a>
+          <a [routerLink]="['/user/:uid/website/:wid']">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+          </a>
+        </div>
+
+        <div class="form-group">
+          <a [routerLink]="['/user/:uid/website/:wid/page']"> Blogger </a>
+          <a [routerLink]="['/user/:uid/website/:wid']">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+          </a>
+        </div>
+
+        <div class="form-group">
+          <a [routerLink]="['/user/:uid/website/:wid/page']"> Blogging App </a>
+          <a [routerLink]="['/user/:uid/website/:wid']">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+          </a>
+        </div>
+
+        <div class="form-group">
+          <a [routerLink]="['/user/:uid/website/:wid/page']"> Script Testing App </a>
+          <a [routerLink]="['/user/:uid/website/:wid']">
+            <span class="glyphicon glyphicon-cog pull-right"></span>
+          </a>
+        </div>
+      </div>
+
+    <div class="col-sm-9">
+      <!-- Form for taking input of Website Name and Description -->
+      <form>
+        <div class="form-group">
+           <label for="site_name">Name</label>
+           <input type="text" class="form-control" id="site_name" placeholder="Name">
+        </div>
+
+        <div class="form-group">
+          <label for="site_description">Description</label>
+          <textarea type="text" rows="10" class="form-control"
+                    id="site_description" placeholder="Description"></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/user/:uid']">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>

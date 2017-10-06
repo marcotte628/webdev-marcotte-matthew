@@ -1,0 +1,77 @@
+
+
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+      <!--back arrow in nav bar-->
+        <p class="navbar-text pull-left">
+          <a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']" class="navbar-link">
+            <span class="glyphicon glyphicon-chevron-left banner"></span>
+          </a>
+        </p>
+
+       <!--heading on the nav bar-->
+        <p class="navbar-header">
+          <a class="navbar-brand thick">
+            <b class="banner">Choose Widget</b>
+          </a>
+        </p>
+     </div>
+  </nav>
+
+  <!-- Set of Widgets to choose form -->
+  <div class="container post-nav">
+    <div class="form-group">
+        <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Header </a>
+    </div>
+
+    <div class="form-group">
+      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Label </a>
+    </div>
+
+    <div class="form-group">
+      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> HTML </a>
+    </div>
+
+    <div class="form-group">
+      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Text Input </a>
+    </div>
+
+    <div class="form-group">
+      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Link </a>
+    </div>
+
+    <div class="form-group">
+      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Button </a>
+    </div>
+
+    <div class="form-group">
+      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Image </a>
+    </div>
+
+    <div class="form-group">
+      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> YouTube </a>
+    </div>
+
+    <div class="form-group">
+      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Data Table </a>
+    </div>
+
+    <div class="form-group">
+      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Repeater </a>
+    </div>
+
+  </div>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/user/:uid']">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>

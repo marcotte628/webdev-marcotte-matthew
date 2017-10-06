@@ -1,0 +1,50 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+      <!--back arrow in nav bar-->
+        <p class="navbar-text pull-left">
+          <a [routerLink]="['/user/:uid/website']" class="navbar-link">
+            <span class="glyphicon glyphicon-chevron-left banner"></span>
+          </a>
+        </p>
+
+        <!--plus symbol on nav bar-->
+          <p class="navbar-text pull-right">
+            <a [routerLink]="['/user/:uid/website/:wid/page/new']" class="navbar-link">
+              <span class="glyphicon glyphicon-plus banner"></span>
+            </a>
+          </p>
+
+       <!--heading on the nav bar-->
+        <p class="navbar-header">
+          <a class="navbar-brand thick">
+            <b class="banner">Pages</b>
+          </a>
+        </p>
+    </div>
+</nav>
+
+<div *ngFor="let page of pages" class="container post-nav">
+  <!-- Set of Pages and Cog Glyphs-->
+  <div class="form-group">
+    <a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']">
+      {{page}}
+    </a>
+    <a [routerLink]="['/user/:uid/website/:wid/page/:pid']">
+      <span class="glyphicon glyphicon-cog pull-right"></span>
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/user/:uid']">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>

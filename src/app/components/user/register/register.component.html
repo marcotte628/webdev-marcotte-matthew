@@ -1,0 +1,21 @@
+
+  <div class="container">
+    <!-- Form for Registering with Username and Password -->
+    <h1>Register</h1>
+    <form>
+      <input placeholder="username"
+             type="text"
+             class="form-control"/>
+      <input placeholder="password"
+             type="password"
+             class="form-control"/>
+      <input placeholder="verify password"
+             type="password"
+             class="form-control"/>
+    </form>
+    <!-- Buttons for Submit and Cancel -->
+    <a class="btn btn-primary btn-block"
+       [routerLink]="['/user/:uid']">Register</a>
+    <a class="btn btn-danger btn-block"
+       [routerLink]="['/login']">Cancel</a>
+  </div>

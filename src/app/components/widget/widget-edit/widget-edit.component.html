@@ -1,0 +1,54 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--back arrow in nav bar-->
+    <p class="navbar-text pull-left">
+      <a [routerLink]="['/user/:uid/website/:wid/page/widget/new']" class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left banner"></span>
+      </a>
+    </p>
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header">
+      <a class="navbar-brand thick">
+        <b class="banner">Widget Edit</b>
+      </a>
+    </p>
+
+    <!--check symbol on nav bar-->
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/user/:uid/website/:wid/page/widget']" class="navbar-link">
+        <span class="glyphicon glyphicon-ok banner"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+
+<div [ngSwitch]="widgetType">
+
+  <div *ngSwitchCase='headingWidget'>
+    <app-widget-header></app-widget-header>
+  </div>
+
+  <div *ngSwitchCase='imageWidget'>
+    <app-widget-image></app-widget-image>
+  </div>
+
+  <div *ngSwitchCase='youtubeWidget'>
+    <app-widget-youtube></app-widget-youtube>
+  </div>
+
+</div>
+
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/user/:uid']">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+  </div>
+</nav>
