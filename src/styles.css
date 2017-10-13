@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+input {
+  margin-bottom: 5px;
+}
+
+.navbar {
+  background-color: RoyalBlue;
+
+}
+
+.banner {
+  color: white;
+}
+
+.post-nav {
+  margin-top : 75px;
+}
+
+.footer {
+  margin-top : 10000px;
+}
+
+.widget-item {
+  margin-bottom : 30px;
+}
+
+.toolbar {
+  position: absolute;
+  right: 0px;
+  background-color: grey;
+  padding: 7px;
+  border-bottom-left-radius: 10px;
+  opacity: 0.75;
+}
+

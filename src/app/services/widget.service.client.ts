@@ -22,7 +22,6 @@ export class WidgetService {
       'url': 'https://youtu.be/AM2Ivdi9c4E' },
     { '_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
 ];
-
   api = {
     'createWidget'   : this.createWidget,
     'findWidgetByPageId' : this.findWidgetsByPageId,

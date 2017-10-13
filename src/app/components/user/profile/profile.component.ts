@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   email: String;
   first: String;
   last: String;
+  websiteURL: String;
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
 
@@ -29,6 +30,7 @@ export class ProfileComponent implements OnInit {
     this.email =  this.user['email'];
     this.first = this.user['firstName'];
     this.last = this.user['lastName'];
+    this.websiteURL = '/user/' + this.userId + '/website';
   }
 
 }

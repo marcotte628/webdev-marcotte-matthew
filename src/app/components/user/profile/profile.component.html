@@ -24,6 +24,7 @@
     <div class="form-group">
         <label for="username">Username</label>
         <input [(ngModel)]="username"
+               [ngModelOptions]="{standalone: true}"
                type="text"
                class="form-control"
                id="username"
@@ -33,6 +34,7 @@
     <div class="form-group">
       <label for="email">Email address</label>
       <input [(ngModel)]="email"
+             [ngModelOptions]="{standalone: true}"
              type="email"
              class="form-control"
              id="email"
@@ -42,6 +44,7 @@
     <div class="form-group">
       <label for="first-name">First Name</label>
       <input [(ngModel)]="first"
+             [ngModelOptions]="{standalone: true}"
              type="text"
              class="form-control"
              id="first-name"
@@ -51,6 +54,7 @@
     <div class="form-group">
       <label for="last-name">Last Name</label>
       <input [(ngModel)]="last"
+             [ngModelOptions]="{standalone: true}"
              type="text"
              class="form-control"
              id="last-name"
@@ -60,9 +64,9 @@
 
   <!-- Buttons for Websites and Logout -->
   <a class="btn btn-primary btn-block"
-     [routerLink]="['/user/:uid/website']">Websites</a>
+     [routerLink]=websiteURL >Websites</a>
   <a class="btn btn-danger btn-block "
-     [routerLink]="['login']">Logout</a>
+     [routerLink]="['/login']">Logout</a>
 
 </div>
 

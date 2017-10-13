@@ -15,7 +15,6 @@ import {WebsiteNewComponent} from './components/website/website-new/website-new.
 import {PageEditComponent} from './components/page/page-edit/page-edit.component';
 import {PageListComponent} from './components/page/page-list/page-list.component';
 import {PageNewComponent} from './components/page/page-new/page-new.component';
-
 import {WidgetChooserComponent} from './components/widget/widget-chooser/widget-chooser.component';
 import {WidgetEditComponent} from './components/widget/widget-edit/widget-edit.component';
 import {WidgetListComponent} from './components/widget/widget-list/widget-list.component';

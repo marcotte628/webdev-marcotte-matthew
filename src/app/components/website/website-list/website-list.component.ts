@@ -12,6 +12,7 @@ export class WebsiteListComponent implements OnInit {
 
   userId: String;
   websites = {};
+  profileURL: String;
 
   constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute) { }
 
@@ -23,6 +24,7 @@ export class WebsiteListComponent implements OnInit {
         }
       );
     this.websites = this.websiteService.findWebsitesByUser(this.userId);
+    this.profileURL = '/user/' + this.userId;
   }
 
   WebsiteListController($routeParams, WebsiteService) {

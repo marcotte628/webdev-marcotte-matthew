@@ -23,7 +23,7 @@ import { WidgetChooserComponent } from './components/widget/widget-chooser/widge
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
 
-import {Routing} from './app.routing';
+import { Routing } from './app.routing';
 
 import { UserService } from './services/user.service.client';
 import { WebsiteService } from './services/website.service.client';
