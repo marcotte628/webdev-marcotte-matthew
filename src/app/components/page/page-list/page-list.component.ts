@@ -24,7 +24,7 @@ export class PageListComponent implements OnInit {
     this.pages = this.pageService.findPagesByWebsiteId(this.userId);
   }
 
-  WidgetListController($routeParams, WebsiteService) {
+  PageListController($routeParams, WebsiteService) {
     this.userId = $routeParams['uid'];
     function init() {
       this.page = this.pageService.findPagesByWebsiteId(this.userId);
