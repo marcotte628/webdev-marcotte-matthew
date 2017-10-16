@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   username: String;
   password: String;
   reenter: String;
+  userId: String;
   profileURL: String;
 
   ngOnInit() {
@@ -31,10 +32,10 @@ export class RegisterComponent implements OnInit {
       if (user) {
         alert('there is already an account with that information!');
       } else {
-        this.userService.createUser(this.username, this.password);
-        const newUser = this.userService.findUserByCredentials(this.username, this.password);
+        const newUser = this.userService.createUser(this.username, this.password);
         if (newUser) {
-          this.profileURL = '/user/' + newUser._id;
+          this.userId = newUser._id;
+          this.profileURL = '/user/' + this.userId;
         }else {
           alert('something went wrong');
         }

@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   // properties
   username: String;
   password: String;
+  userId: String;
   profileURL: String;
   errorFlag: boolean;
   errorMsg= 'Invalid username or password !';
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
 
     const user = this.userService.findUserByCredentials(this.username, this.password);
     if (user) {
+      this.userId = user._id;
       this.profileURL = '/user/' + user._id;
     }
   }

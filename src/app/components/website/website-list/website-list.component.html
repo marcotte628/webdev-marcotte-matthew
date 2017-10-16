@@ -3,14 +3,14 @@
 
       <!--back arrow in nav bar-->
         <p class="navbar-text pull-left">
-          <a [routerLink]=profileURL class="navbar-link">
+          <a [routerLink]="['/user', userId ]" class="navbar-link">
             <span class="glyphicon glyphicon-chevron-left banner"></span>
           </a>
         </p>
 
         <!--plus sign on nav bar-->
           <p class="navbar-text pull-right">
-            <a [routerLink]=newSite class="navbar-link">
+            <a [routerLink]="['/user', userId, 'website', 'new' ]" class="navbar-link">
               <span class="glyphicon glyphicon-plus banner"></span>
             </a>
           </p>
@@ -28,8 +28,8 @@
 <!-- List of Websites and Cog Glyphs  -->
   <div *ngFor="let website of websites" class="container post-nav">
     <div class="form-group">
-      <a [routerLink]="['/user/:uid/website/:wid/page']"> {{website.name}} </a>
-      <a [routerLink]="['/user/:uid/website/:wid']">
+      <a [routerLink]="['/user', userId, 'website', website._id, 'page']"> {{website.name}} </a>
+      <a [routerLink]="['/user', userId, 'website', website._id]">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
     </div>
@@ -40,7 +40,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]=profileURL>
+      <a [routerLink]="['/user', userId ]">
         <span class="glyphicon glyphicon-user banner"></span>
       </a>
     </p>
