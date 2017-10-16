@@ -29,12 +29,12 @@ const APP_ROUTES: Routes = [
   { path : 'user/:uid/website' , component: WebsiteListComponent},
   { path : 'user/:uid/website/new' , component: WebsiteNewComponent},
   { path : 'user/:uid/website/:wid' , component: WebsiteEditComponent},
-  { path : 'user/:uid/website/page' , component: PageListComponent},
-  { path : 'user/:uid/website/page/new' , component: PageNewComponent},
-  { path : 'user/:uid/website/page/:pid' , component: PageEditComponent},
-  { path : 'user/:uid/website/page/:pid/widget/new' , component: WidgetChooserComponent},
-  { path : 'user/:uid/website/page/:pid/widget/:wgid' , component: WidgetEditComponent},
-  { path : 'user/:uid/website/page/:pid/widget' , component: WidgetListComponent},
+  { path : 'user/:uid/website/:wid/page' , component: PageListComponent},
+  { path : 'user/:uid/website/:wid/page/new' , component: PageNewComponent},
+  { path : 'user/:uid/website/:wid/page/:pid' , component: PageEditComponent},
+  { path : 'user/:uid/website/:wid/page/:pid/widget/new' , component: WidgetChooserComponent},
+  { path : 'user/:uid/website/:wid/page/:pid/widget/:wgid' , component: WidgetEditComponent},
+  { path : 'user/:uid/website/:wid/page/:pid/widget' , component: WidgetListComponent},
 ];
 
 // Export the routes as module providers
