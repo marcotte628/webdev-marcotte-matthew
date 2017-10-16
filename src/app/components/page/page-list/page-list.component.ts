@@ -11,6 +11,7 @@ export class PageListComponent implements OnInit {
 
   userId: String;
   pages = {};
+  websiteId: String;
 
   constructor(private pageService: PageService, private activatedRoute: ActivatedRoute) { }
 
@@ -19,9 +20,11 @@ export class PageListComponent implements OnInit {
       .subscribe(
         (params: any) => {
           this.userId = params['uid'];
+          this.websiteId = params['wid'];
         }
       );
-    this.pages = this.pageService.findPagesByWebsiteId(this.userId);
+    this.pages = this.pageService.findPagesByWebsiteId(this.websiteId);
+    console.log(this.pages);
   }
 
   PageListController($routeParams, WebsiteService) {
