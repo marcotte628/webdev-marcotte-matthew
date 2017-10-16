@@ -43,7 +43,7 @@ var serverSide = require("./server/test-mongodb/app");
 serverSide(app);
 
 
-
+/*
 // For Build: Catch all other routes and return the index file -- BUILDING
 //defines request-response cycle...
 // req = object representing all browser information
@@ -63,7 +63,7 @@ function hello(req, res){
 var assignment = require("./assignment/app");
 assignment(app);
 
-
+*/
 
 // this app.get() was already here... the above examples were made by you
 // this app.get is like a "catch-all"... the app is redirected here if other path does not exist
