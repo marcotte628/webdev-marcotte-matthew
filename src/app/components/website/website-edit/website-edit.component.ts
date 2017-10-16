@@ -13,10 +13,19 @@ export class WebsiteEditComponent implements OnInit {
   website = {};
   websiteName: String;
   websiteDescription: String;
+  userId: String;
+  websites: {};
 
   constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.params
+      .subscribe(
+        (params: any) => {
+          this.userId = params['uid'];
+        }
+      );
+    this.websites = this.websiteService.findWebsitesByUser(this.userId);
     this.activatedRoute.params
       .subscribe(
         (params: any) => {

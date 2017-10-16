@@ -29,34 +29,18 @@
     <div class="row">
       <!-- List of Websites for left side of page -->
       <div class="col-sm-3 hidden-xs">
-        <div class="form-group">
-          <a [routerLink]="['/user/:uid/website/:wid/page']"> Address Book App </a>
-          <a [routerLink]="['/user/:uid/website/:wid']">
-            <span class="glyphicon glyphicon-cog pull-right"></span>
-          </a>
+
+        <!-- List of Websites for left side of page -->
+        <div *ngFor="let website of websites" class="form-group">
+
+            <a [routerLink]="['/user', userId, 'website', website._id, 'page']"> {{website.name}} </a>
+            <a [routerLink]="['/user', userId, 'website', website._id]">
+              <span class="glyphicon glyphicon-cog pull-right"></span>
+            </a>
+
         </div>
 
-        <div class="form-group">
-          <a [routerLink]="['/user/:uid/website/:wid/page']"> Blogger </a>
-          <a [routerLink]="['/user/:uid/website/:wid']">
-            <span class="glyphicon glyphicon-cog pull-right"></span>
-          </a>
-        </div>
-
-        <div class="form-group">
-          <a [routerLink]="['/user/:uid/website/:wid/page']"> Blogging App </a>
-          <a [routerLink]="['/user/:uid/website/:wid']">
-            <span class="glyphicon glyphicon-cog pull-right"></span>
-          </a>
-        </div>
-
-        <div class="form-group">
-          <a [routerLink]="['/user/:uid/website/:wid/page']"> Script Testing App </a>
-          <a [routerLink]="['/user/:uid/website/:wid']">
-            <span class="glyphicon glyphicon-cog pull-right"></span>
-          </a>
-        </div>
-    </div>
+      </div>
 
     <!-- Form for Website Name and Description for right side -->
     <div class="col-sm-9">
@@ -67,7 +51,8 @@
                    type="text"
                    class="form-control"
                    id="website_name"
-                   placeholder="Blogger">
+                   placeholder="Blogger"
+                   [ngModelOptions]="{standalone: true}">
           </div>
 
           <div class="form-group">
@@ -77,7 +62,8 @@
                       rows="10"
                       class="form-control"
                       placeholder="Description"
-                      id="site_description"></textarea>
+                      id="site_description"
+                      [ngModelOptions]="{standalone: true}"></textarea>
           </div>
           <a class="btn btn-danger btn-block" [routerLink]="['/user/:uid/website']">Delete</a>
         </form>
