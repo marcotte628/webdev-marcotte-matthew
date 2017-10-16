@@ -3,14 +3,14 @@
 
       <!--back arrow in nav bar-->
         <p class="navbar-text pull-left">
-          <a [routerLink]="['/user/:uid/website']" class="navbar-link">
+          <a [routerLink]="['/user', userId, 'website' ]" class="navbar-link">
             <span class="glyphicon glyphicon-chevron-left banner"></span>
           </a>
         </p>
 
         <!--check symobl on nav bar-->
           <p class="navbar-text pull-right">
-            <a [routerLink]="['/user/:uid/website']" class="navbar-link">
+            <a [routerLink]="['/user', userId, 'website' ]" class="navbar-link">
               <span class="glyphicon glyphicon-ok banner"></span>
             </a>
           </p>
@@ -32,12 +32,10 @@
 
         <!-- List of Websites for left side of page -->
         <div *ngFor="let website of websites" class="form-group">
-
             <a [routerLink]="['/user', userId, 'website', website._id, 'page']"> {{website.name}} </a>
             <a [routerLink]="['/user', userId, 'website', website._id]">
               <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
-
         </div>
 
       </div>
@@ -75,7 +73,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['/user/:uid']">
+      <a [routerLink]="['/user', userId ]">
         <span class="glyphicon glyphicon-user banner"></span>
       </a>
     </p>
