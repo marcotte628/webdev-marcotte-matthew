@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../../services/user.service.client';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,6 @@ export class LoginComponent implements OnInit {
   username: String;
   password: String;
   profileURL: String;
-  userService: UserService;
   errorFlag: boolean;
   errorMsg= 'Invalid username or password !';
 
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   disabledFlag: boolean; // see usage as property binding (binds to various properties of HTML component)
   inputTxt: string; // see usage as two-way data binding (data flows to and from .ts code to HTML template)
 
-  constructor() { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.title = 'Login';
@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
     // fetch data from loginForm
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
-  }
 
+    const user = this.userService.findUserByCredentials(this.username, this.password);
+    if (user) {
+      this.profileURL = '/user/' + user._id;
+    }
+  }
 }

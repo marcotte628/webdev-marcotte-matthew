@@ -2,20 +2,35 @@
   <div class="container">
     <!-- Form for Registering with Username and Password -->
     <h1>Register</h1>
-    <form>
+    <form (ngSubmit)="register()" #f="ngForm">
       <input placeholder="username"
              type="text"
+             name="username"
+             ngModel
+             required
+             #username="ngModel"
              class="form-control"/>
       <input placeholder="password"
              type="password"
-             class="form-control"/>
+             class="form-control"
+             name="password"
+             ngModel
+             required
+             #username="ngModel"/>
       <input placeholder="verify password"
              type="password"
-             class="form-control"/>
-    </form>
+             class="form-control"
+             name="reenter"
+             ngModel
+             required
+             #username="ngModel"/>
     <!-- Buttons for Submit and Cancel -->
-    <a class="btn btn-primary btn-block"
-       [routerLink]="['/user/:uid']">Register</a>
-    <a class="btn btn-danger btn-block"
-       [routerLink]="['/login']">Cancel</a>
+    <button class="btn btn-primary btn-block"
+       type="submit"
+       [routerLink]=profileURL>
+      Register
+    </button>
+    <button class="btn btn-danger btn-block"
+       [routerLink]="['/login']">Cancel</button>
+    </form>
   </div>

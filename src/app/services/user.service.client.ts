@@ -3,6 +3,7 @@ import { Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { User} from '../models/user.model.client';
 
 // injecting service into module
 @Injectable()
@@ -10,13 +11,11 @@ import { Router } from '@angular/router';
 export class UserService {
 
   constructor() { }
-
-  users = [
-    {_id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder', email: 'alice@google.com'},
-    {_id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley', email: 'bob@google.com'},
-    {_id: '345', username: 'charly',   password: 'charly',   firstName: 'Charly', lastName: 'Garcia', email: 'charly@google.com'  },
-    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose',   lastName: 'Annunzi', email: 'jann@google.com' }
-
+  users: User[] = [
+    new User('123', 'alice', 'alice', 'Alice', 'Wonder', 'alice@google.com'),
+    new User('234', 'bob', 'bob', 'Bob', 'Wonder', 'bob@google.com'),
+    new User('345', 'charly', 'charly', 'Charly', 'Garcia', 'charly@google.com'),
+    new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi', 'jann@google.com')
   ];
 
   api = {
@@ -27,10 +26,11 @@ export class UserService {
     'deleteUser' : this.deleteUser
   };
 
-  createUser(user: any) {
-    user._id = Math.random();
-    this.users.push(user);
-    return user;
+  createUser(user: String, password: String) {
+    const newID = Math.floor((Math.random() * 1000));
+    const newUser = new User( newID, user, password, user, user, user);
+    this.users.push(newUser);
+    return newUser;
   }
 
   findUserById(userId: String) {
