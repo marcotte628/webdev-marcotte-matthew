@@ -74,7 +74,7 @@
               <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
           </div>
-          <iframe width={{widget.width}} height={{widget.height}} src={{widget.url}}
+          <iframe width={{widget.width}} height={{widget.height}} [src]="widget.url | safe"
                   frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
