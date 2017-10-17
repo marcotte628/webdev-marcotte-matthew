@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { WidgetService } from '../../../services/widget.service.client';
 import {ActivatedRoute} from '@angular/router';
 
@@ -12,27 +12,25 @@ export class WidgetListComponent implements OnInit {
   pageId: String;
   widgets = {};
   widgetType: String;
-  headingWidget = 'HEADING';
-  youtubeWidget = 'YOUTUBE';
-  imageWidget = 'IMAGE';
-  widgetText: String;
-  widgetUrl: String;
-  widgetWidth: String;
+  userId: String;
+  websiteId: String;
+  websiteUrl: String;
 
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute) { }
+
+  @Input()
+  widgetList: WidgetService;
 
   ngOnInit() {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
           this.pageId = params['pid'];
+          this.userId = params['uid'];
+          this.websiteId = params['wid'];
         }
       );
     this.widgets = this.widgetService.findWidgetsByPageId(this.pageId);
-    this.widgetType = this.widgets['widgetType'];
-    this.widgetText = this.widgets['text'];
-    this.widgetUrl = this.widgets['url'];
-    this.widgetWidth = this.widgets['width'];
   }
 
   WidgetListController($routeParams, WebsiteService) {

@@ -30,6 +30,7 @@ import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
 
+import {SafePipe} from './services/widget.service.client.safePipe';
 
 @NgModule({
   // Declare components here
@@ -51,7 +52,8 @@ import { WidgetService } from './services/widget.service.client';
     WidgetYoutubeComponent,
     WidgetChooserComponent,
     WidgetEditComponent,
-    WidgetListComponent
+    WidgetListComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
