@@ -8,7 +8,8 @@
           <input [(ngModel)]="widgetName"
                  type="text"
                  class="form-control"
-                 id="heading_name">
+                 id="heading_name"
+                 [ngModelOptions]="{standalone: true}">
       </div>
 
      <div class="form-group">
@@ -16,7 +17,8 @@
          <input [(ngModel)]="widgetText"
                 type="text"
                 class="form-control"
-                id="heading_text">
+                id="heading_text"
+                [ngModelOptions]="{standalone: true}">
      </div>
 
     <div class="form-group">
@@ -27,7 +29,8 @@
                max="7"
                step="1"
                class="form-control"
-               id="heading_size">
+               id="heading_size"
+               [ngModelOptions]="{standalone: true}">
     </div>
   </form>
 

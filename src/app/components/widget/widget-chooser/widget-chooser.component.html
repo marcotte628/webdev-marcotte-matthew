@@ -6,7 +6,7 @@
 
       <!--back arrow in nav bar-->
         <p class="navbar-text pull-left">
-          <a [routerLink]="['/user/:uid/website/:wid/page/:pid/widget']" class="navbar-link">
+          <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]" class="navbar-link">
             <span class="glyphicon glyphicon-chevron-left banner"></span>
           </a>
         </p>
@@ -23,43 +23,43 @@
   <!-- Set of Widgets to choose form -->
   <div class="container post-nav">
     <div class="form-group">
-        <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Header </a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]"> Header </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Label </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Label </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> HTML </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> HTML </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Text Input </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Text Input </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Link </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Link </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Button </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Button </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Image </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Image </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> YouTube </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> YouTube </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Data Table </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Data Table </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user/:uid/website/:wid/page/widget/:wgid']"> Repeater </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Repeater </a>
     </div>
 
   </div>
@@ -68,7 +68,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['/user/:uid']">
+      <a [routerLink]="['/user', userId ]">
         <span class="glyphicon glyphicon-user banner"></span>
       </a>
     </p>

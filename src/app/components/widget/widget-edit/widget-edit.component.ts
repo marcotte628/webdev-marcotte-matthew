@@ -17,6 +17,9 @@ export class WidgetEditComponent implements OnInit {
   headingWidget = 'HEADING';
   youtubeWidget = 'YOUTUBE';
   imageWidget = 'IMAGE';
+  userId: String;
+  pageId: String;
+  websiteId: String;
 
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute) { }
 
@@ -25,6 +28,9 @@ export class WidgetEditComponent implements OnInit {
       .subscribe(
         (params: any) => {
           this.widgetId = params['wgid'];
+          this.userId = params['uid'];
+          this.pageId = params['pid'];
+          this.websiteId = params['wid'];
         });
     this.widget = this.widgetService.findWidgetById(this.widgetId);
     this.widgetType = this.widget['widgetType'];
