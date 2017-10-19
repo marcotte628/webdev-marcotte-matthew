@@ -1,3 +1,66 @@
+/******
+ service to host all website access
+
+ //=======+> single threaded example
+
+ import {WEBSITES} from './website.mock';
+ import {Injectable} from './........';
+
+ //-----> include this class in module.ts providers so you can inject it
+ @Injectable()
+ export class WebsiteServiceClient {
+  findWebsitesForUser(userId: String){
+    return WEBSITES;
+  }
+ }
+
+ // =======> asynchronous call to the server
+ // first return says not to wait for response.. when response comes back, second function is called
+
+ import {WEBSITES} from './website.mock';
+ import {Injectable} from './........';
+ import {Http} from 'angular/http';
+ import 'rxjs/Rx';
+
+ //-----> include this class in module.ts providers so you can inject it
+ @Injectable()
+ export class WebsiteServiceClient {
+  findWebsitesForUser(userId: String){
+  const url = 'http://localhost:3100/api/user/' + userId + '/website';
+    this.http.get(url).map((response: Response) = {
+      resturn response.json();
+    });
+  }
+
+  createWebsite(userId: String, website: Website) {
+    const url = 'http://localhost:3100/api/user/' + userId + '/website';
+    return this.http.post(url, website).map((response: Response) => {
+        return response.json();
+    });
+  }
+
+    function deleteWebsite(websiteId: String, userId: String) {
+      const url = 'http://localhost:3100/api/user/' + userId + '/website' + websiteId;
+      return this.http.delete(url).map((response: Response) => {
+          return response.json();
+     });
+  }
+
+  selectWebsite(websiteId: String) {
+   const url = 'http://localhost:3100/api/user/' + userId + '/website' + websiteId;
+      return this.http.get(url).map((response: Response) => {
+          return response.json();
+     });
+  }
+ }
+
+
+
+ ******/
+
+
+
+
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/Rx';

@@ -1,16 +1,84 @@
-import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Http, Response} from '@angular/http';
 import 'rxjs/Rx';
-import { environment } from '../../environments/environment';
+import {environment} from '../../environments/environment';
+
+/*
+import { Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { User} from '../models/user.model.client';
-
+*/
 // injecting service into module
 @Injectable()
 
 export class UserService {
 
-  constructor() { }
+  constructor(private _http: Http) {}
+
+  baseUrl = environment.baseUrl;
+
+  // perform login
+  login(username: String, password: String) {
+    const user = this.findUserByCredentials(username, password);
+    if (user) {
+      return user;
+    }
+  }
+  // findUserById
+  findUserById(userId: String) {
+    return this._http.get(this.baseUrl + '/api/user/' + userId)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
+  }
+  // findUserByCredentials = /api/user?username=username&password=password
+  findUserByCredentials(username: String, password: String) {
+    const url = this.baseUrl + '/api/user?username=' + username + '&password=' + password;
+    return this._http.get(url).map( (res: Response) =>  {
+      const data = res.json();
+      return data;
+    });
+  }
+  // "/api/user?username=username", findUserByUsername
+  findUserByUsername(username: String) {
+    const url = this.baseUrl + '/api/user?username=' + username;
+    return this._http.get(url).map( (res: Response) =>  {
+      const data = res.json();
+      return data;
+    });
+  }
+  // "/api/user", createUser
+  createUser(userId: String, username: String, password: String, first: String, last: String) {
+    const url = this.baseUrl + '/api/user';
+    const body = {_id: userId, username: username, password: password, firstName: first, lastName: last};
+    return this._http.post(url, body).map( (res: Response) =>  {
+      const data = res.json();
+      return data;
+    });
+  }
+  // "/api/user/:userId", updateUser
+  updateUser(userId: String, username: String, password: String, first: String, last: String) {
+    const url = this.baseUrl + '/api/user';
+    const body = {_id: userId, username: username, password: password, firstName: first, lastName: last};
+    return this._http.put(url, body).map( (res: Response) =>  {
+      const data = res.json();
+      return data;
+    });
+  }
+  // "/api/user/:userId", deleteUser
+  deleteUser(userId: String) {
+    const url = this.baseUrl + '/api/user/' + userId;
+    return this._http.delete(url).map( (res: Response) =>  {
+      const data = res.json();
+      return data;
+    });
+  }
+
+
+  /*
   users: User[] = [
     new User('123', 'alice', 'alice', 'Alice', 'Wonder', 'alice@google.com'),
     new User('234', 'bob', 'bob', 'Bob', 'Wonder', 'bob@google.com'),
@@ -46,6 +114,9 @@ export class UserService {
   }
 
   findUserByCredentials(username: String, password: String) {
+    // find credentials fromthe server...
+    // const url = 'http://localhost:3100/api/user?username=' + username + '&password=' + password;
+    // return this.http.get(url).map(response: Response) => { return response.json(); });
     for (let x = 0; x < this.users.length; x++) {
       if (this.users[x].username === username && this.users[x].password === password ) { return this.users[x]; }
     }
@@ -64,4 +135,6 @@ export class UserService {
       }
     }
   }
+
+  */
 }

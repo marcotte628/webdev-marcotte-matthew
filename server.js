@@ -43,7 +43,7 @@ var serverSide = require("./server/test-mongodb/app");
 serverSide(app);
 
 
-/*
+
 // For Build: Catch all other routes and return the index file -- BUILDING
 //defines request-response cycle...
 // req = object representing all browser information
@@ -51,19 +51,16 @@ serverSide(app);
 app.get("/", function(req, res){
   res.send("hello from the browser. you are at the root location.");
 });
-
 // can also create api responses like this
 app.get("/api/hello", hello);
 function hello(req, res){
   //sends a json object, not just static data
   res.send({message: "hello from the browser. you are at the localhost:3100/api/hello url."});
 }
-
 // assignment = require("assignment/app")(app);
 var assignment = require("./assignment/app");
 assignment(app);
 
-*/
 
 // this app.get() was already here... the above examples were made by you
 // this app.get is like a "catch-all"... the app is redirected here if other path does not exist
@@ -76,5 +73,3 @@ server.listen(port);
 
 //********** this line was note written by you. you commented it out for class ************
 //server.listen( port , () => console.log('Running'));
-
-

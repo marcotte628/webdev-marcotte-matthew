@@ -36,4 +36,16 @@ export class WebsiteEditComponent implements OnInit {
     this.websiteDescription = this.website['description'];
   }
 
+  deleteWebsite(websiteId: String) {
+   // this.websiteService.deleteWebsite(websiteId, userId).subscribe((websites) => { this.websites = websites })
+  }
+
+  selectWebiste(websiteId: String) {
+    //this.websiteService.findWebsiteById(this.userId, websiteId).subscribe((websites) => { this.websites = websites});
+  }
+
+  updateWebiste(websiteId: String) {
+    this.website = this.websiteService.findWebsiteById(this.websiteId);
+    //this.websiteService.findWebsiteById(this.userId, websiteId).subscribe((websites) => { this.websites = websites});
+  }
 }

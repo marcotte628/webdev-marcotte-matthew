@@ -42,6 +42,7 @@
 
     <!-- Form for Website Name and Description for right side -->
     <div class="col-sm-9">
+      <!-- make form tag call deleteWebsite(website._Id) -->
         <form>
           <div class="form-group">
             <label for="website_name">Website Name</label>
@@ -63,7 +64,8 @@
                       id="site_description"
                       [ngModelOptions]="{standalone: true}"></textarea>
           </div>
-          <a class="btn btn-danger btn-block" [routerLink]="['/user/:uid/website']">Delete</a>
+          <a class="btn btn-danger btn-block" (click)="deleteWebsite(websiteId)">Delete</a>
+          <a class="btn btn-danger btn-block" (click)="updateWebsite(websiteId)">Update</a>
         </form>
 
      </div>

@@ -1,13 +1,13 @@
-// class notes........
-
-//implement some user web service endpoints
 
 module.exports = function(app) {
-
-  app.get("/api/user/:uid", findUserById);
-  app.get("/api/user/hello", helloUser);
-  app.get("/api/user", findUsers);
-
+  /*
+  var USERS = [
+    new User("123", "alice", "alice", "Alice", "Wonder" ),
+    new User("234", "bob", "bob", "Bob", "Marley"  ),
+    new User("345", "charly", "charly", "Charly", "Garcia" ),
+    new User("456", "jannunzi", "jannunzi", "Jose", "Annunzi" )
+  ];
+  */
   var users = [
     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
     {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -15,36 +15,95 @@ module.exports = function(app) {
     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
   ];
 
-  function findUserById(req, res){
+  app.get("/api/user", getUser);
+  app.get("/api/user?username=username&password=password", findUserByCredentials);
+  app.get("/api/user?username=username", findUserByUsername);
+  app.get("/api/user/:userId", findUserById);
+  app.post("/api/user", createUser);
+  app.put("/api/user/:userId", updateUser);
+  app.delete("/api/user/:userId", deleteUser);
 
-    var uid = req.params["uid"];
+  function getUser(req, res){
+    var username = req.query["username"];
+    var password = req.query["password"];
+    if(username && password){
+      var user = getUserByCredentials(username, password);
+      res.json(user);
+    }else if(username){
+      var user = getUserByUsername(username, password);
+    }else{
+      res.json(users);
+    }
+  }
+
+  function getUserByCredentials(username, password){
+    for(var i = 0; i < users.length; i++) {
+      if(users[i].username === username && users[i].password === password) {
+        return users[i];
+      }
+    }
+  }
+
+  function getUserByUsername(username, password){
+    for(var i = 0; i < users.length; i++) {
+      if(users[i].username === username) {
+        return users[i];
+      }
+    }
+  }
+
+  function findUserById(req, res){
+    var uid = req.params["userId"];
     var user = users.find(function(user){
       return user._id === uid;
     });
     res.json(user);
   }
 
-  function helloUser(req, res) {
-    res.send("hello from the user service");
+  function createUser(req, res) {
+    var newUser = req.body;
+    users.push(newUser);
+    res.json(newUser);
   }
 
-  function findUsers(req, res){
-    //check for arguments in url query
-
-    var username = req.query["username"];
-    var password = req.query["password"];
-    if(username && password){
-      var user = users.find(function(user){
-        return user.username === username && user.password === password;
-      });
+  function updateUser(req, res) {
+    var uid = req.params["userId"];
+    var body = req.body;
+    for(var i = 0; i < users.length; i++) {
+      if(users[i]._id === uid) {
+        users[i]= body;
+      }
     }
-    if(user){
-      res.json(user);
-    }else {
-      res.json({});
+  }
+
+  function deleteUser(req, res) {
+    var uid = req.params["userId"];
+    for(var i = 0; i < users.length; i++) {
+      if(users[i]._id !== uid ) {
+        users.splice(i, 1);
+      }
     }
     res.json(users);
-
   }
+
+
+  function findUserByUsername(req, res) {
+    console.log("FIND USER BY USERNAME");
+    var username = req.query["username"];
+    var user = users.find(function(user){
+      return user.username === username;
+    });
+    res.json(user);
+  }
+
+  function findUserByCredentials(req, res) {
+    var username = req.query["username"];
+    var password = req.query["password"];
+    var user = users.find(function(user){
+      return (user.username === username && user.password === password);
+    });
+    res.json(user);
+  }
+
 
 };

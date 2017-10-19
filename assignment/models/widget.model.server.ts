@@ -1,4 +1,4 @@
-export class Widget {
+class Widget {
   src: String;
   _id: String;
   widgetType: String;
@@ -8,7 +8,7 @@ export class Widget {
   text: String;
   url: String;
   name: String;
-  constructor(src, id, type, page, size, width, text, url, name) {
+  constructor(src: String, id: String, type: String, page: String, size: number, width: String, text: String, url: String, name: String) {
     this.src = src;
     this._id = id;
     this.widgetType = type;

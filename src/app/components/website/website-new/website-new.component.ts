@@ -11,6 +11,7 @@ export class WebsiteNewComponent implements OnInit {
 
   userId: String;
   websites: {};
+  websiteName: String;
   constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -22,5 +23,11 @@ export class WebsiteNewComponent implements OnInit {
       );
     this.websites = this.websiteService.findWebsitesByUser(this.userId);
   }
+
+  createWebsite(name: String) {
+    // const website: Website = new Website('', name);
+    // this.websiteService.createWebsite(this.userId, website).subscribe(next: (websites) => { this.websites = websites });
+  }
+
 
 }
