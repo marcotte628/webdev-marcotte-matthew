@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
   login(event: any) {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
-
     this.userService.login(this.username, this.password).subscribe(
       (data: any) => {
         this.errorFlag = false;

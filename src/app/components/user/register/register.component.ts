@@ -28,18 +28,13 @@ export class RegisterComponent implements OnInit {
     this.password = this.registerForm.value.password;
     this.reenter = this.registerForm.value.reenter;
     if (this.password === this.reenter) {
-      const user = this.userService.findUserByCredentials(this.username, this.password);
-      if (user) {
-        alert('there is already an account with that information!');
-      } else {
-        const newUser = this.userService.createUser(this.username, this.password);
-        if (newUser) {
-          this.userId = newUser._id;
-          this.profileURL = '/user/' + this.userId;
-        }else {
-          alert('something went wrong');
+      this.userService.register(this.username, this.password).subscribe(
+        (data: any) => {
+          this.router.navigate(['/user/' + data._id]);
+        },
+        (error: any) => {
         }
-      }
+      );
     }
   }
 }

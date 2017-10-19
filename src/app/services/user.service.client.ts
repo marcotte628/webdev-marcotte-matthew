@@ -17,6 +17,13 @@ export class UserService {
 
   baseUrl = environment.baseUrl;
 
+  // perform register
+  register(username: String, password: String) {
+    const user = this.createUser(username, password);
+    if (user) {
+      return user;
+    }
+  }
   // perform login
   login(username: String, password: String) {
     const user = this.findUserByCredentials(username, password);
@@ -51,9 +58,9 @@ export class UserService {
     });
   }
   // "/api/user", createUser
-  createUser(userId: String, username: String, password: String, first: String, last: String) {
+  createUser(username: String, password: String) {
     const url = this.baseUrl + '/api/user';
-    const body = {_id: userId, username: username, password: password, firstName: first, lastName: last};
+    const body = {username: username, password: password, firstName: username, lastName: username};
     return this._http.post(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;

@@ -10,12 +10,11 @@ import {ActivatedRoute} from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   userId: String;
-  user = {};
   username: String;
   email: String;
   first: String;
   last: String;
-  websiteURL: String;
+
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
 
@@ -25,12 +24,15 @@ export class ProfileComponent implements OnInit {
         (params: any) => {
           this.userId = params['uid'];
         });
-    this.user = this.userService.findUserById(this.userId);
-    this.username = this.user['username'];
-    this.email =  this.user['email'];
-    this.first = this.user['firstName'];
-    this.last = this.user['lastName'];
-    this.websiteURL = '/user/' + this.userId + '/website';
+    const user = this.userService.findUserById(this.userId).subscribe(
+      (data: any) => {
+        this.username = data.username;
+        this.email = data.email;
+        this.first = data.firstName;
+        this.last = data.lastName; },
+      (error: any) => {
+      }
+    );
   }
 
 }
