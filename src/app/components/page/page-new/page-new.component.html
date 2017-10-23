@@ -4,14 +4,14 @@
 
       <!--back arrow in nav bar-->
       <p class="navbar-text pull-left">
-        <a [routerLink]="['/user', userId, 'WEBSITE', websiteId, 'page' ]" class="navbar-link">
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page' ]" class="navbar-link">
           <span class="glyphicon glyphicon-chevron-left banner"></span>
         </a>
       </p>
 
       <!--check symbol on nav bar-->
         <p class="navbar-text pull-right">
-          <a [routerLink]="['/user', userId, 'WEBSITE', websiteId, 'page' ]" class="navbar-link">
+          <a [routerLink]="['/user', userId, 'website', websiteId, 'page' ]" class="navbar-link">
             <span class="glyphicon glyphicon-ok banner"></span>
           </a>
        </p>
@@ -30,13 +30,16 @@
     <form ngForm="createPage()">
     <div class="form-group">
       <label for="page_name">Name</label>
-      <input type="text" class="form-control" id="page_name" placeholder="Page Name" [(ngModel)]="pageName">
+      <input type="text" class="form-control" id="page_name" placeholder="Page Name" [(ngModel)]="pageName" [ngModelOptions]="{standalone: true}">
     </div>
 
     <div class="form-group">
       <label for="page_title">Title</label>
-      <input type="text" class="form-control" id="page_title" placeholder="Page Title" [(ngModel)]="pageTitle">
+      <input type="text" class="form-control" id="page_title" placeholder="Page Title" [(ngModel)]="pageTitle" [ngModelOptions]="{standalone: true}">
     </div>
+      <!-- Update Button-->
+      <a class="btn btn-primary btn-block"
+         type="submit" (click)="createPage()"> Create Page </a>
   </form>
   </div>
 

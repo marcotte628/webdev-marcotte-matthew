@@ -14,7 +14,7 @@ export class PageEditComponent implements OnInit {
   websiteId: String;
   userId: String;
   pages: {};
-  page: {};
+  page;
   pageTitle: String;
   pageName: String
 
@@ -29,10 +29,12 @@ export class PageEditComponent implements OnInit {
           this.pageId = params['pid'];
         }
       );
-    this.pages = this.pageService.findAllPagesForWebsite(this.websiteId);
-    this.page = this.pageService.findPageById(this.pageId);
-    this.pageTitle = this.page['description'];
-    this.pageName = this.page['name'];
+    // this.pageService.findAllPagesForWebsite(this.websiteId).subscribe( (pages) => { this.page = pages; });
+    this.page = this.pageService.findPageById(this.pageId).subscribe( (resp) => {
+      this.page = resp;
+      this.pageTitle = this.page.description;
+      this.pageName = this.page.name;
+    });
   }
 
   deletePage() {
