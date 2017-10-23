@@ -12,6 +12,7 @@ export class WebsiteNewComponent implements OnInit {
   userId: String;
   websites: {};
   websiteName: String;
+  websiteDescription: String;
   constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -21,12 +22,12 @@ export class WebsiteNewComponent implements OnInit {
           this.userId = params['uid'];
         }
       );
-    this.websites = this.websiteService.findWebsitesByUser(this.userId);
+    this.websites = this.websiteService.findWebsiteById(this.userId);
   }
 
-  createWebsite(name: String) {
-    // const website: Website = new Website('', name);
-    // this.websiteService.createWebsite(this.userId, website).subscribe(next: (websites) => { this.websites = websites });
+  createWebsite() {
+    const info = {_id: '', name: this.websiteName, developerId: this.userId, description: this.websiteDescription};
+    this.websiteService.createWebsite(this.userId, info).subscribe( (websites) => { this.websites = websites; });
   }
 
 

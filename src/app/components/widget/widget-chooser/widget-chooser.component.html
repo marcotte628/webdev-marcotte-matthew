@@ -23,43 +23,43 @@
   <!-- Set of Widgets to choose form -->
   <div class="container post-nav">
     <div class="form-group">
-        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]"> Header </a>
+        <a (click)="addHeader()"> Header </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Label </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]"> Label </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> HTML </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]"> HTML </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Text Input </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]"> Text Input </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Link </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']"> Link </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Button </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page',  pageId, 'widget' ]"> Button </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Image </a>
+      <a (click)="addImage()"> Image </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> YouTube </a>
+      <a (click)="addYoutube()"> YouTube </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Data Table </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']"> Data Table </a>
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widgetId ]"> Repeater </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]"> Repeater </a>
     </div>
 
   </div>

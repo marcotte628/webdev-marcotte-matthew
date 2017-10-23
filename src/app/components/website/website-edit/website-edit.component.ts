@@ -25,7 +25,7 @@ export class WebsiteEditComponent implements OnInit {
           this.userId = params['uid'];
         }
       );
-    this.websites = this.websiteService.findWebsitesByUser(this.userId);
+    this.websites = this.websiteService.findAllWebsitesForUser(this.userId);
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
@@ -36,16 +36,12 @@ export class WebsiteEditComponent implements OnInit {
     this.websiteDescription = this.website['description'];
   }
 
-  deleteWebsite(websiteId: String) {
-   // this.websiteService.deleteWebsite(websiteId, userId).subscribe((websites) => { this.websites = websites })
+  deleteWebsite() {
+    this.websiteService.deleteWebsite(this.websiteId).subscribe((id) => { this.websiteId = id; });
   }
 
-  selectWebiste(websiteId: String) {
-    //this.websiteService.findWebsiteById(this.userId, websiteId).subscribe((websites) => { this.websites = websites});
-  }
-
-  updateWebiste(websiteId: String) {
-    this.website = this.websiteService.findWebsiteById(this.websiteId);
-    //this.websiteService.findWebsiteById(this.userId, websiteId).subscribe((websites) => { this.websites = websites});
+  updateWebsite() {
+    const info = { _id: this.websiteId, name: this.websiteName, developerId: this.userId, description: this.websiteDescription };
+    this.websiteService.updateWebsite(this.websiteId, info).subscribe((website) => { this.website = website; });
   }
 }

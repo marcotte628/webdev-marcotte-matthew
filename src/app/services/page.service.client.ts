@@ -9,53 +9,45 @@ import { Router } from '@angular/router';
 
 export class PageService {
 
-  constructor() { }
+  constructor(private _http: Http) { }
 
-  pages = [
-    { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' },
-    { '_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem' },
-    { '_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem' }
-  ];
-
-  api = {
-    'createPage'   : this.createPage,
-    'findPageByWebsiteId' : this.findPagesByWebsiteId,
-    'findPageById' : this.findPageById,
-    'updatePage' : this.updatePage,
-    'deletePage' : this.deletePage
-  };
-
-  createPage(page: any) {
-    page._id = Math.random();
-    this.pages.push(page);
-    return page;
+  createPage(websiteId: String, info: any) {
+    const url = 'http://localhost:3100/api/website/' + websiteId + '/page';
+    return this._http.post(url, info).map( (res: Response) =>  {
+      const data = res.json();
+      return data;
+    });
   }
 
-  findPagesByWebsiteId(wid: String) {
-    const pgs = [];
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x].websiteId === wid) {  pgs.push(this.pages[x]); }
-    }
-    return pgs;
+  findAllPagesForWebsite(websiteId: String) {
+    const url = 'http://localhost:3100/api/website/' + websiteId + '/page';
+    return this._http.get(url).map( (res: Response) =>  {
+      const data = res.json();
+      return data;
+    });
   }
 
-  findPageById(pid: String) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pid) { return this.pages[x]; }
-    }
+  findPageById(pageId: String) {
+    const url = 'http://localhost:3100/api/page/' + pageId;
+    return this._http.get(url).map( (res: Response) =>  {
+      const data = res.json();
+      return data;
+    });
   }
 
-  updatePage(pid, page) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pid) {  this.pages[x] = page; }
-    }
+  updatePage(pageId, info) {
+    const url = 'http://localhost:3100/api/page/' + pageId;
+    return this._http.put(url, info).map( (res: Response) =>  {
+      const data = res.json();
+      return data;
+    });
   }
 
-  deletePage(pid) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id !== pid) {
-        this.pages.splice(x, 1);
-      }
-    }
+  deletePage(pageId) {
+    const url = 'http://localhost:3100/api/page/' + pageId;
+    return this._http.delete(url).map( (res: Response) =>  {
+      const data = res.json();
+      return data;
+    });
   }
 }

@@ -10,7 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 export class WidgetListComponent implements OnInit {
 
   pageId: String;
-  widgets = {};
+  widgets = [];
   widgetType: String;
   userId: String;
   websiteId: String;
@@ -30,13 +30,13 @@ export class WidgetListComponent implements OnInit {
           this.websiteId = params['wid'];
         }
       );
-    this.widgets = this.widgetService.findWidgetsByPageId(this.pageId);
+    this.widgetService.findAllWidgetsForPage(this.pageId).subscribe( (widgets) => { this.widgets = widgets; });
   }
 
   WidgetListController($routeParams, WebsiteService) {
     this.pageId = $routeParams['pid'];
     function init() {
-      this.widgets = WebsiteService.findWidgetsByPageId(this.pageId);
+      this.widgets = WebsiteService.findAllWidgetsForPage(this.pageId);
     }
     init();
   }

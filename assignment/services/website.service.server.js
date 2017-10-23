@@ -13,14 +13,17 @@ module.exports = function (app) {
     { _id: "789", name: "Chess",       developerId: "234", description: "Lorem" }
   ];
 
-  app.post("/api/user/:userId/website", createWebsite);
   app.get("/api/user/:userId/website", findAllWebsitesForUser);
   app.get("/api/website/:websiteId", findWebsiteById);
+  app.post("/api/user/:userId/website", createWebsite);
   app.put("/api/website/:websiteId", updateWebsite);
   app.delete("/api/website/:websiteId", deleteWebsite);
 
 
   function createWebsite(req, res) {
+    /*
+  NEED TO ADD AN _ID BEFORE YOU PUSH NEWWEBSITE
+ */
     var userId = req.params['userId'];
     var websiteDetails = req.body;
     WEBSITES.push(websiteDetails);
@@ -55,7 +58,7 @@ module.exports = function (app) {
   }
 
   function updateWebsite(req, res) {
-    var websiteId = req.params['wid'];
+    var websiteId = req.params['websiteId'];
     var newDetails = req.body;
     for(var i = 0; i < WEBSITES.length; i++){
       if(WEBSITES[i]._id == websiteId) {
@@ -67,7 +70,7 @@ module.exports = function (app) {
   }
 
   function deleteWebsite(req, res) {
-    var websiteId = req.params['wid'];
+    var websiteId = req.params['websiteId'];
     for(var i = 0; i < WEBSITES.length; i++){
       if(WEBSITES[i]._id == websiteId) {
         WEBSITES.splice(i, 1);

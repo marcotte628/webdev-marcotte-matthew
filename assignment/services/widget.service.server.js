@@ -18,10 +18,19 @@ module.exports = function(app) {
   app.delete("/api/widget/:widgetId", deleteWidget);
 
   function createWidget( req, res ) {
+    /*
+    NEED TO UPDATE WIDGET _ID VALUE BEFORE PUSHING...
+     */
     var pageId = req.params['pageId'];
     var widgetDetails = req.body;
     widgets.push(widgetDetails);
-    res.json(widgets);
+    tmpWidgets = [];
+    for(var i = 0; i < widgets.length; i++) {
+      if(widgets[i].pageId === pageId){
+        tmpWidgets.push(widgets[i])
+      }
+    }
+    res.json(tmpWidgets);
 
   }
 

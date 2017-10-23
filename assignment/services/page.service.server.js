@@ -13,6 +13,9 @@ module.exports = function(app) {
   app.delete("/api/page/:pageId", deletePage);
 
   function createPage( req, res ){
+    /*
+    NEED TO BUILD IN _ID BEFORE PUSHING
+     */
     var websiteId = req.params['websiteId'];
     var pageDetails = req.body;
     pages.push(pageDetails);

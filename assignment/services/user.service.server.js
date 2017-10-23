@@ -61,6 +61,9 @@ module.exports = function(app) {
   }
 
   function createUser(req, res) {
+    /*
+      NEED TO ADD AN _ID BEFORE YOU PUSH NEWUSER
+     */
     var newUser = req.body;
     users.push(newUser);
     res.json(newUser);

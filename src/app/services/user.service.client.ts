@@ -60,7 +60,7 @@ export class UserService {
   // "/api/user", createUser
   createUser(username: String, password: String) {
     const url = this.baseUrl + '/api/user';
-    const body = {username: username, password: password, firstName: username, lastName: username};
+    const body = {_id: '', username: username, password: password, firstName: username, lastName: username};
     return this._http.post(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;
@@ -83,65 +83,4 @@ export class UserService {
       return data;
     });
   }
-
-
-  /*
-  users: User[] = [
-    new User('123', 'alice', 'alice', 'Alice', 'Wonder', 'alice@google.com'),
-    new User('234', 'bob', 'bob', 'Bob', 'Wonder', 'bob@google.com'),
-    new User('345', 'charly', 'charly', 'Charly', 'Garcia', 'charly@google.com'),
-    new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi', 'jann@google.com')
-  ];
-
-  api = {
-    'createUser'   : this.createUser,
-    'findUserById' : this.findUserById,
-    'findUserByUsername' : this.findUserByUsername,
-    'updateUser' : this.updateUser,
-    'deleteUser' : this.deleteUser
-  };
-
-  createUser(user: String, password: String) {
-    const newID = Math.floor((Math.random() * 1000));
-    const newUser = new User( newID, user, password, user, user, user);
-    this.users.push(newUser);
-    return newUser;
-  }
-
-  findUserById(userId: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {  return this.users[x]; }
-    }
-  }
-
-  findUserByUsername(username: String) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x].username === username) { return this.users[x]; }
-    }
-  }
-
-  findUserByCredentials(username: String, password: String) {
-    // find credentials fromthe server...
-    // const url = 'http://localhost:3100/api/user?username=' + username + '&password=' + password;
-    // return this.http.get(url).map(response: Response) => { return response.json(); });
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x].username === username && this.users[x].password === password ) { return this.users[x]; }
-    }
-  }
-
-  updateUser(userId, user) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {  this.users[x] = user; }
-    }
-  }
-
-  deleteUser(userId) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id !== userId) {
-        this.users.splice(x, 1);
-      }
-    }
-  }
-
-  */
 }
