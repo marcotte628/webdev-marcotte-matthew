@@ -13,11 +13,10 @@ module.exports = function(app) {
   app.delete("/api/page/:pageId", deletePage);
 
   function createPage( req, res ){
-    /*
-    NEED TO BUILD IN _ID BEFORE PUSHING
-     */
     var websiteId = req.params['websiteId'];
     var pageDetails = req.body;
+    pageDetails._id = '' + pages.length;
+    console.log('pageDetails = ' +  pageDetails);
     pages.push(pageDetails);
     var pageList = [];
     for(var i = 0; i < pages.length; i++) {

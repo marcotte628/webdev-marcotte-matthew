@@ -21,11 +21,9 @@ module.exports = function (app) {
 
 
   function createWebsite(req, res) {
-    /*
-  NEED TO ADD AN _ID BEFORE YOU PUSH NEWWEBSITE
- */
     var userId = req.params['userId'];
     var websiteDetails = req.body;
+    websiteDetails._id = '' + WEBSITES.length;
     WEBSITES.push(websiteDetails);
     var wesbiteList = [];
     for(var i = 0; i < WEBSITES.length; i++) {
