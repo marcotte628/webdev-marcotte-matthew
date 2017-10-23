@@ -9,17 +9,17 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class WidgetEditComponent implements OnInit {
 
-  widget = {};
+  widget;
   widgetId: String;
   widgetType: String;
+  userId: String;
+  pageId: String;
+  websiteId: String;
   size: String;
   widgetText: String;
   headingWidget = 'HEADING';
   youtubeWidget = 'YOUTUBE';
   imageWidget = 'IMAGE';
-  userId: String;
-  pageId: String;
-  websiteId: String;
 
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute) { }
 
@@ -32,10 +32,12 @@ export class WidgetEditComponent implements OnInit {
           this.pageId = params['pid'];
           this.websiteId = params['wid'];
         });
-    this.widget = this.widgetService.findWidgetById(this.widgetId);
-    this.widgetType = this.widget['widgetType'];
-    this.size = this.widget['size'];
-    this.widgetText = this.widget['text'];
+    this.widgetService.findWidgetById(this.widgetId).subscribe((widget) => {
+      this.widget = widget;
+      this.widgetType = this.widget.widgetType;
+      this.size = this.widget.size;
+      this.widgetText = this.widget.text;
+    });
   }
 
 }

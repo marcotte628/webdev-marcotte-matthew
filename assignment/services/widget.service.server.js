@@ -1,5 +1,6 @@
 
 module.exports = function(app) {
+
   var widgets = [
     { _id: "123", widgetType: "HEADING", pageId: "321", size: 2, text: "GIZMODO"},
     { _id: "234", widgetType: "HEADING", pageId: "321", size: 4, text: "Lorem ipsum"},
@@ -10,11 +11,21 @@ module.exports = function(app) {
     { _id: "789", widgetType: "HTML", pageId: "321", text: "<p>Lorem ipsum</p>"}
   ];
 
+  var multer = require('multer'); // (did it!) npm install multer --save
+  var upload = multer({ dest: __dirname+'/../../src/assets/uploads' });
+
+  app.post ("/api/upload", upload.single('myFile'), uploadImage);
   app.post("/api/page/:pageId/widget", createWidget);
   app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
   app.get("/api/widget/:widgetId", findWidgetById);
   app.put("/api/widget/:widgetId", updateWidget);
   app.delete("/api/widget/:widgetId", deleteWidget);
+
+  function uploadImage( req, res ){
+    var newWidget = { _id: widgets.length, widgetType: "IMAGE", pageId:req.body.pageId, width: "100%", url: req.file.path};
+    widgets.push(newWidget);
+    res.redirect('http://localhost:3100/user/'+req.body.userId+'/website/'+req.body.websiteId+'/page/'+req.body.pageId+'/widget');
+  }
 
   function createWidget( req, res ) {
     var pageId = req.params['pageId'];

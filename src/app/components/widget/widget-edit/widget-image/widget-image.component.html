@@ -2,6 +2,23 @@
 
 <!-- Form for entering Name, Text, URL, Width, and File of Image -->
 <div class="container post-nav">
+
+  <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+    <label for="myFile">File</label>
+    <input id="myFile" name="myFile" type="file" class="form-control"/>
+    <input id="widgetId" name="widgetId" class="form-control" value="{{widgetId}}" style="display: none"/>
+    <input id="websiteId" name="websiteId" class="form-control" value="{{websiteId}}" style="display: none"/>
+    <input id="pageId" name="pageId" class="form-control" value="{{pageId}}" style="display: none"/>
+    <input id="userId" name="userId" class="form-control" value="{{userId}}" style="display: none"/>
+    <br/>
+    <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+    <br/>
+  </form>
+
+  <br/>
+  <br/>
+  <br/>
+
   <form>
     <div class="form-group">
       <label for="image_name">Name</label>
@@ -55,5 +72,8 @@
   <!-- Buttons for Upload and Delete Image -->
   <a class="btn btn-primary btn-block" [routerLink]="['/user/:uid/website/:wid/page/widget']"> Upload Image </a>
   <a class="btn btn-danger btn-block" [routerLink]="['/user/:uid/website/:wid/page/widget']"> Delete </a>
+  <br/>
+  <br/>
+  <br/>
 </div>
 
