@@ -1,6 +1,4 @@
 
-require("../directives/sortable.directive");
-
 module.exports = function(app) {
 
   var widgets = [
