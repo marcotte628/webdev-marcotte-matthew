@@ -1,6 +1,5 @@
 
 
-
   <nav class="navbar navbar-default navbar-fixed-top lock-top">
     <div class="container-fluid">
 
@@ -29,7 +28,7 @@
   </nav>
 
   <!-- List of Widgets and Tools Displayed -->
-  <div *ngFor="let widget of widgets" class="container post-nav">
+  <div *ngFor="let widget of widgets" class="sortable-widgets container post-nav">
 
     <div div [ngSwitch]="widget.widgetType">
 
@@ -97,7 +96,6 @@
     </div>
 
     </div>
-
 
   <!-- Breaks for spacing -->
   <br>

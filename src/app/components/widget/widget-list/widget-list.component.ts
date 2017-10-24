@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WidgetService } from '../../../services/widget.service.client';
 import {ActivatedRoute} from '@angular/router';
+import {SortableDirective} from '../../../../../assignment/directives/sortable.directive';
 
 @Component({
   selector: 'app-widget-list',
@@ -16,7 +17,8 @@ export class WidgetListComponent implements OnInit {
   websiteId: String;
   websiteUrl: String;
 
-  constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute) { }
+  constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute,
+              private sortableDirective: SortableDirective) { }
 
   @Input()
   widgetList: WidgetService;
