@@ -4,7 +4,10 @@
 
   angular.module('directivesApp', []).directive("wbdv-sortable", SortableDirective);
 
-  function SortableDirective() { alert("no chance this works");}
+  function SortableDirective() {
+    alert("is this working?");
+  }
+
   $(init);
   function init(){
    $("wbdv-sortable").sortable();

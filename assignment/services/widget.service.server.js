@@ -12,7 +12,7 @@ module.exports = function(app) {
   ];
 
   var multer = require('multer'); // (did it!) npm install multer --save
-  var upload = multer({ dest: __dirname+'/../../src/assets/uploads' });
+  var upload = multer({ dest: __dirname+'/../../dist/assets/css' });
 
   app.post ("/api/upload", upload.single('myFile'), uploadImage);
   app.post("/api/page/:pageId/widget", createWidget);
@@ -22,7 +22,7 @@ module.exports = function(app) {
   app.delete("/api/widget/:widgetId", deleteWidget);
 
   function uploadImage( req, res ){
-    var newWidget = { _id: widgets.length, widgetType: "IMAGE", pageId:req.body.pageId, width: "100%", url: req.file.path};
+    var newWidget = { _id: widgets.length, widgetType: "IMAGE", pageId:req.body.pageId, width: "100%", url: 'http://localhost:3100/assets/css/'+ req.file.filename};
     widgets.push(newWidget);
     res.redirect('http://localhost:3100/user/'+req.body.userId+'/website/'+req.body.websiteId+'/page/'+req.body.pageId+'/widget');
   }
