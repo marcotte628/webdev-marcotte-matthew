@@ -11,8 +11,10 @@ export class PageService {
 
   constructor(private _http: Http) { }
 
+  baseUrl = environment.baseUrl;
+
   createPage(websiteId: String, info: any) {
-    const url = 'http://localhost:3100/api/website/' + websiteId + '/page';
+    const url = this.baseUrl + '/api/website/' + websiteId + '/page';
     return this._http.post(url, info).map( (res: Response) =>  {
       const data = res.json();
       return data;
@@ -20,7 +22,7 @@ export class PageService {
   }
 
   findAllPagesForWebsite(websiteId: String) {
-    const url = 'http://localhost:3100/api/website/' + websiteId + '/page';
+    const url = this.baseUrl + '/api/website/' + websiteId + '/page';
     return this._http.get(url).map( (res: Response) =>  {
       const data = res.json();
       return data;
@@ -28,7 +30,7 @@ export class PageService {
   }
 
   findPageById(pageId: String) {
-    const url = 'http://localhost:3100/api/page/' + pageId;
+    const url = this.baseUrl + '/api/page/' + pageId;
     return this._http.get(url).map( (res: Response) =>  {
       console.log('response ---> ' + res);
       console.log('res.json ---> ' + res);
@@ -38,7 +40,7 @@ export class PageService {
   }
 
   updatePage(pageId, info) {
-    const url = 'http://localhost:3100/api/page/' + pageId;
+    const url = this.baseUrl + '/api/page/' + pageId;
     return this._http.put(url, info).map( (res: Response) =>  {
       const data = res.json();
       return data;
@@ -46,7 +48,7 @@ export class PageService {
   }
 
   deletePage(pageId) {
-    const url = 'http://localhost:3100/api/page/' + pageId;
+    const url = this.baseUrl + '/api/page/' + pageId;
     return this._http.delete(url).map( (res: Response) =>  {
       const data = res.json();
       return data;
