@@ -32,8 +32,6 @@ export class PageService {
   findPageById(pageId: String) {
     const url = this.baseUrl + '/api/page/' + pageId;
     return this._http.get(url).map( (res: Response) =>  {
-      console.log('response ---> ' + res);
-      console.log('res.json ---> ' + res);
       const data = res.json();
       return data;
     });

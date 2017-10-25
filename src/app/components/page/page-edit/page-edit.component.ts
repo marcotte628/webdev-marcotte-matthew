@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PageService} from '../../../services/page.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-page-edit',
@@ -18,7 +18,7 @@ export class PageEditComponent implements OnInit {
   pageTitle: String;
   pageName: String
 
-  constructor(private pageService: PageService, private activatedRoute: ActivatedRoute) { }
+  constructor(private pageService: PageService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -39,12 +39,14 @@ export class PageEditComponent implements OnInit {
 
   deletePage() {
     this.pageService.deletePage(this.pageId).subscribe((pages) => { this.pages = pages; });
+    this.router.navigate(['/user/' + this.userId + '/website', this.websiteId, 'page' ]);
   }
 
   updatePage() {
     // { '_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem' }
     const info = {_id: this.pageId, name: this.pageName, websiteId: this.websiteId, description: this.pageTitle};
     this.pageService.updatePage(this.pageId, info).subscribe((pages) => { this.pages = pages; });
+    this.router.navigate(['/user/' + this.userId + '/website', this.websiteId, 'page' ]);
   }
 
 }

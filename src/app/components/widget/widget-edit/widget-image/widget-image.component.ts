@@ -34,12 +34,26 @@ export class WidgetImageComponent implements OnInit {
           this.websiteId = params['wid'];
         });
     this.baseUrl = 'http://localhost:3100';
-    this.widget = this.widgetService.findWidgetById(this.widgetId);
-    this.widgetType = this.widget['widgetType'];
-    this.widgetName = this.widget['name'];
-    this.widgetUrl = this.widget['url'];
-    this.widgetText = this.widget['text'];
-    this.widgetText = this.widget['width'];
+    this.widgetService.findWidgetById(this.widgetId).subscribe((widget) => {
+      this.widget = widget;
+      this.widgetType = this.widget['widgetType'];
+      this.widgetName = this.widget['name'];
+      this.widgetUrl = this.widget['url'];
+      this.widgetText = this.widget['text'];
+      this.widgetWidth = this.widget['width'];
+    });
+  }
+
+  deleteWidget() {
+    this.widgetService.deleteWidget(this.widgetId).subscribe((widget) => {
+      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget' ]);
+    });
+  }
+
+  updateWidget() {
+    const info = { _id: this.widgetId, widgetType: 'IMAGE', pageId: this.pageId, width: this.widgetWidth, url: this.widgetUrl};
+    this.widgetService.updateWidget(this.widgetId, info).subscribe((widget) => { this.widget = widget; });
+    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget' ]);
   }
 
 }

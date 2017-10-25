@@ -33,8 +33,9 @@
                [ngModelOptions]="{standalone: true}">
     </div>
   </form>
-
+    <a class="btn btn-primary btn-block"
+       (click)="updateWidget()" >Update</a>
   <a class="btn btn-danger btn-block"
-     [routerLink]="['/user/:uid/website/:wid/page/widget']" >Delete</a>
+     (click)="deleteWidget()" >Delete</a>
 
   </div>

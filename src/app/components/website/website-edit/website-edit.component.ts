@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WebsiteService} from '../../../services/website.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-website-edit',
@@ -14,34 +14,35 @@ export class WebsiteEditComponent implements OnInit {
   websiteName: String;
   websiteDescription: String;
   userId: String;
-  websites: {};
+  websites = [];
 
-  constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute) { }
+  constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
           this.userId = params['uid'];
+          this.websiteId = params['wid'];
         }
       );
-    this.websites = this.websiteService.findAllWebsitesForUser(this.userId);
-    this.activatedRoute.params
-      .subscribe(
-        (params: any) => {
-          this.websiteId = params['wid'];
-        });
-    this.website = this.websiteService.findWebsiteById(this.websiteId);
-    this.websiteName = this.website['name'];
-    this.websiteDescription = this.website['description'];
+    this.websiteService.findAllWebsitesForUser(this.userId).subscribe( (websites) => { this.websites = websites; });
+    this.website = this.websiteService.findWebsiteById(this.websiteId).subscribe( (website) => {
+      this.website = website;
+      this.websiteName = this.website['name'];
+      this.websiteDescription = this.website['description'];
+    });
+
   }
 
   deleteWebsite() {
-    this.websiteService.deleteWebsite(this.websiteId).subscribe((id) => { this.websiteId = id; });
+    this.websiteService.deleteWebsite(this.websiteId).subscribe((id) => { this.websiteId = id; })
+    this.router.navigate(['/user/' + this.userId + '/website' ]);
   }
 
   updateWebsite() {
     const info = { _id: this.websiteId, name: this.websiteName, developerId: this.userId, description: this.websiteDescription };
     this.websiteService.updateWebsite(this.websiteId, info).subscribe((website) => { this.website = website; });
+    this.router.navigate(['/user/' + this.userId + '/website' ]);
   }
 }

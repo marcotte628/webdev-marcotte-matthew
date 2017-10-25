@@ -11,7 +11,7 @@
 
       <!--check symbol on nav bar-->
         <p class="navbar-text pull-right">
-          <a [routerLink]="['/user', userId, 'website', 'new' ]" class="navbar-link">
+          <a [routerLink]="['/user', userId, 'website' ]" class="navbar-link">
             <span class="glyphicon glyphicon-ok banner"></span>
           </a>
         </p>
@@ -46,16 +46,16 @@
       <form ngForm="createWebsite()">
         <div class="form-group">
            <label for="site_name">Name</label>
-           <input type="text" class="form-control" id="site_name" placeholder="Name" [(ngModel)]="websiteName">
+           <input type="text" class="form-control" id="site_name" placeholder="Name" [(ngModel)]="websiteName" [ngModelOptions]="{standalone: true}">
         </div>
 
         <div class="form-group">
           <label for="site_description">Description</label>
           <textarea type="text" rows="10" class="form-control"
                     id="site_description" placeholder="Description"
-                    [(ngModel)]="websiteDescription"></textarea>
+                    [(ngModel)]="websiteDescription" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
-        <button type="submit"> Create Website </button>
+        <button class="btn btn-primary btn-block" type="submit" (click)="createWebsite()"> Create Website </button>
       </form>
     </div>
   </div>

@@ -71,7 +71,8 @@
 
   <!-- Buttons for Upload and Delete Image -->
   <a class="btn btn-primary btn-block" [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]"> Upload Image </a>
-  <a class="btn btn-danger btn-block" [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]"> Delete </a>
+  <a class="btn btn-primary btn-block" (click)="updateWidget()" >Update</a>
+  <a class="btn btn-danger btn-block" (click)="deleteWidget()" >Delete</a>
   <br/>
   <br/>
   <br/>

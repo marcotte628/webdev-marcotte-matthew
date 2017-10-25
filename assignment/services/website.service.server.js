@@ -72,7 +72,7 @@ module.exports = function (app) {
     for(var i = 0; i < WEBSITES.length; i++){
       if(WEBSITES[i]._id == websiteId) {
         WEBSITES.splice(i, 1);
-        res.json(wesbiteList);
+        res.json(WEBSITES);
       }
     }
   }
