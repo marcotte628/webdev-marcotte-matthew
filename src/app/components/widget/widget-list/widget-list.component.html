@@ -27,10 +27,11 @@
     </div>
   </nav>
 
-  <!-- List of Widgets and Tools Displayed -->
-  <div *ngFor="let widget of widgets" class="sortable-widgets container post-nav">
 
-    <div div [ngSwitch]="widget.widgetType">
+  <!-- List of Widgets and Tools Displayed -->
+  <div *ngFor="let widget of widgets" class="container post-nav">
+
+    <div [ngSwitch]="widget.widgetType">
 
       <div *ngSwitchCase="'HEADING'">
         <!-- heading widget -->

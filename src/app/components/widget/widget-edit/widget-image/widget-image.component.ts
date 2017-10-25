@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WidgetService} from '../../../../services/widget.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-widget-image',
@@ -21,7 +21,8 @@ export class WidgetImageComponent implements OnInit {
   pageId: String;
   userId: String;
 
-  constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute) { }
+  constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params
