@@ -15,7 +15,7 @@ export class WidgetHeaderComponent implements OnInit {
   widgetText: String;
   widgetName: String;
   widgetSize: String;
-  userId: String
+  userId: String;
   pageId: String;
   websiteId: String;
 
