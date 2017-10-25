@@ -1,6 +1,12 @@
 
 module.exports = function(app) {
 
+  var baseUrl;
+  if(process.env.MLAB_USERNAME_WEBDEV) {
+    baseUrl = 'https://webdev-marcotte-matthew.herokuapp.com';
+  }else{
+    baseUrl = 'http://localhost:3100';
+  }
 
   var widgets = [
     { _id: "123", widgetType: "HEADING", pageId: "321", size: 2, text: "GIZMODO"},
@@ -23,8 +29,9 @@ module.exports = function(app) {
   app.delete("/api/widget/:widgetId", deleteWidget);
 
   function uploadImage( req, res ){
-    var newWidget = { _id: widgets.length, widgetType: "IMAGE", pageId:req.body.pageId, width: "100%", url: 'http://localhost:3100/assets/css/'+ req.file.filename};
+    var newWidget = { _id: widgets.length, widgetType: "IMAGE", pageId:req.body.pageId, width: "100%", url: baseUrl + '/assets/css/'+ req.file.filename};
     widgets.push(newWidget);
+    res.redirect(baseUrl +'/user/'+req.body.userId+'/website/'+req.body.websiteId+'/page/'+req.body.pageId+'/widget');
   }
 
   function createWidget( req, res ) {
