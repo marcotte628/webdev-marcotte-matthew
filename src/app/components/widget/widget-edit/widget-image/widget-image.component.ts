@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WidgetService} from '../../../../services/widget.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-widget-image',
@@ -33,7 +34,7 @@ export class WidgetImageComponent implements OnInit {
           this.pageId = params['pid'];
           this.websiteId = params['wid'];
         });
-    this.baseUrl = 'http://localhost:3100';
+    this.baseUrl = environment.baseUrl;
     this.widgetService.findWidgetById(this.widgetId).subscribe((widget) => {
       this.widget = widget;
       this.widgetType = this.widget['widgetType'];
