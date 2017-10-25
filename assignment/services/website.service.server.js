@@ -59,21 +59,21 @@ module.exports = function (app) {
     var websiteId = req.params['websiteId'];
     var newDetails = req.body;
     for(var i = 0; i < WEBSITES.length; i++){
-      if(WEBSITES[i]._id == websiteId) {
+      if(WEBSITES[i]._id === websiteId) {
         WEBSITES.splice(i, 1);
         WEBSITES.push(newDetails);
-        res.json(WEBSITES);
       }
     }
+    res.json(WEBSITES);
   }
 
   function deleteWebsite(req, res) {
     var websiteId = req.params['websiteId'];
     for(var i = 0; i < WEBSITES.length; i++){
-      if(WEBSITES[i]._id == websiteId) {
+      if(WEBSITES[i]._id === websiteId) {
         WEBSITES.splice(i, 1);
-        res.json(WEBSITES);
       }
     }
+    res.json(WEBSITES);
   }
 };

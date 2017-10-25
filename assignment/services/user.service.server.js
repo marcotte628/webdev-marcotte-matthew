@@ -1,13 +1,6 @@
 
 module.exports = function(app) {
-  /*
-  var USERS = [
-    new User("123", "alice", "alice", "Alice", "Wonder" ),
-    new User("234", "bob", "bob", "Bob", "Marley"  ),
-    new User("345", "charly", "charly", "Charly", "Garcia" ),
-    new User("456", "jannunzi", "jannunzi", "Jose", "Annunzi" )
-  ];
-  */
+
   var users = [
     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
     {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
