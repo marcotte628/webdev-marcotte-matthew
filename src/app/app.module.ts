@@ -32,6 +32,18 @@ import { WidgetService } from './services/widget.service.client';
 import {SortableDirective} from '../../assignment/directives/directive.sortable';
 import {SafePipe} from './services/widget.service.client.safePipe';
 
+// project components
+import {ProjectLoginComponent} from './components/project-user/project-login/project-login.component';
+import { ProjectProfileComponent } from './components/project-user/project-profile/project-profile.component';
+import { ProjectRegisterComponent } from './components/project-user/project-register/project-register.component';
+import { CertifiedDietsComponent } from './components/project-posts/diets/certified-diets/certified-diets.component';
+import { GerneralDietsComponent } from './components/project-posts/diets/gerneral-diets/gerneral-diets.component';
+import { CertifiedWorkoutsComponent } from './components/project-posts/workouts/certified-workouts/certified-workouts.component';
+import { GeneralWorkoutsComponent } from './components/project-posts/workouts/general-workouts/general-workouts.component';
+import { DietPostComponent } from './components/project-details/diet-post/diet-post.component';
+import { WorkoutPostComponent } from './components/project-details/workout-post/workout-post.component';
+import { ViewOtherComponent } from './components/project-user/view-other/view-other.component';
+
 @NgModule({
   // Declare components here
   declarations: [
@@ -54,7 +66,17 @@ import {SafePipe} from './services/widget.service.client.safePipe';
     WidgetChooserComponent,
     WidgetEditComponent,
     WidgetListComponent,
-    SafePipe
+    SafePipe,
+    ProjectLoginComponent,
+    ProjectProfileComponent,
+    ProjectRegisterComponent,
+    CertifiedDietsComponent,
+    GerneralDietsComponent,
+    CertifiedWorkoutsComponent,
+    GeneralWorkoutsComponent,
+    DietPostComponent,
+    WorkoutPostComponent,
+    ViewOtherComponent
   ],
   imports: [
     BrowserModule,
