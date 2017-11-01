@@ -1,3 +1,20 @@
-<p>
-  project-login works!
-</p>
+
+<div class="container">
+
+  <h1>Search Users By Name</h1>
+
+  <form (ngSubmit)="searchUser()" #f="ngForm">
+    <input placeholder="enter a username to get user info"
+           type="text"
+           name="username"
+           class="form-control"
+           ngModel
+           required
+           #username="ngModel"/>
+    <button class="btn btn-primary btn-block"
+            type="submit">
+      Search User
+    </button>
+  </form>
+
+</div>

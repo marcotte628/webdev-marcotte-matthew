@@ -2,20 +2,20 @@
 
 <div class="container">
 
-  <h1>Search Stores By Name</h1>
+  <h1>Search Gyms By Name</h1>
 
-  <form (ngSubmit)="searchStore()" #f="ngForm">
-    <input placeholder="enter a store name to get store info"
+  <form (ngSubmit)="searchGym()" #f="ngForm">
+    <input placeholder="enter a gym name to get gym info"
            type="text"
-           name="store"
+           name="gym"
            class="form-control"
            ngModel
            required
            #username="ngModel"/>
     <button class="btn btn-primary btn-block"
             type="submit">
-      Search Store
+      Search Gym
     </button>
   </form>
-
+  <br>
 </div>

@@ -1,3 +1,19 @@
-<p>
-  general-workouts works!
-</p>
+
+<div class="container">
+
+  <h1> Search Workouts By Name</h1>
+  <form (ngSubmit)="searchWorkout()" #f="ngForm">
+    <input placeholder="enter a username to get user info"
+           type="text"
+           name="workout"
+           class="form-control"
+           ngModel
+           required
+           #username="ngModel"/>
+    <button class="btn btn-primary btn-block"
+            type="submit">
+      Search Workout
+    </button>
+  </form>
+
+</div>

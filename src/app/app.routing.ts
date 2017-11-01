@@ -27,8 +27,12 @@ import { CertifiedDietsComponent } from './components/project-posts/diets/certif
 import { GerneralDietsComponent } from './components/project-posts/diets/gerneral-diets/gerneral-diets.component';
 import { CertifiedWorkoutsComponent } from './components/project-posts/workouts/certified-workouts/certified-workouts.component';
 import { GeneralWorkoutsComponent } from './components/project-posts/workouts/general-workouts/general-workouts.component';
+import { GymsComponent } from './components/project-posts/gyms/gyms.component';
+import { StoresComponent } from './components/project-posts/stores/stores.component';
 import { DietPostComponent } from './components/project-details/diet-post/diet-post.component';
 import { WorkoutPostComponent } from './components/project-details/workout-post/workout-post.component';
+import { GymPostComponent} from './components/project-details/gym-post/gym-post.component';
+import { StorePostComponent } from './components/project-details/store-post/store-post.component';
 import { ViewOtherComponent } from './components/project-user/view-other/view-other.component';
 
 const APP_ROUTES: Routes = [
@@ -55,9 +59,13 @@ const APP_ROUTES: Routes = [
   { path: 'project/user/:uid/diets/gen-diets', component: GerneralDietsComponent},
   { path: 'project/user/:uid/workouts/cert-workouts', component: CertifiedWorkoutsComponent},
   { path: 'project/user/:uid/workouts/gen-workouts', component: GeneralWorkoutsComponent},
+  { path: 'project/user/:uid/gyms', component: GymsComponent},
+  { path: 'project/user/:uid/stores', component: StoresComponent},
   { path: 'project/user/:uid/diets/:did', component: DietPostComponent},
   { path: 'project/user/:uid/workouts/:wid', component: WorkoutPostComponent},
-  { path: 'project/user/:uid/other-user/:oid', component: ViewOtherComponent}
+  { path: 'project/user/:uid/gyms/:gid', component: GymPostComponent},
+  { path: 'project/user/:uid/stores/:sid', component: StorePostComponent},
+  { path: 'project/user/:uid/other-user/:oid', component: ViewOtherComponent},
 ];
 
 // Export the routes as module providers

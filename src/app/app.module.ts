@@ -43,6 +43,15 @@ import { GeneralWorkoutsComponent } from './components/project-posts/workouts/ge
 import { DietPostComponent } from './components/project-details/diet-post/diet-post.component';
 import { WorkoutPostComponent } from './components/project-details/workout-post/workout-post.component';
 import { ViewOtherComponent } from './components/project-user/view-other/view-other.component';
+import {FoodService} from "./services/project.food.service.client";
+import {GymService} from "./services/project.gym.service.client";
+import {StoreService} from "./services/project.store.service.client";
+import {PersonService} from "./services/project.user.service.client";
+import {WorkoutService} from "./services/project.workout.service.client";
+import { GymsComponent } from './components/project-posts/gyms/gyms.component';
+import { StoresComponent } from './components/project-posts/stores/stores.component';
+import { GymPostComponent } from './components/project-details/gym-post/gym-post.component';
+import { StorePostComponent } from './components/project-details/store-post/store-post.component';
 
 @NgModule({
   // Declare components here
@@ -76,7 +85,11 @@ import { ViewOtherComponent } from './components/project-user/view-other/view-ot
     GeneralWorkoutsComponent,
     DietPostComponent,
     WorkoutPostComponent,
-    ViewOtherComponent
+    ViewOtherComponent,
+    GymsComponent,
+    StoresComponent,
+    GymPostComponent,
+    StorePostComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +98,8 @@ import { ViewOtherComponent } from './components/project-user/view-other/view-ot
     Routing
   ],
   // Client Side services here
-  providers: [ TestService, UserService, WebsiteService, PageService, WidgetService],
+  providers: [ TestService, UserService, WebsiteService, PageService, WidgetService,
+    FoodService, GymService, StoreService, PersonService, WorkoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
