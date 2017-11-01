@@ -13,6 +13,9 @@ export class ProjectLoginComponent implements OnInit {
 
   userInfo: String;
   users;
+  username: String;
+  name: String;
+  role: String;
 
 
   constructor(private router: Router,
@@ -24,18 +27,17 @@ export class ProjectLoginComponent implements OnInit {
 
   searchUser() {
     this.userInfo = this.searchForm.value.user;
-    console.log('you entered ==========> ');
-    console.log('user = ' +  this.userInfo);
     this.personService.getPersonByUsername(this.userInfo).subscribe(
       (data: any) => {
         this.users = data;
+        this.username = data.username;
+        this.name = data.name;
+        this.role = data.role;
       },
       (error: any) => {
 
       }
     );
-    console.log('data returned ==========> ');
-    console.log(this.users);
   }
 
 }

@@ -13,6 +13,9 @@ export class GeneralWorkoutsComponent implements OnInit {
 
   workoutInfo: String;
   workouts;
+  name: String;
+  type: String;
+  difficulty: number;
   constructor(private router: Router, private workoutService: WorkoutService) { }
 
   ngOnInit() {
@@ -25,17 +28,14 @@ export class GeneralWorkoutsComponent implements OnInit {
     this.workoutService.getWorkoutByName(this.workoutInfo).subscribe(
       (data: any) => {
         this.workouts = data;
+        this.name = data.name;
+        this.type = data.type;
+        this.difficulty = data.difficulty;
       },
       (error: any) => {
 
       }
     );
-    console.log('you got back  ==========> ');
-    console.log(this.workouts._id);
-    console.log(this.workouts.name);
-    console.log(this.workouts.type);
-    console.log(this.workouts.difficulty);
-
     // display results below search button...
     // clicking on a result will navigate to details page that shows more information
   }

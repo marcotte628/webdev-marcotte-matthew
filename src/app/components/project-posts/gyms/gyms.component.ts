@@ -12,6 +12,9 @@ export class GymsComponent implements OnInit {
   @ViewChild('f') searchForm: NgForm;
   gymInfo: String;
   gyms;
+  name: String;
+  type: String;
+  address: String;
 
   constructor(private router: Router, private gymService: GymService) { }
 
@@ -20,18 +23,18 @@ export class GymsComponent implements OnInit {
 
   searchGym() {
     this.gymInfo = this.searchForm.value.gym;
-    console.log('you entered ==========> ');
-    console.log('gyms = ' +  this.gymInfo);
     this.gymService.getGymByName(this.gymInfo).subscribe(
       (data: any) => {
         this.gyms = data;
+        this.name = data.name;
+        this.type = data.type;
+        this.address = data.address;
       },
       (error: any) => {
 
       }
     );
-    console.log('you got back  ==========> ');
-    console.log( this.gyms);
+
   }
 
 }

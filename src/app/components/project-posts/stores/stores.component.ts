@@ -13,6 +13,9 @@ export class StoresComponent implements OnInit {
 
   storeInfo: String;
   stores;
+  name: String;
+  type: String;
+  address: String;
   constructor(private router: Router, private storeService: StoreService) { }
 
   ngOnInit() {
@@ -25,6 +28,9 @@ export class StoresComponent implements OnInit {
     this.storeService.getStoreByName(this.storeInfo).subscribe(
       (data: any) => {
         this.stores = data;
+        this.name = data.name;
+        this.type = data.type;
+        this.address = data.address;
       },
       (error: any) => {
 
