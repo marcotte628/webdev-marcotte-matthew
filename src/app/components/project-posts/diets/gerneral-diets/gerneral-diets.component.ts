@@ -14,7 +14,7 @@ export class GerneralDietsComponent implements OnInit {
   foodName: String;
   foodType: String;
   foodsByName;
-  foodsById;
+  foodsByType;
 
   constructor(private router: Router, private foodService: FoodService ) { }
 
@@ -25,16 +25,12 @@ export class GerneralDietsComponent implements OnInit {
     this.foodName = this.searchForm.value.name;
     this.foodType = this.searchForm.value.type;
 
-    console.log('you entered ==========> ');
-    console.log('name = ' + this.foodName);
-    console.log('name = ' + this.foodType);
     if (this.foodName && this.foodType) {
       this.searchFoodByName();
       this.searchFoodByType();
      }else if (this.foodName ) {
       this.searchFoodByName();
     } else if (this.foodType) {
-      console.log('search by type');
       this.searchFoodByType();
     }
   }
@@ -48,21 +44,17 @@ export class GerneralDietsComponent implements OnInit {
 
       }
     );
-    console.log('you got back  ==========> ');
-    console.log(this.foodsByName);
+
   }
 
   searchFoodByType() {
-    console.log('bout to search');
     this.foodService.getFoodPostByType(this.foodType).subscribe(
       (data: any) => {
-        this.foodsById = data;
+        this.foodsByType = data;
       },
       (error: any) => {
 
       }
     );
-    console.log('you got back  ==========> ');
-    console.log(this.foodsById);
   }
 }

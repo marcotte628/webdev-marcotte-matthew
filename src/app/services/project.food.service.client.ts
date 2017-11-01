@@ -39,7 +39,7 @@ export class FoodService {
   }
 
   getFoodPostById(fid: String) {
-    return this._http.get(this.baseUrl + '/api/project/food' + fid).map(
+    return this._http.get(this.baseUrl + '/api/project/food/' + fid).map(
       (res: Response) => {
         const data = res.json();
         return data;
@@ -66,7 +66,7 @@ export class FoodService {
   }
 
   deleteFoodPost(fid: String) {
-    const url = this.baseUrl + '/api/project/doof/' + fid;
+    const url = this.baseUrl + '/api/project/food/' + fid;
     return this._http.delete(url).map( (res: Response) =>  {
       const data = res.json();
       return data;

@@ -61,7 +61,7 @@ const APP_ROUTES: Routes = [
   { path: 'project/user/:uid/workouts/gen-workouts', component: GeneralWorkoutsComponent},
   { path: 'project/user/:uid/gyms', component: GymsComponent},
   { path: 'project/user/:uid/stores', component: StoresComponent},
-  { path: 'project/user/:uid/diets/:did', component: DietPostComponent},
+  { path: 'project/user/:uid/diets/:fid', component: DietPostComponent},
   { path: 'project/user/:uid/workouts/:wid', component: WorkoutPostComponent},
   { path: 'project/user/:uid/gyms/:gid', component: GymPostComponent},
   { path: 'project/user/:uid/stores/:sid', component: StorePostComponent},

@@ -26,4 +26,11 @@
     </button>
   </form>
 
+  <div *ngFor="let food of foodsByType" class="container post-nav">
+    <div class="form-group">
+      <a [routerLink]="['/project', 'user', ':uid', 'diets', food._id]"> {{food.name}} </a>
+    </div>
+  </div>
+
+
 </div>
