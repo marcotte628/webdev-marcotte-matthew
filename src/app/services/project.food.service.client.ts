@@ -65,9 +65,8 @@ export class FoodService {
     );
   }
 
-  createFoodPost(name: String, type: String, uid: String, protein: String, carbs: String, fats: String) {
+  createFoodPost(body: any) {
     const url = this.baseUrl + '/api/project/food';
-    const body = {_id: '', name: name, type: type, userId: uid, protein: protein, carbs: carbs, fats: fats };
     return this._http.post(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;

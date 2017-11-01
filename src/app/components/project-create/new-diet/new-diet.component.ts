@@ -17,6 +17,7 @@ export class NewDietComponent implements OnInit {
   foodType: String;
   foodId: String;
   foodInfo: {};
+  foodTitle: String;
   protein: String;
   carbs: String;
   fats: String;
@@ -46,18 +47,28 @@ export class NewDietComponent implements OnInit {
     this.foodService.getFoodInformation(this.foodId).subscribe(
       (ret: any) => {
         this.foodInfo = ret.report.foods[0].nutrients;
+        const title = ret.report.foods[0].name;
         const pro = ret.report.foods[0].nutrients[0].value;
         const carb =  ret.report.foods[0].nutrients[2].value;
         const fat =  ret.report.foods[0].nutrients[1].value;
 
-        this.protein = JSON.stringify(pro);
-        this.carbs = JSON.stringify(carb);
-        this.fats =  JSON.stringify(fat);
+        this.foodTitle = JSON.stringify(title).replace(/\"/g, '');
+        this.protein = JSON.stringify(pro).replace(/\"/g, '');
+        this.carbs = JSON.stringify(carb).replace(/\"/g, '');
+        this.fats =  JSON.stringify(fat).replace(/\"/g, '');
 
       },
       (error: any) => {
       }
     );
+    const body = {_id: '', name: this.foodName, type: this.foodType, userId: this.userId,
+                  protein: this.protein, carbs: this.carbs, fats: this.fats };
+    this.foodService.createFoodPost(body).subscribe(
+      (data: any) => {
+        console.log('data from supposed post to server = ' + JSON.stringify(data).replace(/\"/g, ''));
+      },
+      (error: any) => {
+      });
   }
 
 }

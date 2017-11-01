@@ -22,15 +22,9 @@ export class GerneralDietsComponent implements OnInit {
   }
 
   search() {
-    this.foodName = this.searchForm.value.name;
     this.foodType = this.searchForm.value.type;
 
-    if (this.foodName && this.foodType) {
-      this.searchFoodByName();
-      this.searchFoodByType();
-     }else if (this.foodName ) {
-      this.searchFoodByName();
-    } else if (this.foodType) {
+    if (this.foodType) {
       this.searchFoodByType();
     }
   }

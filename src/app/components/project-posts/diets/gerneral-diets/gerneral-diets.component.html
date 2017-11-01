@@ -2,18 +2,9 @@
 
 <div class="container">
 
-  <h1>Search Foods By Name</h1>
-
-  <form (ngSubmit)="search()" #f="ngForm">
-    <input placeholder="enter a food name to get food info"
-           type="text"
-           name="name"
-           class="form-control"
-           ngModel
-           #username="ngModel"/>
-
   <h1>Search Foods By Type</h1>
 
+  <form (ngSubmit)="search()" #f="ngForm">
     <input placeholder="enter a food type to get food info"
            type="text"
            name="type"
