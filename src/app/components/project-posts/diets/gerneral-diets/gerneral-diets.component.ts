@@ -11,27 +11,58 @@ import {FoodService} from '../../../../services/project.food.service.client';
 export class GerneralDietsComponent implements OnInit {
   @ViewChild('f') searchForm: NgForm;
 
-  foodInfo: String;
-  foods;
+  foodName: String;
+  foodType: String;
+  foodsByName;
+  foodsById;
 
   constructor(private router: Router, private foodService: FoodService ) { }
 
   ngOnInit() {
   }
 
-  searchFood() {
-    this.foodInfo = this.searchForm.value.food;
+  search() {
+    this.foodName = this.searchForm.value.name;
+    this.foodType = this.searchForm.value.type;
+
     console.log('you entered ==========> ');
-    console.log('food = ' +  this.foodInfo);
-    this.foodService.getFoodPostByName(this.foodInfo).subscribe(
+    console.log('name = ' + this.foodName);
+    console.log('name = ' + this.foodType);
+    if (this.foodName && this.foodType) {
+      this.searchFoodByName();
+      this.searchFoodByType();
+     }else if (this.foodName ) {
+      this.searchFoodByName();
+    } else if (this.foodType) {
+      console.log('search by type');
+      this.searchFoodByType();
+    }
+  }
+
+  searchFoodByName() {
+    this.foodService.getFoodPostByName(this.foodName).subscribe(
       (data: any) => {
-        this.foods = data;
+        this.foodsByName = data;
       },
       (error: any) => {
 
       }
     );
     console.log('you got back  ==========> ');
-    console.log(this.foods);
+    console.log(this.foodsByName);
+  }
+
+  searchFoodByType() {
+    console.log('bout to search');
+    this.foodService.getFoodPostByType(this.foodType).subscribe(
+      (data: any) => {
+        this.foodsById = data;
+      },
+      (error: any) => {
+
+      }
+    );
+    console.log('you got back  ==========> ');
+    console.log(this.foodsById);
   }
 }

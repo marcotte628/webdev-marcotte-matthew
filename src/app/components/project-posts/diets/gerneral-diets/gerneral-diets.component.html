@@ -4,17 +4,25 @@
 
   <h1>Search Foods By Name</h1>
 
-  <form (ngSubmit)="searchFood()" #f="ngForm">
-    <input placeholder="enter a store name to get store info"
+  <form (ngSubmit)="search()" #f="ngForm">
+    <input placeholder="enter a food name to get food info"
            type="text"
-           name="food"
+           name="name"
            class="form-control"
            ngModel
-           required
+           #username="ngModel"/>
+
+  <h1>Search Foods By Type</h1>
+
+    <input placeholder="enter a food type to get food info"
+           type="text"
+           name="type"
+           class="form-control"
+           ngModel
            #username="ngModel"/>
     <button class="btn btn-primary btn-block"
             type="submit">
-      Search Store
+      Search Food
     </button>
   </form>
 

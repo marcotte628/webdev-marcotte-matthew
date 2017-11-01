@@ -31,7 +31,13 @@ export class GeneralWorkoutsComponent implements OnInit {
       }
     );
     console.log('you got back  ==========> ');
-    console.log(this.workouts);
+    console.log(this.workouts._id);
+    console.log(this.workouts.name);
+    console.log(this.workouts.type);
+    console.log(this.workouts.difficulty);
+
+    // display results below search button...
+    // clicking on a result will navigate to details page that shows more information
   }
 
 }

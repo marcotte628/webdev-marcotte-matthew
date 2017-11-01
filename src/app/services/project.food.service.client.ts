@@ -29,6 +29,15 @@ export class FoodService {
     );
   }
 
+  getFoodPostByType(type: String) {
+    return this._http.get(this.baseUrl + '/api/project/food?type=' + type ).map(
+      (res: Response) => {
+        const data = res.json();
+        return data;
+      }
+    );
+  }
+
   getFoodPostById(fid: String) {
     return this._http.get(this.baseUrl + '/api/project/food' + fid).map(
       (res: Response) => {

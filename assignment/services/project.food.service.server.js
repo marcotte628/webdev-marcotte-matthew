@@ -4,7 +4,9 @@ module.exports = function(app) {
   var FoodPosts = [
     {_id: "401", name: "chicken", type: "protein", userId: "012", protein: "43", carbs: "0", fats: "5" },
     {_id: "402", name: "lettuce", type: "vegetable", userId: "012", protein: "0", carbs: "1", fats: "0"  },
-    {_id: "403", name: "mango", type: "fruit", userId: "012", protein: "3", carbs: "50", fats: "1"  }
+    {_id: "403", name: "mango", type: "fruit", userId: "012", protein: "3", carbs: "50", fats: "1"  },
+    {_id: "404", name: "steak", type: "protein", userId: "012", protein: "40", carbs: "0", fats: "30" },
+    {_id: "405", name: "fish", type: "protein", userId: "012", protein: "40", carbs: "0", fats: "30" },
   ];
 
   var FoodIDs = [
@@ -29,10 +31,19 @@ module.exports = function(app) {
 
   function getFoodPost( req, res ){
     var name = req.query["name"];
+    var type = req.query["type"];
+    var ret = [];
     if(name) {
       for(var i = 0; i < FoodPosts.length; i++) {
         if(FoodPosts[i].name === name) {
-          var ret =  FoodPosts[i];
+          ret.push(FoodPosts[i]);
+        }
+      }
+      res.json(ret);
+    } else if(type) {
+      for(var i = 0; i < FoodPosts.length; i++) {
+        if(FoodPosts[i].type === type) {
+          ret.push(FoodPosts[i]);
         }
       }
       res.json(ret);
