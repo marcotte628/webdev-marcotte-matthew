@@ -34,6 +34,10 @@ import { WorkoutPostComponent } from './components/project-details/workout-post/
 import { GymPostComponent} from './components/project-details/gym-post/gym-post.component';
 import { StorePostComponent } from './components/project-details/store-post/store-post.component';
 import { ViewOtherComponent } from './components/project-user/view-other/view-other.component';
+import { NewDietComponent } from './components/project-create/new-diet/new-diet.component';
+import { NewGymComponent } from './components/project-create/new-gym/new-gym.component';
+import { NewStoreComponent } from './components/project-create/new-store/new-store.component';
+import { NewWorkoutComponent } from './components/project-create/new-workout/new-workout.component';
 
 const APP_ROUTES: Routes = [
   {path: '', component : HomeComponent},
@@ -55,6 +59,10 @@ const APP_ROUTES: Routes = [
   { path: 'project/login', component: ProjectLoginComponent},
   { path: 'project/register', component: ProjectRegisterComponent},
   { path: 'project/user/:uid', component: ProjectProfileComponent},
+  { path: 'project/user/:uid/new-workout', component: NewWorkoutComponent},
+  { path: 'project/user/:uid/new-food', component: NewDietComponent},
+  { path: 'project/user/:uid/new-store', component: NewStoreComponent},
+  { path: 'project/user/:uid/new-gym', component: NewGymComponent},
   { path: 'project/user/:uid/diets/cert-diets', component: CertifiedDietsComponent},
   { path: 'project/user/:uid/diets/gen-diets', component: GerneralDietsComponent},
   { path: 'project/user/:uid/workouts/cert-workouts', component: CertifiedWorkoutsComponent},

@@ -11,6 +11,24 @@ export class FoodService {
 
   baseUrl = environment.baseUrl;
 
+  getFoodApiId(name: String) {
+    return this._http.get(this.baseUrl + '/api/project/food/identifier?name=' + name ).map(
+      (res: Response) => {
+        const data = res.json();
+        return data;
+      }
+    );
+  }
+
+  getFoodInformation(id: String) {
+    return this._http.get(this.baseUrl + '/api/project/food/info/' + id ).map(
+      (res: Response) => {
+        const data = res.json();
+        return data;
+      }
+    );
+  }
+
   getFoodPost() {
     return this._http.get(this.baseUrl + '/api/project/food' ).map(
       (res: Response) => {

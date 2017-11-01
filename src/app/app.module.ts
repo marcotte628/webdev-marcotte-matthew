@@ -52,6 +52,10 @@ import { GymsComponent } from './components/project-posts/gyms/gyms.component';
 import { StoresComponent } from './components/project-posts/stores/stores.component';
 import { GymPostComponent } from './components/project-details/gym-post/gym-post.component';
 import { StorePostComponent } from './components/project-details/store-post/store-post.component';
+import { NewStoreComponent } from './components/project-create/new-store/new-store.component';
+import { NewGymComponent } from './components/project-create/new-gym/new-gym.component';
+import { NewWorkoutComponent } from './components/project-create/new-workout/new-workout.component';
+import { NewDietComponent } from './components/project-create/new-diet/new-diet.component';
 
 @NgModule({
   // Declare components here
@@ -89,7 +93,11 @@ import { StorePostComponent } from './components/project-details/store-post/stor
     GymsComponent,
     StoresComponent,
     GymPostComponent,
-    StorePostComponent
+    StorePostComponent,
+    NewStoreComponent,
+    NewGymComponent,
+    NewWorkoutComponent,
+    NewDietComponent
   ],
   imports: [
     BrowserModule,
