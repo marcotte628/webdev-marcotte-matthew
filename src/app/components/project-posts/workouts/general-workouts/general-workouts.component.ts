@@ -20,6 +20,8 @@ export class GeneralWorkoutsComponent implements OnInit {
 
   searchWorkout() {
     this.workoutInfo = this.searchForm.value.workout;
+    console.log('you entered ==========> ');
+    console.log('workout = ' +  this.workoutInfo);
     this.workoutService.getWorkoutByName(this.workoutInfo).subscribe(
       (data: any) => {
         this.workouts = data;
@@ -28,8 +30,8 @@ export class GeneralWorkoutsComponent implements OnInit {
 
       }
     );
-    console.log('data ==========> ');
-    console.log('workout = ' +  this.workouts);
+    console.log('you got back  ==========> ');
+    console.log(this.workouts);
   }
 
 }

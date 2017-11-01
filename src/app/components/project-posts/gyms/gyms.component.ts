@@ -20,6 +20,8 @@ export class GymsComponent implements OnInit {
 
   searchGym() {
     this.gymInfo = this.searchForm.value.gym;
+    console.log('you entered ==========> ');
+    console.log('gyms = ' +  this.gymInfo);
     this.gymService.getGymByName(this.gymInfo).subscribe(
       (data: any) => {
         this.gyms = data;
@@ -28,8 +30,8 @@ export class GymsComponent implements OnInit {
 
       }
     );
-    console.log('data ==========> ');
-    console.log('gyms = ' +  this.gyms);
+    console.log('you got back  ==========> ');
+    console.log( this.gyms);
   }
 
 }

@@ -21,6 +21,8 @@ export class GerneralDietsComponent implements OnInit {
 
   searchFood() {
     this.foodInfo = this.searchForm.value.food;
+    console.log('you entered ==========> ');
+    console.log('food = ' +  this.foodInfo);
     this.foodService.getFoodPostByName(this.foodInfo).subscribe(
       (data: any) => {
         this.foods = data;
@@ -29,7 +31,7 @@ export class GerneralDietsComponent implements OnInit {
 
       }
     );
-    console.log('data ==========> ');
-    console.log('food = ' +  this.foods);
+    console.log('you got back  ==========> ');
+    console.log(this.foods);
   }
 }

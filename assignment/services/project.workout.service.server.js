@@ -32,25 +32,25 @@ module.exports = function(app) {
           var ret = WORKOUTS[i];
         }
       }
+      res.json(ret);
     }else if(type){
       for(var i = 0; i < WORKOUTS.length; i++) {
         if(WORKOUTS[i].type === type ) {
           var ret = WORKOUTS[i];
         }
       }
+      res.json(ret);
     }else if(difficulty){
       for(var i = 0; i < WORKOUTS.length; i++) {
         if(WORKOUTS[i].difficulty === difficulty ) {
           var ret = WORKOUTS[i];
         }
       }
-    }
-
-    if(ret){
       res.json(ret);
-    } else{
+    }else{
       res.json(WORKOUTS);
     }
+
   }
 
   function getWorkoutById(req, res){
