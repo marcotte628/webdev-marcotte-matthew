@@ -53,10 +53,9 @@ module.exports = function(app) {
 
   function findUserById(req, res){
     var uid = req.params["userId"];
-    var user = users.find(function(user){
-      return user._id === uid;
+    userModel.findUserById(uid).then(function(user){
+      res.json(user);
     });
-    res.json(user);
   }
 
   function createUser(req, res) {

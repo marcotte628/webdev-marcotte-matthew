@@ -27,7 +27,5 @@ function findAllUsers(){
 }
 
 function findUserById(userId){
-  UserModel.findById(userId, function(err, docs) {
-    console.log(docs);
-  });
+  return UserModel.findById(userId);
 }
