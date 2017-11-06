@@ -15,4 +15,7 @@ module.exports = function(app){
   require("./services/project.user.service.server")(app);
   require("./services/project.workout.service.server")(app);
 
+  // variable for DB connection
+  var db = require("./model/models.server");
+
 };

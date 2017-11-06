@@ -1,6 +1,8 @@
 
 module.exports = function(app) {
 
+  var userModel = require("../model/user/user.model.server");
+
   var users = [
     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
     {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -20,8 +22,10 @@ module.exports = function(app) {
     var username = req.query["username"];
     var password = req.query["password"];
     if(username && password){
-      var user = getUserByCredentials(username, password);
+      var user = userModel.findUserByCredentials(username, password);
+      //var user = findUserByCredentials(username, password);
       res.json(user);
+      return;
     }else if(username){
       var user = getUserByUsername(username, password);
     }else{
