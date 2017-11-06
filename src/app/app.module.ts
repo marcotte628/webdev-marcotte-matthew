@@ -22,10 +22,6 @@ import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-y
 import { WidgetChooserComponent } from './components/widget/widget-chooser/widget-chooser.component';
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
-import {WidgetNewHeaderComponent} from './components/widget/widget-chooser/widget-new-header/widget-new-header.component';
-import {WidgetNewHtmlComponent} from './components/widget/widget-chooser/widget-new-html/widget-new-html.component';
-import {WidgetNewImageComponent} from './components/widget/widget-chooser/widget-new-image/widget-new-image.component';
-import {WidgetNewYoutubeComponent} from './components/widget/widget-chooser/widget-new-youtube/widget-new-youtube.component';
 
 import { Routing } from './app.routing';
 
@@ -105,11 +101,7 @@ import { NewDietComponent } from './components/project-create/new-diet/new-diet.
     NewStoreComponent,
     NewGymComponent,
     NewWorkoutComponent,
-    NewDietComponent,
-    WidgetNewHeaderComponent,
-    WidgetNewHtmlComponent,
-    WidgetNewYoutubeComponent,
-    WidgetNewImageComponent
+    NewDietComponent
   ],
   imports: [
     QuillEditorModule,
