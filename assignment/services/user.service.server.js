@@ -22,9 +22,11 @@ module.exports = function(app) {
     var username = req.query["username"];
     var password = req.query["password"];
     if(username && password){
-      var user = userModel.findUserByCredentials(username, password);
+      var promise = userModel.findUserByCredentials(username, password);
       //var user = findUserByCredentials(username, password);
-      res.json(user);
+      promise.then(function(user){
+        res.json(user);
+      });
       return;
     }else if(username){
       var user = getUserByUsername(username, password);
