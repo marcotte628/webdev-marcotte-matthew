@@ -28,7 +28,10 @@ export class NewYoutubeComponent implements OnInit {
   }
 
   createYoutube() {
-    const info = {_id: '',  widgetType: 'YOUTUBE', pageId: this.pageId, width: '100%', url: 'https://www.youtube.com/embed/AM2Ivdi9c4E'};
+    const info = {_page : this.pageId, type : 'YOUTUBE', name : 'LOREM', text : 'Lorem Ipsum',
+      placeholder : 'LI', description : 'lorem ipsum', url : 'https://www.youtube.com/embed/AM2Ivdi9c4E', width : '',
+      height : '', rows : '', size : 4, class : 'YOUTUBE', icon : '', deletable : true,
+      formatted : true, dateCreated : '2017-11-6'};
     this.widgetService.createWidget(this.pageId, info).subscribe((resp) => { this.widgets = resp; });
     this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
   }

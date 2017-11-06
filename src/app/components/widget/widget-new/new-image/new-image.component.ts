@@ -35,7 +35,10 @@ export class NewImageComponent implements OnInit {
   }
 
   createImage () {
-    const info = {_id: '',  widgetType: 'IMAGE', pageId: this.pageId, width: '100%', url: 'http://lorempixel.com/400/200/' };
+    const info = {_page : this.pageId, type : 'IMAGE', name : 'LOREM', text : 'Lorem Ipsum',
+      placeholder : 'LI', description : 'lorem ipsum', url : 'http://lorempixel.com/400/200/', width : '100%',
+      height : '', rows : '', size : 0, class : 'IMAGE', icon : '', deletable : true,
+      formatted : true, dateCreated : '2017-11-6'};
     this.widgetService.createWidget(this.pageId, info).subscribe((resp) => { this.widgets = resp; });
     this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
   }

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
+  <div class="container container-fluid">
 
     <!--back arrow in nav bar-->
     <p class="navbar-text pull-left">
@@ -11,18 +11,37 @@
     <!--heading on the nav bar-->
     <p class="navbar-header">
       <a class="navbar-brand thick">
-        <b class="banner">New Header</b>
+        <b class="banner">New HTML Widget</b>
       </a>
     </p>
   </div>
 </nav>
 
-
-<p class="post-nav">
-  new-html works!
-</p>
-
-
+<div class="post-nav">
+  <div class="container">
+  <label for="name">Name</label>
+  <input placeholder="Name"
+         id="name"
+         type="text"
+         name="user"
+         class="form-control"
+         ngModel
+         required
+         #username="ngModel"/>
+  </div>
+  <div class="container">
+  <quill-editor [(ngModel)]="widget.text" name="text" ></quill-editor>
+  </div>
+  <br>
+  <div class="container">
+  <button class="btn btn-primary btn-block" (click)="submit()">
+    Submit
+  </button>
+  <button class="btn btn-danger btn-block" (click)="delete()">
+    Delete
+  </button>
+  </div>
+</div>
 
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
