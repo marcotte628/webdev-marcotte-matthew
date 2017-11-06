@@ -1,7 +1,7 @@
 
 module.exports = function (app) {
 
-  //var WEBSITES = require( "./website.mock");
+  var websiteModel = require("../model/website/website.model.server");
 
   var WEBSITES = [
     { _id: "123", name: "Facebook",    developerId: "456", description: "Lorem" },
@@ -23,57 +23,40 @@ module.exports = function (app) {
   function createWebsite(req, res) {
     var userId = req.params['userId'];
     var websiteDetails = req.body;
-    websiteDetails._id = '' + WEBSITES.length;
-    WEBSITES.push(websiteDetails);
-    var wesbiteList = [];
-    for(var i = 0; i < WEBSITES.length; i++) {
-      if(WEBSITES[i].developerId === userId) {
-        wesbiteList.push(WEBSITES[i]);
-      }
-    }
-    res.json(wesbiteList);
+    websiteModel.createWebsiteForUser(userId, websiteDetails).then(function(site){
+      res.json(site);
+    });
   }
 
   function findAllWebsitesForUser(req, res) {
     var userId = req.params['userId'];
-    var wesbiteList = [];
-    for(var i = 0; i < WEBSITES.length; i++) {
-      if(WEBSITES[i].developerId === userId) {
-        wesbiteList.push(WEBSITES[i]);
-      }
-    }
-    res.json(wesbiteList);
-
+    console.log('user id - ' + userId);
+    websiteModel.findAllWebsitesForUser(userId).then(function(sites){
+      console.log(sites);
+      res.json(sites);
+    });
   }
 
   function findWebsiteById(req, res) {
     var websiteId = req.params['websiteId'];
-    for(var i = 0; i < WEBSITES.length; i++) {
-      if(WEBSITES[i]._id === websiteId) {
-        res.json(WEBSITES[i]);
-      }
-    }
+    websiteModel.findWebsiteById(websteId).then(function(site){
+      res.json(site);
+    });
   }
 
   function updateWebsite(req, res) {
     var websiteId = req.params['websiteId'];
     var newDetails = req.body;
-    for(var i = 0; i < WEBSITES.length; i++){
-      if(WEBSITES[i]._id === websiteId) {
-        WEBSITES.splice(i, 1);
-        WEBSITES.push(newDetails);
-      }
-    }
-    res.json(WEBSITES);
+    websiteModel.updateWebsite(websiteId, newDetails).then(function(sites){
+      res.json(sites)
+    });
   }
 
   function deleteWebsite(req, res) {
     var websiteId = req.params['websiteId'];
-    for(var i = 0; i < WEBSITES.length; i++){
-      if(WEBSITES[i]._id === websiteId) {
-        WEBSITES.splice(i, 1);
-      }
-    }
-    res.json(WEBSITES);
+    websiteModel.deleteWebsite(websiteId).then(function(sites){
+      res.json(sites);
+    });
   }
+
 };

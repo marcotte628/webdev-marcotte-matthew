@@ -23,31 +23,18 @@ module.exports = function(app) {
     var password = req.query["password"];
     if(username && password){
       var promise = userModel.findUserByCredentials(username, password);
-      //var user = findUserByCredentials(username, password);
       promise.then(function(user){
         res.json(user);
       });
       return;
     }else if(username){
-      var user = getUserByUsername(username, password);
+      userModel.findUserByUsername(username).then(function(user){
+        res.json(user);
+      });
     }else{
-      res.json(users);
-    }
-  }
-
-  function getUserByCredentials(username, password){
-    for(var i = 0; i < users.length; i++) {
-      if(users[i].username === username && users[i].password === password) {
-        return users[i];
-      }
-    }
-  }
-
-  function getUserByUsername(username, password){
-    for(var i = 0; i < users.length; i++) {
-      if(users[i].username === username) {
-        return users[i];
-      }
+      userModel.findAllUsers().then(function(users){
+        res.json(users);
+      });
     }
   }
 
@@ -60,48 +47,39 @@ module.exports = function(app) {
 
   function createUser(req, res) {
     var newUser = req.body;
-    newUser._id = '' + users.length;
-    users.push(newUser);
-    res.json(newUser);
+    userModel.createUser(newUser).then(function(user){
+      res.json(user);
+    });
   }
 
   function updateUser(req, res) {
     var uid = req.params["userId"];
     var body = req.body;
-    for(var i = 0; i < users.length; i++) {
-      if(users[i]._id === uid) {
-        users[i]= body;
-      }
-    }
+    userModel.updateUser(uid, body).then(function(user){
+      res.json(user);
+    });
   }
 
   function deleteUser(req, res) {
     var uid = req.params["userId"];
-    for(var i = 0; i < users.length; i++) {
-      if(users[i]._id !== uid ) {
-        users.splice(i, 1);
-      }
-    }
-    res.json(users);
+    userModel.deleteUser(uid).then(function(result){
+      res.json(result);
+    });
   }
 
-
   function findUserByUsername(req, res) {
-    console.log("FIND USER BY USERNAME");
-    var username = req.query["username"];
-    var user = users.find(function(user){
-      return user.username === username;
+    userModel.findUserByUsername(username).then(function(user){
+      res.json(user);
     });
-    res.json(user);
   }
 
   function findUserByCredentials(req, res) {
     var username = req.query["username"];
     var password = req.query["password"];
-    var user = users.find(function(user){
-      return (user.username === username && user.password === password);
+    var promise = userModel.findUserByCredentials(username, password);
+    promise.then(function(user){
+      res.json(user);
     });
-    res.json(user);
   }
 
 
