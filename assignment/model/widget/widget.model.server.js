@@ -14,7 +14,7 @@ WidgetModel.reorderWidget = reorderWidget;
 module.exports = WidgetModel;
 
 function createWidget(pageId, widget) {
-  pageModel.update({_id: pageId}, { $push: { widgets: widget }})
+  // pageModel.update({_id: pageId}, { $push: { widgets: widget }});
   return WidgetModel.create(widget);
 }
 

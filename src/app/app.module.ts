@@ -46,11 +46,11 @@ import { GeneralWorkoutsComponent } from './components/project-posts/workouts/ge
 import { DietPostComponent } from './components/project-details/diet-post/diet-post.component';
 import { WorkoutPostComponent } from './components/project-details/workout-post/workout-post.component';
 import { ViewOtherComponent } from './components/project-user/view-other/view-other.component';
-import {FoodService} from "./services/project.food.service.client";
-import {GymService} from "./services/project.gym.service.client";
-import {StoreService} from "./services/project.store.service.client";
-import {PersonService} from "./services/project.user.service.client";
-import {WorkoutService} from "./services/project.workout.service.client";
+import {FoodService} from './services/project.food.service.client';
+import {GymService} from './services/project.gym.service.client';
+import {StoreService} from './services/project.store.service.client';
+import {PersonService} from './services/project.user.service.client';
+import {WorkoutService} from './services/project.workout.service.client';
 import { GymsComponent } from './components/project-posts/gyms/gyms.component';
 import { StoresComponent } from './components/project-posts/stores/stores.component';
 import { GymPostComponent } from './components/project-details/gym-post/gym-post.component';
@@ -59,7 +59,10 @@ import { NewStoreComponent } from './components/project-create/new-store/new-sto
 import { NewGymComponent } from './components/project-create/new-gym/new-gym.component';
 import { NewWorkoutComponent } from './components/project-create/new-workout/new-workout.component';
 import { NewDietComponent } from './components/project-create/new-diet/new-diet.component';
-
+import { NewHeaderComponent } from './components/widget/widget-new/new-header/new-header.component';
+import { NewImageComponent } from './components/widget/widget-new/new-image/new-image.component';
+import { NewYoutubeComponent } from './components/widget/widget-new/new-youtube/new-youtube.component';
+import { NewHtmlComponent } from './components/widget/widget-new/new-html/new-html.component';
 
 @NgModule({
   // Declare components here
@@ -101,7 +104,11 @@ import { NewDietComponent } from './components/project-create/new-diet/new-diet.
     NewStoreComponent,
     NewGymComponent,
     NewWorkoutComponent,
-    NewDietComponent
+    NewDietComponent,
+    NewHeaderComponent,
+    NewImageComponent,
+    NewYoutubeComponent,
+    NewHtmlComponent,
   ],
   imports: [
     QuillEditorModule,

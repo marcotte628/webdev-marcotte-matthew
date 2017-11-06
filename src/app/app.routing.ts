@@ -39,6 +39,11 @@ import { NewGymComponent } from './components/project-create/new-gym/new-gym.com
 import { NewStoreComponent } from './components/project-create/new-store/new-store.component';
 import { NewWorkoutComponent } from './components/project-create/new-workout/new-workout.component';
 
+import {NewHeaderComponent} from './components/widget/widget-new/new-header/new-header.component';
+import { NewImageComponent } from './components/widget/widget-new/new-image/new-image.component';
+import { NewYoutubeComponent } from './components/widget/widget-new/new-youtube/new-youtube.component';
+import { NewHtmlComponent } from './components/widget/widget-new/new-html/new-html.component';
+
 const APP_ROUTES: Routes = [
   {path: '', component : HomeComponent},
   {path: 'test', component: TestComponent},
@@ -54,6 +59,10 @@ const APP_ROUTES: Routes = [
   { path : 'user/:uid/website/:wid/page/:pid/widget/new' , component: WidgetChooserComponent},
   { path : 'user/:uid/website/:wid/page/:pid/widget/:wgid' , component: WidgetEditComponent},
   { path : 'user/:uid/website/:wid/page/:pid/widget' , component: WidgetListComponent},
+  { path : 'user/:uid/website/:wid/page/:pid/new-header' , component: NewHeaderComponent},
+  { path : 'user/:uid/website/:wid/page/:pid/new-image' , component: NewImageComponent},
+  { path : 'user/:uid/website/:wid/page/:pid/new-youtube' , component: NewYoutubeComponent},
+  { path : 'user/:uid/website/:wid/page/:pid/new-html' , component: NewHtmlComponent},
 
   // project routes
   { path: 'project/login', component: ProjectLoginComponent},
