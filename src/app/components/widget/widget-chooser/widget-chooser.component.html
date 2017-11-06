@@ -20,10 +20,10 @@
      </div>
   </nav>
 
-  <!-- Set of Widgets to choose form -->
+  <!-- Set of Widgets to choose form user/:uid/website/:wid/page/:pid/widget/new-youtube -->
   <div class="container post-nav">
     <div class="form-group">
-        <a (click)="addHeader()"> Header </a>
+        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new-header']"> Header </a>
     </div>
 
     <div class="form-group">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="form-group">
-      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]"> HTML </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new-html' ]"> HTML </a>
     </div>
 
     <div class="form-group">
@@ -47,11 +47,11 @@
     </div>
 
     <div class="form-group">
-      <a (click)="addImage()"> Image </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new-image']"> Image </a>
     </div>
 
     <div class="form-group">
-      <a (click)="addYoutube()"> YouTube </a>
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new-youtube']"> YouTube </a>
     </div>
 
     <div class="form-group">

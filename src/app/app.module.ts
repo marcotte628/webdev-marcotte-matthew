@@ -22,6 +22,10 @@ import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-y
 import { WidgetChooserComponent } from './components/widget/widget-chooser/widget-chooser.component';
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
+import {WidgetNewHeaderComponent} from './components/widget/widget-chooser/widget-new-header/widget-new-header.component';
+import {WidgetNewHtmlComponent} from './components/widget/widget-chooser/widget-new-html/widget-new-html.component';
+import {WidgetNewImageComponent} from './components/widget/widget-chooser/widget-new-image/widget-new-image.component';
+import {WidgetNewYoutubeComponent} from './components/widget/widget-chooser/widget-new-youtube/widget-new-youtube.component';
 
 import { Routing } from './app.routing';
 
@@ -31,6 +35,9 @@ import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
 import {SortableDirective} from '../../assignment/directives/directive.sortable';
 import {SafePipe} from './services/widget.service.client.safePipe';
+
+import { QuillEditorModule } from 'ngx-quill-editor';
+
 
 // project components
 import {ProjectLoginComponent} from './components/project-user/project-login/project-login.component';
@@ -56,6 +63,7 @@ import { NewStoreComponent } from './components/project-create/new-store/new-sto
 import { NewGymComponent } from './components/project-create/new-gym/new-gym.component';
 import { NewWorkoutComponent } from './components/project-create/new-workout/new-workout.component';
 import { NewDietComponent } from './components/project-create/new-diet/new-diet.component';
+
 
 @NgModule({
   // Declare components here
@@ -97,9 +105,14 @@ import { NewDietComponent } from './components/project-create/new-diet/new-diet.
     NewStoreComponent,
     NewGymComponent,
     NewWorkoutComponent,
-    NewDietComponent
+    NewDietComponent,
+    WidgetNewHeaderComponent,
+    WidgetNewHtmlComponent,
+    WidgetNewYoutubeComponent,
+    WidgetNewImageComponent
   ],
   imports: [
+    QuillEditorModule,
     BrowserModule,
     HttpModule,
     FormsModule,

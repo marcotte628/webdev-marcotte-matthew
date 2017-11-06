@@ -1,0 +1,44 @@
+
+<!-- Form for uploading video with Name, Text, URL, and Width -->
+<div class="container post-nav">
+  <form>
+    <div class="form-group">
+      <label for="video_name">Name</label>
+      <input [(ngModel)]="widgetName"
+             type="text"
+             class="form-control"
+             id="video_name"
+             [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <div class="form-group">
+      <label for="video_text">Text</label>
+      <input [(ngModel)]="widgetText"
+             type="text"
+             class="form-control"
+             id="video_text"
+             [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <div class="form-group">
+      <label for="video_url">URL</label>
+      <input [(ngModel)]="widgetUrl"
+             type="text"
+             class="form-control"
+             id="video_url"
+             [ngModelOptions]="{standalone: true}">
+    </div>
+
+    <div class="form-group">
+      <label for="video_width">Width</label>
+      <input [(ngModel)]="widgetWidth"
+             type="text"
+             class="form-control"
+             id="video_width"
+             [ngModelOptions]="{standalone: true}">
+    </div>
+  </form>
+
+  <a class="btn btn-primary btn-block"
+     (click)="createYoutube()">Create Youtube</a>
+</div>
