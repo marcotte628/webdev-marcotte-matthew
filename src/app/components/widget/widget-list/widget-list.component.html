@@ -31,7 +31,7 @@
   <!-- List of Widgets and Tools Displayed -->
   <div *ngFor="let widget of widgets" class="container post-nav">
 
-    <div [ngSwitch]="widget.widgetType">
+    <div [ngSwitch]="widget.type">
 
       <div *ngSwitchCase="'HEADING'">
         <!-- heading widget -->

@@ -1,5 +1,8 @@
 module.exports = function(app) {
 
+
+  var pageModel = require("../model/page/page.model.server");
+
   pages = [
     { _id: "321", name: "Post 1", websiteId: "456", description: "Lorem" },
     { _id: "432", name: "Post 2", websiteId: "456", description: "Lorem" },
@@ -16,60 +19,38 @@ module.exports = function(app) {
     var websiteId = req.params['websiteId'];
     var pageDetails = req.body;
 
-
-    pageDetails._id = '' + pages.length;
-    console.log('pageDetails = ' +  pageDetails);
-    pages.push(pageDetails);
-    var pageList = [];
-    for(var i = 0; i < pages.length; i++) {
-      if(pages[i].websiteId === websiteId) {
-        pageList.push(pages[i]);
-      }
-    }
-    res.json(pageList);
+    pageModel.createPage(websiteId, pageDetails).then(function(pages){
+      res.json(pages);
+    });
   }
 
   function findAllPagesForWebsite( req, res ){
     var websiteId = req.params['websiteId'];
-    var pageList = [];
-    for(var i = 0; i < pages.length; i++) {
-      if(pages[i].websiteId === websiteId) {
-        pageList.push(pages[i]);
-      }
-    }
-    res.json(pageList);
-
+    pageModel.findAllPagesForWebsite(websiteId).then(function(pages){
+      res.json(pages);
+    });
   }
 
   function findPageById( req, res ){
     var pageId = req.params['pageId'];
-    for(var i = 0; i < pages.length; i++) {
-      if(pages[i]._id === pageId) {
-        res.json(pages[i]);
-      }
-    }
+    pageModel.findPageById(pageId).then(function(page){
+      res.json(page);
+    });
   }
 
   function updatePage( req, res ){
     var pageId = req.params["pageId"];
     var pageDetails = req.body;
-    for(var i = 0; i < pages.length; i++) {
-      if(pages[i]._id === pageId) {
-        pages[i] = pageDetails;
-      }
-    }
-    res.json(pages);
-
+    pageModel.updatePage(pageId, pageDetails).then(function(pages){
+      res.json(pages);
+    });
   }
 
   function deletePage( req, res ){
     var pageId = req.params['pageId'];
-    for(var i = 0; i < pages.length; i++) {
-      if(pages[i]._id === pageId) {
-        pages.splice(i, 1);
-      }
-    }
-    res.json(pages);
+    pageModel.deletePage(pageId).then(function(pages){
+      res.json(pages);
+    });
   }
 
 }

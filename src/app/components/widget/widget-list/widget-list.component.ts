@@ -30,7 +30,8 @@ export class WidgetListComponent implements OnInit {
           this.websiteId = params['wid'];
         }
       );
-    this.widgetService.findAllWidgetsForPage(this.pageId).subscribe( (widgets) => { this.widgets = widgets; });
+    this.widgetService.findAllWidgetsForPage(this.pageId).subscribe( (widgets) => {
+      this.widgets = widgets; });
   }
 
   WidgetListController($routeParams, WebsiteService) {

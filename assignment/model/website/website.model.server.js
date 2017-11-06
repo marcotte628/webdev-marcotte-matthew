@@ -31,7 +31,6 @@ function findWebsiteById(websiteId){
 
 function updateWebsite(websiteId, website){
   WebsiteModel.update({_id: websiteId}, {$set: website});
-
 }
 
 function deleteWebsite(websiteId){
