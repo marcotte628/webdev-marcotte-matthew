@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from "../../../../services/widget.service.client";
 
 @Component({
@@ -17,7 +17,7 @@ export class WidgetHtmlComponent implements OnInit {
   widgetText;
   widgetName: String;
 
-  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -28,12 +28,28 @@ export class WidgetHtmlComponent implements OnInit {
           this.websiteId = params['wid'];
           this.widgetId = params['wgid'];
         });
-    this.widgetService.findWidgetById(this.widgetId).subscribe((widget) => { this.widget = widget; });
+    this.widgetService.findWidgetById(this.widgetId).subscribe((widget) => {
+      this.widget = widget;
+      this.widgetName = this.widget.name;
+      this.widgetText = this.widget.text;
+    });
   }
 
-  update() {}
+  update() {
+    const date = new Date();
+    const newWidget = {_page : this.pageId, type : 'HTML', name : this.widgetName, text : this.widgetText,
+      placeholder : this.widgetText, description : this.widgetText, url : '', width : '',
+      height : '', rows : '', size : 0, class : '', icon : '', deletable : true,
+      formatted : true, dateCreated : date};
+    this.widgetService.updateWidget(this.widgetId, newWidget)
+      .subscribe(() => {
+      this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget' ]);
+    });
+  }
 
-  cancel() {}
+  cancel() {
+    this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget' ]);
+  }
 
 
 }
