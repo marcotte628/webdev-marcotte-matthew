@@ -20,6 +20,7 @@ export class WidgetEditComponent implements OnInit {
   headingWidget = 'HEADING';
   youtubeWidget = 'YOUTUBE';
   imageWidget = 'IMAGE';
+  htmlWidget = 'HTML';
 
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute) { }
 
@@ -34,7 +35,7 @@ export class WidgetEditComponent implements OnInit {
         });
     this.widgetService.findWidgetById(this.widgetId).subscribe((widget) => {
       this.widget = widget;
-      this.widgetType = this.widget.widgetType;
+      this.widgetType = this.widget.type;
       this.size = this.widget.size;
       this.widgetText = this.widget.text;
     });

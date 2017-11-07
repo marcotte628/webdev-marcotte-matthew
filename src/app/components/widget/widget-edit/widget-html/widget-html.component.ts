@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {WidgetService} from "../../../../services/widget.service.client";
 
 @Component({
   selector: 'app-widget-html',
@@ -11,9 +12,12 @@ export class WidgetHtmlComponent implements OnInit {
   userId: String;
   websiteId: String;
   pageId: String;
+  widgetId: String;
   widget;
+  widgetText;
+  widgetName: String;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -22,11 +26,14 @@ export class WidgetHtmlComponent implements OnInit {
           this.userId = params['uid'];
           this.pageId = params['pid'];
           this.websiteId = params['wid'];
+          this.widgetId = params['wgid'];
         });
-    this.widget = {_page : this.pageId, type : 'HTML', name : '', text : '',
-      placeholder : '', description : '', url : '', width : '',
-      height : '', rows : '', size : 0, class : '', icon : '', deletable : true,
-      formatted : true, dateCreated : '2017-11-6'};
+    this.widgetService.findWidgetById(this.widgetId).subscribe((widget) => { this.widget = widget; });
   }
+
+  update() {}
+
+  cancel() {}
+
 
 }
