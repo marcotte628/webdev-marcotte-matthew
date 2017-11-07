@@ -21,6 +21,7 @@ export class WidgetEditComponent implements OnInit {
   youtubeWidget = 'YOUTUBE';
   imageWidget = 'IMAGE';
   htmlWidget = 'HTML';
+  inputWidget = 'INPUT';
 
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute) { }
 

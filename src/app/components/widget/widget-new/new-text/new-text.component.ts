@@ -3,19 +3,21 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
 
 @Component({
-  selector: 'app-widget-html',
-  templateUrl: './widget-html.component.html',
-  styleUrls: ['./widget-html.component.css']
+  selector: 'app-new-text',
+  templateUrl: './new-text.component.html',
+  styleUrls: ['./new-text.component.css']
 })
-export class WidgetHtmlComponent implements OnInit {
+export class NewTextComponent implements OnInit {
 
   userId: String;
   websiteId: String;
   pageId: String;
-  widgetId: String;
-  widget;
-  widgetText;
+  widgetText: String;
   widgetName: String;
+  widgetPlaceholder: String;
+  widgetFormatted: Boolean;
+  widgetRows: number;
+  widget;
 
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
@@ -26,30 +28,23 @@ export class WidgetHtmlComponent implements OnInit {
           this.userId = params['uid'];
           this.pageId = params['pid'];
           this.websiteId = params['wid'];
-          this.widgetId = params['wgid'];
         });
-    this.widgetService.findWidgetById(this.widgetId).subscribe((widget) => {
-      this.widget = widget;
-      this.widgetName = this.widget.name;
-      this.widgetText = this.widget.text;
-    });
   }
 
-  update() {
+  createWidget() {
     const date = new Date();
-    const newWidget = {_page : this.pageId, type : 'HTML', name : this.widgetName, text : this.widgetText,
-      placeholder : this.widgetText, description : this.widgetText, url : '', width : '',
-      height : '', rows : '', size : 0, class : '', icon : '', deletable : true,
-      formatted : true, dateCreated : date};
-    this.widgetService.updateWidget(this.widgetId, newWidget)
-      .subscribe(() => {
+    const newWidget = {_page : this.pageId, type : 'INPUT', name : this.widgetName, text : this.widgetText,
+      placeholder : this.widgetPlaceholder, description : '', url : '', width : '',
+      height : '', rows : this.widgetRows, size : 0, class : '', icon : '', deletable : true,
+      formatted : this.widgetFormatted, dateCreated : date};
+
+    this.widgetService.createWidget(this.pageId, newWidget).subscribe(() => {
       this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget' ]);
-    });
+    } );
   }
 
   cancel() {
     this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget' ]);
   }
-
 
 }

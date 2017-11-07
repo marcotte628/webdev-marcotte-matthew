@@ -3,19 +3,22 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
 
 @Component({
-  selector: 'app-widget-html',
-  templateUrl: './widget-html.component.html',
-  styleUrls: ['./widget-html.component.css']
+  selector: 'app-widget-text',
+  templateUrl: './widget-text.component.html',
+  styleUrls: ['./widget-text.component.css']
 })
-export class WidgetHtmlComponent implements OnInit {
+export class WidgetTextComponent implements OnInit {
 
   userId: String;
   websiteId: String;
   pageId: String;
   widgetId: String;
-  widget;
-  widgetText;
+  widgetText: String;
   widgetName: String;
+  widgetPlaceholder: String;
+  widgetFormatted: Boolean;
+  widgetRows: number;
+  widget;
 
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
@@ -35,21 +38,19 @@ export class WidgetHtmlComponent implements OnInit {
     });
   }
 
-  update() {
-    const date = new Date();
-    const newWidget = {_page : this.pageId, type : 'HTML', name : this.widgetName, text : this.widgetText,
-      placeholder : this.widgetText, description : this.widgetText, url : '', width : '',
-      height : '', rows : '', size : 0, class : '', icon : '', deletable : true,
-      formatted : true, dateCreated : date};
-    this.widgetService.updateWidget(this.widgetId, newWidget)
-      .subscribe(() => {
+  updateWidget() {
+    const updatedWidget = {_page : this.widget._page, type : this.widget.type, name : this.widgetName, text : this.widgetText,
+      placeholder : this.widgetPlaceholder, description : this.widget.description, url : this.widget.url, width : this.widget.url,
+      height : this.widget.height, rows : this.widgetRows, size : this.widget.size, class : this.widget.class, icon : this.widget.icon,
+      deletable : this.widget.deletable, formatted : this.widgetFormatted, dateCreated : this.widget.date};
+
+    this.widgetService.updateWidget(this.widgetId, updatedWidget).subscribe(() => {
       this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget' ]);
-    });
+    } );
+
   }
 
   cancel() {
     this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget' ]);
   }
-
-
 }

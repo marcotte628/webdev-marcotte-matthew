@@ -64,6 +64,8 @@ import { NewImageComponent } from './components/widget/widget-new/new-image/new-
 import { NewYoutubeComponent } from './components/widget/widget-new/new-youtube/new-youtube.component';
 import { NewHtmlComponent } from './components/widget/widget-new/new-html/new-html.component';
 import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
+import { NewTextComponent } from './components/widget/widget-new/new-text/new-text.component';
 
 @NgModule({
   // Declare components here
@@ -110,7 +112,9 @@ import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/w
     NewImageComponent,
     NewYoutubeComponent,
     NewHtmlComponent,
-    WidgetHtmlComponent
+    WidgetHtmlComponent,
+    WidgetTextComponent,
+    NewTextComponent
   ],
   imports: [
     QuillEditorModule,

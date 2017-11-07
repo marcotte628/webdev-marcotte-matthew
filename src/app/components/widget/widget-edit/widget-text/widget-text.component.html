@@ -1,0 +1,73 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container container-fluid">
+
+    <!--back arrow in nav bar-->
+    <p class="navbar-text pull-left">
+      <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]" class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left banner"></span>
+      </a>
+    </p>
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header">
+      <a class="navbar-brand thick">
+        <b class="banner">New Text Widget</b>
+      </a>
+    </p>
+  </div>
+</nav>
+
+<div class="container post-nav">
+
+  <label for="text">Text</label>
+  <input [(ngModel)]="widgetText" class="form-control" id="text"/>
+
+  <label for="rows">Rows</label>
+  <input [(ngModel)]="widgetRows" class="form-control" type="number" id="rows"/>
+
+  <label for="Name">Name</label>
+  <div>
+    <input [(ngModel)]="widgetName"
+           type="text"
+           class="form-control"
+           id="Name"
+           name="name"
+           placeholder="Name">
+  </div>
+
+  <label for="place">Placeholder</label>
+  <input [(ngModel)]="widgetPlaceholder" class="form-control" required id="place"/>
+  <p></p>
+  <div class="input-group">
+    <input type="text"
+           readonly
+           value="Formatted"
+           class="form-control"/>
+    <span class="input-group-addon">
+     <input [(ngModel)]="widgetFormatted"
+            type="checkbox"/>
+ </span>
+  </div>
+  <br>
+  <button class="btn btn-primary btn-block"
+          (click)="updateWidget()">
+    Update
+  </button>
+  <button class="btn btn-danger btn-block"
+          (click)="cancel()">
+    Cancel
+  </button>
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/user', userId ]">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>
