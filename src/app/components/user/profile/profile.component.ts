@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../../services/user.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,9 +14,11 @@ export class ProfileComponent implements OnInit {
   email: String;
   first: String;
   last: String;
+  password: String;
+  phone: String;
+  websites = [];
 
-
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -29,10 +31,27 @@ export class ProfileComponent implements OnInit {
         this.username = data.username;
         this.email = data.email;
         this.first = data.firstName;
-        this.last = data.lastName; },
+        this.last = data.lastName;
+        this.password = data.password;
+        this.phone = data.phone
+        this.websites = data.websites;
+        },
       (error: any) => {
       }
     );
   }
 
+  updateUser() {
+    this.userService.updateUser(this.userId, this.username, this.password, this.first,
+                                this.last, this.email, this.phone, this.websites).subscribe((data) => {
+      this.username = data.username;
+      this.email = data.email;
+      this.first = data.firstName;
+      this.last = data.lastName;
+      this.password = data.password;
+      this.phone = data.phone
+      this.websites = data.websites;
+      this.router.navigate(['/user/' + this.userId ]);
+    } );
+  }
 }

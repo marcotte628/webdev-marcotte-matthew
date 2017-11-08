@@ -60,16 +60,21 @@ export class UserService {
   // "/api/user", createUser
   createUser(username: String, password: String) {
     const url = this.baseUrl + '/api/user';
-    const body = {_id: '', username: username, password: password, firstName: username, lastName: username};
+    const date = new Date();
+    const body = {username: username, password: password, firstName: username, lastName: username,
+                  email: username + '@gmail.com', phone: '', websites: [], dateCreated: date};
     return this._http.post(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;
     });
   }
-  // "/api/user/:userId", updateUser
-  updateUser(userId: String, username: String, password: String, first: String, last: String) {
+  // "/api/user/:userId", updateUser username: String,
+  updateUser(userId: String, username: String, password: String, first: String,
+             last: String, email: String, phone: String, websites) {
+    const date = new Date();
     const url = this.baseUrl + '/api/user';
-    const body = {_id: userId, username: username, password: password, firstName: first, lastName: last};
+    const body = {_id: userId, username: username, password: password, firstName: first, lastName: last,
+                  email: email, phone: phone, websites: websites, dateCreated: date};
     return this._http.put(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;

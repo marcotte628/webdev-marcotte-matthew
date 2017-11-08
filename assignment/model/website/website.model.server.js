@@ -14,7 +14,7 @@ WebsiteModel.deleteWebsite = deleteWebsite;
 module.exports = WebsiteModel;
 
 function createWebsiteForUser(userId, website){
-  userModel.update({_id: userId}, { $push: { websites: website }});
+  // userModel.update({_id: userId}, { $push: { websites: website }});
   return WebsiteModel.create(website);
 
 }

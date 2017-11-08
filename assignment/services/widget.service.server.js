@@ -19,8 +19,9 @@ module.exports = function(app) {
     { _id: "789", widgetType: "HTML", pageId: "321", text: "<p>Lorem ipsum</p>"}
   ];
 
-  var multer = require('multer'); // (did it!) npm install multer --save
+  var multer = require('multer');
   var upload = multer({ dest: __dirname+'/../../dist/assets/css' });
+  // var upload = multer({ dest: 'mongodb://127.0.0.1:27017' });
 
   app.post ("/api/upload", upload.single('myFile'), uploadImage);
   app.post("/api/page/:pageId/widget", createWidget);
@@ -31,7 +32,9 @@ module.exports = function(app) {
 
   function uploadImage( req, res ){
     var newWidget = { _id: widgets.length, widgetType: "IMAGE", pageId:req.body.pageId, width: "100%", url: baseUrl + '/assets/css/'+ req.file.filename};
-    widgets.push(newWidget);
+    widgetModel.createWidget(req.body.pageId, newWidget).then(function(widgets){
+
+    });
     res.redirect(baseUrl +'/user/'+req.body.userId+'/website/'+req.body.websiteId+'/page/'+req.body.pageId+'/widget');
   }
 

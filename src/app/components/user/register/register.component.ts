@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     this.password = this.registerForm.value.password;
     this.reenter = this.registerForm.value.reenter;
     if (this.password === this.reenter) {
-      this.userService.register(this.username, this.password).subscribe(
+      this.userService.createUser(this.username, this.password).subscribe(
         (data: any) => {
           this.router.navigate(['/user/' + data._id]);
         },

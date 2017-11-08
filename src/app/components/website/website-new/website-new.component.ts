@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class WebsiteNewComponent implements OnInit {
 
   userId: String;
+  websiteId: String;
   websites = [];
   websiteName: String;
   websiteDescription: String;
@@ -20,13 +21,16 @@ export class WebsiteNewComponent implements OnInit {
       .subscribe(
         (params: any) => {
           this.userId = params['uid'];
+          this.websiteId = params['wid'];
         }
       );
     this.websiteService.findAllWebsitesForUser(this.userId).subscribe( (websites) => { this.websites = websites; });
   }
 
   createWebsite() {
-    const info = {_id: '', name: this.websiteName, developerId: this.userId, description: this.websiteDescription};
+    const date = new Date();
+    const info = {_user: this.userId, name: this.websiteName, description: this.websiteDescription,
+                   pages: [], dateCreated: date};
     this.websiteService.createWebsite(this.userId, info).subscribe( (websites) => { this.websites = websites; });
     this.router.navigate(['/user/' + this.userId + '/website' ]);
   }
