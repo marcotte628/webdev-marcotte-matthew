@@ -29,33 +29,30 @@
              name="name"
              id="heading_name"
              class="form-control"
-             ngModel
-             required
-             #username="ngModel"/>
+             [(ngModel)]="headingName"
+             [ngModelOptions]="{standalone: true}"/>
     </div>
 
     <div class="form-group">
       <label for="heading_text">Text</label>
-      <input placeholder="heading name"
+      <input placeholder="heading text"
              type="text"
              name="text"
              id="heading_text"
              class="form-control"
-             ngModel
-             required
-             #username="ngModel"/>
+             [(ngModel)]="headingText"
+             [ngModelOptions]="{standalone: true}"/>
     </div>
 
     <div class="form-group">
       <label for="heading_size">Size</label>
-      <input placeholder="heading name"
-             type="text"
+      <input placeholder="heading size"
+             type="number"
              name="size"
              id="heading_size"
              class="form-control"
-             ngModel
-             required
-             #username="ngModel"/>
+             [(ngModel)]="headingSize"
+             [ngModelOptions]="{standalone: true}"/>
     </div>
     <button class="btn btn-primary btn-block"
             type="submit" >Create</button>

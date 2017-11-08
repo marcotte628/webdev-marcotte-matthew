@@ -20,7 +20,7 @@
 
 <!-- Form for entering Name, Text, URL, Width, and File of Image -->
 <div class="container post-nav">
-
+  <h1> Upload Local Image </h1>
   <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
     <label for="myFile">File</label>
     <input id="myFile" name="myFile" type="file" class="form-control"/>
@@ -37,6 +37,7 @@
   <br/>
   <br/>
 
+  <h1> Add Image with Information </h1>
   <form>
     <div class="form-group">
       <label for="image_name">Name</label>
@@ -89,7 +90,7 @@
 
   <!-- Buttons for Upload and Delete Image -->
   <a class="btn btn-primary btn-block" [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget' ]"> Upload Image </a>
-  <a class="btn btn-primary btn-block" (click)="createImage()" >Create Image</a>
+  <a class="btn btn-primary btn-block" (click)="createImage()" >Create Image With Information </a>
   <br/>
   <br/>
   <br/>

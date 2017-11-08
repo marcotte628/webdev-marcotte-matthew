@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WidgetService} from '../../../../services/widget.service.client';
 import {Router} from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
-import {environment} from "../../../../../environments/environment";
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-new-image',
@@ -13,6 +13,10 @@ export class NewImageComponent implements OnInit {
   userId: String;
   websiteId: String;
   widgetId: String;
+  widgetName: String;
+  widgetText: String;
+  widgetUrl: String;
+  widgetWidth: String;
   pageId: String;
   widgets= [];
   baseUrl: String;
@@ -35,10 +39,11 @@ export class NewImageComponent implements OnInit {
   }
 
   createImage () {
-    const info = {_page : this.pageId, type : 'IMAGE', name : 'LOREM', text : 'Lorem Ipsum',
-      placeholder : 'LI', description : 'lorem ipsum', url : 'http://lorempixel.com/400/200/', width : '100%',
-      height : '', rows : '', size : 0, class : 'IMAGE', icon : '', deletable : true,
-      formatted : true, dateCreated : '2017-11-6'};
+    const date = new Date();
+    const info = {_page : this.pageId, type : 'IMAGE', name : this.widgetName, text : this.widgetText,
+      placeholder : '', description : '', url : this.widgetUrl, width : this.widgetWidth,
+      height : '', rows : '', size : 0, class : '', icon : '', deletable : true,
+      formatted : true, dateCreated : date};
     this.widgetService.createWidget(this.pageId, info).subscribe((resp) => { this.widgets = resp; });
     this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
   }

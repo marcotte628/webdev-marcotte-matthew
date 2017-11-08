@@ -12,7 +12,11 @@ export class NewYoutubeComponent implements OnInit {
   userId: String;
   websiteId: String;
   pageId: String;
-  widgets: {};
+  widgetName: String;
+  widgetText: String;
+  widgetUrl: String;
+  widgetWidth: String;
+  widgets;
 
   constructor(private widgetService: WidgetService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -24,14 +28,17 @@ export class NewYoutubeComponent implements OnInit {
           this.pageId = params['pid'];
           this.websiteId = params['wid'];
         });
-    this.widgets = this.widgetService.findWidgetById(this.pageId);
+    this.widgetService.findWidgetById(this.pageId).subscribe((wdtgs) => {
+      this.widgets = wdtgs;
+    } );
   }
 
   createYoutube() {
-    const info = {_page : this.pageId, type : 'YOUTUBE', name : 'LOREM', text : 'Lorem Ipsum',
-      placeholder : 'LI', description : 'lorem ipsum', url : 'https://www.youtube.com/embed/AM2Ivdi9c4E', width : '',
-      height : '', rows : '', size : 4, class : 'YOUTUBE', icon : '', deletable : true,
-      formatted : true, dateCreated : '2017-11-6'};
+    const date = new Date();
+    const info = {_page : this.pageId, type : 'YOUTUBE', name : this.widgetName, text : this.widgetText,
+      placeholder : '', description : '', url : this.widgetUrl, width : this.widgetWidth,
+      height : '', rows : '', size : 4, class : '', icon : '', deletable : true,
+      formatted : true, dateCreated : date};
     this.widgetService.createWidget(this.pageId, info).subscribe((resp) => { this.widgets = resp; });
     this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
   }

@@ -15,7 +15,10 @@ export class NewHeaderComponent implements OnInit {
   userId: String;
   websiteId: String;
   pageId: String;
-  widgets: {};
+  headingName: String;
+  headingText: String;
+  headingSize: number;
+  widgets;
   constructor(private widgetService: WidgetService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -29,10 +32,11 @@ export class NewHeaderComponent implements OnInit {
   }
 
   createWidget() {
-    const info = {	_page : this.pageId, type : 'HEADING', name : 'LOREM', text : 'Lorem Ipsum',
-                    placeholder : 'LI', description : 'lorem ipsum', url : '', width : '',
-                    height : '', rows : '', size : 4, class : 'HEADING', icon : '', deletable : true,
-                    formatted : true, dateCreated : '2017-11-6'};
+    const date = new Date();
+    const info = {	_page : this.pageId, type : 'HEADING', name : this.headingName, text : this.headingText,
+                    placeholder : '', description : '', url : '', width : '',
+                    height : '', rows : '', size : this.headingSize, class : '', icon : '', deletable : true,
+                    formatted : true, dateCreated : date};
     this.widgetService.createWidget(this.pageId, info).subscribe((resp) => { this.widgets = resp; });
     this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
   }
