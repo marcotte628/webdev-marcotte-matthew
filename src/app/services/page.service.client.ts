@@ -17,6 +17,7 @@ export class PageService {
     const url = this.baseUrl + '/api/website/' + websiteId + '/page';
     return this._http.post(url, info).map( (res: Response) =>  {
       const data = res.json();
+      console.log(data);
       return data;
     });
   }
@@ -25,6 +26,7 @@ export class PageService {
     const url = this.baseUrl + '/api/website/' + websiteId + '/page';
     return this._http.get(url).map( (res: Response) =>  {
       const data = res.json();
+      console.log('findallpagesforwebsite... = ' + data);
       return data;
     });
   }

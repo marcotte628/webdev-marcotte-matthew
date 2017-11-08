@@ -13,7 +13,7 @@ PageModel.deletePage = deletePage;
 module.exports = PageModel;
 
 function createPage(websiteId, page) {
-  websiteModel.update({_id: websiteId}, { $push: { pages: page }})
+  // websiteModel.update({_id: websiteId}, { $push: { pages: page }})
   return PageModel.create(page);
 }
 

@@ -14,7 +14,7 @@ export class PageNewComponent implements OnInit {
   pageDescription: String;
   userId: String;
   websiteId: String;
-  pages = [];
+  pages;
 
   constructor(private pageService: PageService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -31,8 +31,11 @@ export class PageNewComponent implements OnInit {
 
   createPage() {
     const date = new Date();
-    const info = {  _website: String, name: this.pageName, description: this.pageDescription, widgets: [], dateCreated: date};
-    this.pageService.createPage(this.websiteId, info).subscribe( (pages) => { this.pages = pages; });
+    const info = {  _website: this.websiteId, name: this.pageName, description: this.pageDescription, widgets: [], dateCreated: date};
+    this.pageService.createPage(this.websiteId, info).subscribe( (pages) => {
+      console.log('finally -------> ' + pages);
+      this.pages = pages;
+    });
     this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' ]);
   }
 

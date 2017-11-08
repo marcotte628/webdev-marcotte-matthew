@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PageListComponent implements OnInit {
 
   userId: String;
-  pages = [];
+  pages;
   websiteId: String;
 
   constructor(private pageService: PageService, private activatedRoute: ActivatedRoute) { }
@@ -23,7 +23,9 @@ export class PageListComponent implements OnInit {
           this.websiteId = params['wid'];
         }
       );
-    this.pageService.findAllPagesForWebsite(this.websiteId).subscribe( (pages) => { this.pages = pages; });
+    this.pageService.findAllPagesForWebsite(this.websiteId).subscribe( (pages) => {
+      console.log('pagelist --> ' + pages);
+      this.pages = pages; });
   }
 
   PageListController($routeParams, WebsiteService) {

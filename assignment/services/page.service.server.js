@@ -20,6 +20,7 @@ module.exports = function(app) {
     var pageDetails = req.body;
 
     pageModel.createPage(websiteId, pageDetails).then(function(pages){
+      console.log(pages);
       res.json(pages);
     });
   }
