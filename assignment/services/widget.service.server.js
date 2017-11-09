@@ -21,7 +21,6 @@ module.exports = function(app) {
 
   var multer = require('multer');
   var upload = multer({ dest: __dirname+'/../../dist/assets/css' });
-  // var upload = multer({ dest: 'mongodb://127.0.0.1:27017' });
 
   app.post ("/api/upload", upload.single('myFile'), uploadImage);
   app.post("/api/page/:pageId/widget", createWidget);
@@ -31,11 +30,14 @@ module.exports = function(app) {
   app.delete("/api/widget/:widgetId", deleteWidget);
 
   function uploadImage( req, res ){
-    var newWidget = { _id: widgets.length, widgetType: "IMAGE", pageId:req.body.pageId, width: "100%", url: baseUrl + '/assets/css/'+ req.file.filename};
+    const date = new Date();
+    var newWidget = { _page: req.body.pageId, type: "IMAGE", name: req.file.filename, text: String,
+      placeholder: String, description: String, url: baseUrl + '/assets/css/'+ req.file.filename,
+      width: "100%", height: "", rows: "", size: 3, class: "", icon: "", deletable: true, formatted: true,
+      dateCreated: date};
     widgetModel.createWidget(req.body.pageId, newWidget).then(function(widgets){
-
+      res.redirect(baseUrl +'/user/'+req.body.userId+'/website/'+req.body.websiteId+'/page/'+req.body.pageId+'/widget');
     });
-    res.redirect(baseUrl +'/user/'+req.body.userId+'/website/'+req.body.websiteId+'/page/'+req.body.pageId+'/widget');
   }
 
   function createWidget( req, res ) {
