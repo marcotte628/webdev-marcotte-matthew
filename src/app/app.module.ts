@@ -66,6 +66,8 @@ import { NewHtmlComponent } from './components/widget/widget-new/new-html/new-ht
 import {WidgetHtmlComponent} from './components/widget/widget-edit/widget-html/widget-html.component';
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 import { NewTextComponent } from './components/widget/widget-new/new-text/new-text.component';
+import { NewFlickrImageComponent } from './components/widget/widget-new/new-image/new-flickr-image/new-flickr-image.component';
+import {FlickrService} from './services/flickr.service.client';
 
 @NgModule({
   // Declare components here
@@ -114,7 +116,8 @@ import { NewTextComponent } from './components/widget/widget-new/new-text/new-te
     NewHtmlComponent,
     WidgetHtmlComponent,
     WidgetTextComponent,
-    NewTextComponent
+    NewTextComponent,
+    NewFlickrImageComponent
   ],
   imports: [
     QuillEditorModule,
@@ -125,7 +128,7 @@ import { NewTextComponent } from './components/widget/widget-new/new-text/new-te
   ],
   // Client Side services here
   providers: [ TestService, UserService, WebsiteService, PageService, WidgetService,
-    FoodService, GymService, StoreService, PersonService, WorkoutService],
+    FoodService, GymService, StoreService, PersonService, WorkoutService, FlickrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

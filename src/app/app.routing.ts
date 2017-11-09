@@ -44,6 +44,8 @@ import { NewImageComponent } from './components/widget/widget-new/new-image/new-
 import { NewYoutubeComponent } from './components/widget/widget-new/new-youtube/new-youtube.component';
 import { NewHtmlComponent } from './components/widget/widget-new/new-html/new-html.component';
 import { NewTextComponent } from './components/widget/widget-new/new-text/new-text.component';
+import { NewFlickrImageComponent } from './components/widget/widget-new/new-image/new-flickr-image/new-flickr-image.component';
+
 
 
 const APP_ROUTES: Routes = [
@@ -66,6 +68,7 @@ const APP_ROUTES: Routes = [
   { path : 'user/:uid/website/:wid/page/:pid/new-youtube' , component: NewYoutubeComponent},
   { path : 'user/:uid/website/:wid/page/:pid/new-html' , component: NewHtmlComponent},
   { path : 'user/:uid/website/:wid/page/:pid/new-text' , component: NewTextComponent},
+  { path : 'user/:uid/website/:wid/page/:pid/new-flickr' , component: NewFlickrImageComponent},
 
   // project routes
   { path: 'project/login', component: ProjectLoginComponent},

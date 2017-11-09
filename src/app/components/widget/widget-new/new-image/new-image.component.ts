@@ -47,4 +47,5 @@ export class NewImageComponent implements OnInit {
     this.widgetService.createWidget(this.pageId, info).subscribe((resp) => { this.widgets = resp; });
     this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
   }
+
 }
