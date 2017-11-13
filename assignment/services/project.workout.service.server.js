@@ -1,6 +1,8 @@
 
 module.exports = function(app) {
 
+  var workoutModel = require("../model/project-workout/project.workout.model.server");
+
   var WORKOUTS = [
     {_id: "001", name: "bench press", type: "chest", difficulty: 50 },
     {_id: "002", name: "pull up", type: "back", difficulty: 70},
@@ -27,70 +29,55 @@ module.exports = function(app) {
     var difficulty = req.query["difficulty"];
 
     if(name){
-      for(var i = 0; i < WORKOUTS.length; i++) {
-        if(WORKOUTS[i].name === name ) {
-          var ret = WORKOUTS[i];
-        }
-      }
-      res.json(ret);
+      workoutModel.findWorkoutByName(name).then(function(ret){
+        res.json(ret);
+      });
+
     }else if(type){
-      for(var i = 0; i < WORKOUTS.length; i++) {
-        if(WORKOUTS[i].type === type ) {
-          var ret = WORKOUTS[i];
-        }
-      }
-      res.json(ret);
+      workoutModel.findWorkoutByType(type).then(function(ret){
+        res.json(ret);
+      });
     }else if(difficulty){
-      for(var i = 0; i < WORKOUTS.length; i++) {
-        if(WORKOUTS[i].difficulty === difficulty ) {
-          var ret = WORKOUTS[i];
-        }
-      }
-      res.json(ret);
+      workoutModel.findWorkoutByDifficulty(difficulty).then(function(ret){
+        res.json(ret);
+      });
     }else{
-      res.json(WORKOUTS);
+      workoutModel.findAllWorkouts().then(function(ret){
+        res.json(ret);
+      });
     }
 
   }
 
   function getWorkoutById(req, res){
     var wid = req.params["wid"];
-    for(var i = 0; i < WORKOUTS.length; i++) {
-      if(WORKOUTS[i]._id === wid ) {
-        var ret = WORKOUTS[i];
-      }
-    }
-    res.json(ret);
+    workoutModel.findWorkoutById(wid).then(function(ret){
+      res.json(ret);
+    });
 
   }
 
   function createWorkout(req, res){
     var newWO = req.body;
-    newWO._id = '' + WORKOUTS.length;
-    WORKOUTS.push(newWO);
-    res.json(newWO);
+    workoutModel.createWorkout(newWO).then(function(ret){
+      res.json(ret);
+    });
 
   }
 
   function updateWorkout(req, res){
     var wid = req.params["wid"];
     var body = req.body;
-    for(var i = 0; i < WORKOUTS.length; i++) {
-      if(WORKOUTS[i]._id === wid) {
-        WORKOUTS[i]= body;
-      }
-    }
-  res.json(body)
+    workoutModel.updateWorkout(wid, body).then(function(ret){
+      res.json(ret);
+    });
   }
 
   function deleteWorkout(req, res){
     var wid = req.params["wid"];
-    for(var i = 0; i < WORKOUTS.length; i++) {
-      if(WORKOUTS[i]._id !== wid ) {
-        WORKOUTS.splice(i, 1);
-      }
-    }
-    res.json(WORKOUTS);
+    workoutModel.deleteWorkout(wid).then(function(ret){
+      res.json(ret);
+    });
   }
 
 

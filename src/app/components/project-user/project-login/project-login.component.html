@@ -1,6 +1,55 @@
 
 <div class="container">
 
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+
+  <h1>Login</h1>
+
+  <!-- Input for Username and Password -->
+  <form (ngSubmit)="login()" #f="ngForm">
+    <input placeholder="username"
+           type="text"
+           name="username"
+           class="form-control"
+           ngModel
+           required
+           #username="ngModel"/>
+    <span class="help-block" *ngIf="!username.valid && username.touched">
+        Please enter username!
+      </span>
+    <input placeholder="password"
+           type="password"
+           class="form-control"
+           name="password"
+           ngModel
+           required
+           #username="ngModel"/>
+    <span class="help-block" *ngIf="!username.valid && username.touched">
+          Please enter password!
+      </span>
+    <button class="btn btn-primary btn-block"
+            type="submit"
+            [routerLink]=profileURL
+            [disabled]="!f.valid">
+      Login
+    </button>
+    <button class="btn btn-success btn-block"
+            type="submit"
+            [routerLink]="['/project/register']">
+      Register
+    </button>
+  </form>
+</div>
+
+
+
+<!--
+
+<div class="container">
+
   <h1>Search Users By Name</h1>
 
   <form (ngSubmit)="searchUser()" #f="ngForm">
@@ -37,3 +86,5 @@
     </tbody>
   </table>
 </div>
+
+-->

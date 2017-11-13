@@ -29,8 +29,18 @@ export class PersonService {
     );
   }
 
+  getPersonByCredentials(username: String, password: String) {
+    return this._http.get(this.baseUrl + '/api/project/user?username=' + username + '&password=' + password).map(
+      (res: Response) => {
+        const data = res.json();
+        return data;
+      }
+    );
+  }
+
+
   gePersonById(uid: String) {
-    return this._http.get(this.baseUrl + '/api/project/user' + uid).map(
+    return this._http.get(this.baseUrl + '/api/project/user/' + uid).map(
       (res: Response) => {
         const data = res.json();
         return data;
@@ -40,20 +50,23 @@ export class PersonService {
 
   createAccount(username: String, password: String, name: String, role: String) {
     const url = this.baseUrl + '/api/project/user';
-    const body = {_id: '', username: username, password: password, name: name, role: role,
-                  rating: 0, followedIds: [ ], postIds: [ ], gymIds: [], storeIds: [] };
+    const body = {username: username, password: password, name: name, role: role,
+                  rating: 0, followedUsers: [ ], followedByUsers: [ ], followedDiets: [],
+                  followedWorkouts: [ ], gymMemberships: [ ], storeMemberships: [ ]};
     return this._http.post(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;
     });
   }
 
-  updateAccount(uid: String, username: String, password: String,
-                name: String, role: String, rating: number,
-                followedIds, postIds, gymIds, storeIds) {
+  updateAccount(uid: String, username: String, email: String, password: String, name: String, role: String,
+                rating: number, followedUsers: [String], followedByUsers: [String], followedDiets: [String],
+                followedWorkouts: [String], gymMemberships: [String], storeMemberships: [String]) {
     const url = this.baseUrl + '/api/project/user/' + uid;
-    const body = {_id: uid, username: username, password: password, name: name, role: role,
-      rating: rating, followedIds: followedIds, postIds: postIds, gymIds: gymIds, storeIds: storeIds };
+    const body = {username: username, password: password, email: email, name: name, role: role,
+      rating: rating, followedUsers: followedUsers, followedByUsers: followedByUsers,
+      followedDiets: followedDiets, followedWorkouts: followedWorkouts,
+      gymMemberships: gymMemberships, storeMemberships: storeMemberships};
     return this._http.put(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;

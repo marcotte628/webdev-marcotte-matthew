@@ -1,3 +1,162 @@
-<p>
-  project-profile works!
-</p>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="banner">Profile</b>
+      </a>
+    </p>
+
+    <!--tick mark-->
+    <p class="navbar-text pull-right">
+      <a (click)="updateUser()" class="navbar-link">
+        <span class="glyphicon glyphicon-ok banner"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+<div class="container post-nav">
+  <!-- Form for Username, Email, First and Last Names -->
+  <form>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input [(ngModel)]="username"
+             [ngModelOptions]="{standalone: true}"
+             type="text"
+             class="form-control"
+             id="username"
+             placeholder="username">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input [(ngModel)]="name"
+             [ngModelOptions]="{standalone: true}"
+             type="text"
+             class="form-control"
+             id="name"
+             placeholder="name">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input [(ngModel)]="email"
+             [ngModelOptions]="{standalone: true}"
+             type="email"
+             class="form-control"
+             id="email"
+             placeholder="email@example.com">
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role</label>
+      <input [(ngModel)]="role"
+             [ngModelOptions]="{standalone: true}"
+             type="text"
+             class="form-control"
+             id="role"
+             placeholder="role">
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <input [(ngModel)]="rating"
+             [ngModelOptions]="{standalone: true}"
+             type="text"
+             class="form-control"
+             id="rating"
+             placeholder="rating"
+             readonly>
+    </div>
+
+    <label for="followedUsers">Followed Users</label>
+    <div *ngFor="let user of followedUsers" class="container" id="followedUsers">
+      <div class="form-group">
+        <a [routerLink]="['/user', userId, 'website', user._id, 'page']"> {{user.name}} </a>
+        <a [routerLink]="['/user', userId, 'website', user._id]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
+        </a>
+      </div>
+    </div>
+
+    <br/>
+    <label for="followedByUsers">Users Following Me</label>
+    <div *ngFor="let user of followedByUsers" class="container" id="followedByUsers">
+      <div class="form-group">
+        <a [routerLink]="['/user', userId, 'website', user._id, 'page']"> {{user.name}} </a>
+        <a [routerLink]="['/user', userId, 'website', user._id]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
+        </a>
+      </div>
+    </div>
+    <br/>
+    <label for="followedDiets">Followed Diets</label>
+    <div *ngFor="let food of followedDiets" class="container" id="followedDiets">
+      <div class="form-group">
+        <a [routerLink]="['/user', userId, 'website', food._id, 'page']"> {{food.name}} </a>
+        <a [routerLink]="['/user', userId, 'website', food._id]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
+        </a>
+      </div>
+    </div>
+    <br/>
+    <label for="followedWorkouts">Workouts I Like</label>
+    <div *ngFor="let workout of followedWorkouts" class="container" id="followedWorkouts">
+      <div class="form-group">
+        <a [routerLink]="['/user', userId, 'website', workout._id, 'page']"> {{workout.name}} </a>
+        <a [routerLink]="['/user', userId, 'website', workout._id]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
+        </a>
+      </div>
+    </div>
+    <br/>
+    <label for="gymMemberships">Gyms I belong to</label>
+    <div *ngFor="let gym of gymMemberships" class="container" id="gymMemberships">
+      <div class="form-group">
+        <a [routerLink]="['/user', userId, 'website', gym._id, 'page']"> {{gym.name}} </a>
+        <a [routerLink]="['/user', userId, 'website', gym._id]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
+        </a>
+      </div>
+    </div>
+    <br/>
+    <label for="storeMemberships">Stores I frequent</label>
+    <div *ngFor="let store of storeMemberships" class="container" id="storeMemberships">
+      <div class="form-group">
+        <a [routerLink]="['/user', userId, 'website', store._id, 'page']"> {{store.name}} </a>
+        <a [routerLink]="['/user', userId, 'website', store._id]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
+        </a>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- Buttons for Websites and Logout -->
+  <a class="btn btn-primary btn-block"
+     [routerLink]="['/project', 'user', userId, 'gen-workouts']" >Search General Workouts</a>
+  <a class="btn btn-primary btn-block"
+     [routerLink]="['/project', 'user', userId, 'cert-workouts']" >Search Certified Workouts</a>
+  <a class="btn btn-primary btn-block"
+     [routerLink]="['/project', 'user', userId, 'gen-diets']" >Search General Diets</a>
+  <a class="btn btn-primary btn-block"
+     [routerLink]="['/project', 'user', userId, 'cert-diets']" >Search Certified Diets</a>
+  <a class="btn btn-danger btn-block "
+     [routerLink]="['/project/login']">Logout</a>
+
+</div>
+<br/><br/><br/><br/><br/>
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/user', userId]">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>

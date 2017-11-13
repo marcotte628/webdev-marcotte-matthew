@@ -75,7 +75,7 @@ export class FoodService {
 
   updateFoodPost(fid: String, name: String, type: String, uid: String, protein: String, carbs: String, fats: String) {
     const url = this.baseUrl + '/api/project/food/' + fid;
-    const body = {_id: fid, name: name, type: type, userId: uid, protein: protein, carbs: carbs, fats: fats };
+    const body = {name: name, type: type, userId: uid, protein: protein, carbs: carbs, fats: fats };
     return this._http.put(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;

@@ -1,6 +1,7 @@
 
 module.exports = function(app) {
 
+  var gymModel = require("../model/project-gym/project.gym.model.server");
 
   var GYMS = [
     {_id: "101", name: "Global Fitness", type: "classic", address: "123 A street" },
@@ -27,65 +28,51 @@ module.exports = function(app) {
     var name = req.query["name"];
 
     if(name){
-      for(var i = 0; i < GYMS.length; i++) {
-        if(GYMS[i].name === name ) {
-          var ret = GYMS[i];
-        }
-      }
-    }else if(type){
-      for(var i = 0; i < GYMS.length; i++) {
-        if(GYMS[i].type === type ) {
-          var ret = GYMS[i];
-        }
-      }
-    }
+      gymModel.findGymByName(name).then(function(gym){
+        res.json(gym);
+      });
 
-    if(ret){
-      res.json(ret);
-    } else{
-      res.json(GYMS);
+    }else if(type) {
+      gymModel.findGymByType(type).then(function (gym) {
+        res.json(gym);
+      });
+
+    }else{
+      gymModel.findAllGyms().then(function(gyms){
+        res.json(gyms);
+      })
     }
   }
 
   function getGymById(req, res){
     var gid = req.params["gid"];
-    for(var i = 0; i < GYMS.length; i++) {
-      if(GYMS[i]._id === gid ) {
-        var ret = GYMS[i];
-      }
-    }
-    res.json(ret);
-
+    gymModel.findGymById(gid).then(function(gym){
+      res.json(gym);
+    });
   }
 
   function createGym(req, res){
-    var newWO = req.body;
-    newWO._id = '' + GYMS.length;
-    GYMS.push(newWO);
-    res.json(newWO);
-
+    var newGym = req.body;
+    gymModel.createGym(newGym).then(function(gym){
+      res.json(gym);
+    });
   }
 
   function updateGym(req, res){
-    var wid = req.params["wid"];
+    var wid = req.params["gid"];
     var body = req.body;
-    for(var i = 0; i < GYMS.length; i++) {
-      if(GYMS[i]._id === wid) {
-        GYMS[i]= body;
-      }
-    }
-    res.json(body)
+    gymModel.updateGym(gid, body).then(function(gym){
+      res.json(gym);
+    });
   }
 
   function deleteGym(req, res){
-    var wid = req.params["wid"];
-    for(var i = 0; i < GYMS.length; i++) {
-      if(GYMS[i]._id !== wid ) {
-        GYMS.splice(i, 1);
-      }
-    }
-    res.json(GYMS);
+    var gid = req.params["gid"];
+    gymModel.deleteGym(gid).then(function(rest){
+      res.json(rest);
+    });
+
   }
 
-}
+};
 

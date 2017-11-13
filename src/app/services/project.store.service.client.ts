@@ -37,7 +37,7 @@ export class StoreService {
   }
   createStore(name: String, type: String, address: String) {
     const url = this.baseUrl + '/api/project/stores';
-    const body = {_id: '', name: name, type: type, address: address};
+    const body = {name: name, type: type, address: address};
     return this._http.post(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;
@@ -45,7 +45,7 @@ export class StoreService {
   }
   updateStore(sid: String, name: String, type: String, address: String) {
     const url = this.baseUrl + '/api/project/stores/' + sid;
-    const body = {_id: sid, name: name, type: type, address: address};
+    const body = {name: name, type: type, address: address};
     return this._http.put(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;

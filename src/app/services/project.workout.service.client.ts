@@ -39,18 +39,18 @@ export class WorkoutService {
     );
   }
 
-  createWorkout(name: String, type: String, difficulty: number) {
+  createWorkout(name: String, type: String, difficulty: number, image: String) {
     const url = this.baseUrl + '/api/project/workout';
-    const body = {_id: '', name: name, type: type, difficulty: difficulty};
+    const body = {name: name, type: type, difficulty: difficulty, image: image};
     return this._http.post(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;
     });
   }
 
-  updateWorkout(wid: String, name: String, type: String, difficulty: number) {
+  updateWorkout(wid: String, name: String, type: String, difficulty: number, image: String) {
     const url = this.baseUrl + '/api/project/workout/' + wid;
-    const body = {_id: wid, name: name, type: type, difficulty: difficulty};
+    const body = {name: name, type: type, difficulty: difficulty, image: image};
     return this._http.put(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;

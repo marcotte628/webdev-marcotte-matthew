@@ -1,6 +1,9 @@
 
 module.exports = function(app) {
 
+
+  var userModel = require("../model/project-user/project.user.model.server");
+
   var PEOPLE = [
     {_id: "012", username: "matt",    password: "matt",    name: "Matt Marcotte", role: "athlete",
       rating: 1000, followedIds: ["123", "234", "345", "456", "567", "678", "789"], postIds: ["000", "001", "002" ],
@@ -39,67 +42,49 @@ module.exports = function(app) {
     var password = req.query["password"];
 
     if(username && password){
-      var user = getPersonByCredentials(username, password);
-      res.json(user);
+      userModel.findAccountByCredentials(username, password).then(function (user) {
+        res.json(user);
+      });
     }else if(username){
-      var user = getPersonByUsername(username);
-      res.json(user);
+      userModel.findAccountByUsername(username).then(function (user) {
+        res.json(user);
+      });
     }else{
-      res.json(PEOPLE);
+      userModel.findAllAccounts().then(function(users){
+        res.json(users);
+      });
     }
   }
 
-  function getPersonByCredentials(username, password) {
-    for(var i = 0; i < PEOPLE.length; i++) {
-      if(PEOPLE[i].username === username && PEOPLE[i].password === password) {
-        return PEOPLE[i];
-      }
-    }
-  }
-
-  function getPersonByUsername(username) {
-    for(var i = 0; i < PEOPLE.length; i++) {
-      if(PEOPLE[i].username === username){
-        return PEOPLE[i];
-      }
-    }
-  }
 
   function getPersonById(req, res){
     var uid = req.params["uid"];
-    for(var i = 0; i < PEOPLE.length; i++) {
-      if(PEOPLE[i]._id === uid){
-        var user = PEOPLE[i];
-      }
-    }
-    res.json(user);
+    userModel.findAccountById(uid).then(function (user) {
+      res.json(user);
+    });
+
   }
 
   function createAccount(req, res) {
     var newUser = req.body;
-    newUser._id = '' + users.length;
-    PEOPLE.push(newUser);
-    res.json(newUser);
+    userModel.createAccount(newUser).then(function (user) {
+      res.json(user);
+    });
   }
 
   function updateAccount(req, res) {
     var uid = req.params["uid"];
     var body = req.body;
-    for(var i = 0; i < PEOPLE.length; i++) {
-      if(PEOPLE[i]._id === uid) {
-        PEOPLE[i]= body;
-      }
-    }
+    userModel.updateAccount(uid, body).then(function (user) {
+      res.json(user);
+    });
   }
 
   function deleteAccount(req, res) {
     var uid = req.params["uid"];
-    for(var i = 0; i < PEOPLE.length; i++) {
-      if(PEOPLE[i]._id !== uid ) {
-        PEOPLE.splice(i, 1);
-      }
-    }
-    res.json(PEOPLE);
+    userModel.deleteAccount(uid).then(function(rest){
+      res.json(rest);
+    });
   }
 
 }

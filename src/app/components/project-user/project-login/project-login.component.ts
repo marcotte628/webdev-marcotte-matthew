@@ -9,22 +9,39 @@ import {PersonService} from '../../../services/project.user.service.client';
   styleUrls: ['./project-login.component.css']
 })
 export class ProjectLoginComponent implements OnInit {
-  @ViewChild('f') searchForm: NgForm;
+  @ViewChild('f') loginForm: NgForm;
 
-  userInfo: String;
-  users;
+
   username: String;
+  password: String;
   name: String;
-  role: String;
-
+  errorFlag: boolean;
+  errorMsg= 'Invalid username or password !';
+  profileURL: String;
+  disabledFlag: boolean;
 
   constructor(private router: Router,
               private personService: PersonService) { }
 
   ngOnInit() {
+    this.disabledFlag = true;
   }
 
+  login(event: any) {
+    this.username = this.loginForm.value.username;
+    this.password = this.loginForm.value.password;
+    this.personService.getPersonByCredentials(this.username, this.password).subscribe(
+      (data: any) => {
+        this.errorFlag = false;
+        this.router.navigate(['/project/user/' + data._id]);
+      },
+      (error: any) => {
+        this.errorFlag = true;
+      }
+    );
+  }
 
+  /*
   searchUser() {
     this.userInfo = this.searchForm.value.user;
     this.personService.getPersonByUsername(this.userInfo).subscribe(
@@ -40,4 +57,5 @@ export class ProjectLoginComponent implements OnInit {
     );
   }
 
+*/
 }

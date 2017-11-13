@@ -2,6 +2,8 @@ const https = require("https");
 
 module.exports = function(app) {
 
+  var foodModel = require("../model/project-diet/project.diet.model.server");
+
   var FoodPosts = [
     {_id: "401", name: "chicken", type: "protein", userId: "012", protein: "43", carbs: "0", fats: "5" },
     {_id: "402", name: "lettuce", type: "vegetable", userId: "012", protein: "0", carbs: "1", fats: "0"  },
@@ -57,9 +59,10 @@ module.exports = function(app) {
       });
       res.on("end", function() {
         body = JSON.parse(body);
-        resp.send(body);
+        resp.send(body.report.foods[0].nutrients);
       });
     });
+
 
   }
 
@@ -68,75 +71,50 @@ module.exports = function(app) {
     var type = req.query["type"];
     var ret = [];
     if(name) {
-      for(var i = 0; i < FoodPosts.length; i++) {
-        if(FoodPosts[i].name === name) {
-          ret.push(FoodPosts[i]);
-        }
-      }
-      res.json(ret);
+      foodModel.findFoodByName(name).then(function(food){
+        res.json(food);
+      });
+
+
     } else if(type) {
-      for(var i = 0; i < FoodPosts.length; i++) {
-        if(FoodPosts[i].type === type) {
-          ret.push(FoodPosts[i]);
-        }
-      }
-      res.json(ret);
+      foodModel.findFoodByType(type).then(function(food){
+        res.json(food);
+      });
+
     } else {
-      res.json(FoodPosts);
+      foodModel.findAllFoods().then(function(food){
+        res.json(food);
+      });
     }
   }
 
   function getFoodPostById( req, res ){
     var fid = req.params["fid"];
-    for(var i = 0; i < FoodPosts.length; i++) {
-      if(FoodPosts[i]._id === fid) {
-        var ret =  FoodPosts[i];
-      }
-    }
-    res.json(ret);
+    foodModel.findFoodById(fid).then(function(food){
+      res.json(food);
+    });
   }
 
   function createFoodPost( req, res ){
     var newPost = req.body;
-    newPost._id = '' + FoodPosts.length;
-    FoodPosts.push(newPost);
-    res.json(newPost);
+    foodModel.createFood(newPost).then(function(food){
+     res.json(food);
+    });
   }
 
   function updateFoodPost( req, res ){
     var fid = req.params["fid"];
     var body = req.body;
-    for(var i = 0; i < FoodPosts.length; i++) {
-      if(FoodPosts[i]._id === uid) {
-        FoodPosts[i]= body;
-      }
-    }
+    foodModel.updateFood(fid, body).then(function(food){
+      res.json(food);
+    });
   }
 
   function deleteFoodPost( req, res ){
     var fid = req.params["fid"];
-    for(var i = 0; i < FoodPosts.length; i++) {
-      if(FoodPosts[i]._id !== fid ) {
-        FoodPosts.splice(i, 1);
-      }
-    }
-    res.json(FoodPosts);
-  }
-
-
-  function getFoodById(req, res){
-    var fid = req.params["fid"];
-
-    res.json(resp);
-  }
-
-  function getAllFoods(req, res) {
-    var ids = getAllIds();
-    var ret = [];
-    ids.forEach(function(id) {
-      ret.push(getFoodInformation(id));
+    foodModel.deleteFood(fid).then(function(rest){
+      res.json(rest);
     });
-    res.json(ret);
   }
 
   function getAllIds() {

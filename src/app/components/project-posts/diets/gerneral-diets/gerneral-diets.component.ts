@@ -16,6 +16,11 @@ export class GerneralDietsComponent implements OnInit {
   foodsByName;
   foodsByType;
 
+  /*
+
+      NEEDS TO GET USER INFO, ASK SERVER FOR ID OF FOOD, QUERY API, SET JSON OBJECT, THEN UPLOAD TO DB
+
+   */
   constructor(private router: Router, private foodService: FoodService ) { }
 
   ngOnInit() {

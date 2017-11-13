@@ -40,7 +40,7 @@ export class GymService {
 
   createGym(name: String, type: String, address: String) {
     const url = this.baseUrl + '/api/project/gym';
-    const body = {_id: '', name: name, type: type, address: address };
+    const body = {name: name, type: type, address: address };
     return this._http.post(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;
@@ -49,7 +49,7 @@ export class GymService {
 
   updateGym(gid: String, name: String, type: String, address: String) {
     const url = this.baseUrl + '/api/project/gym/' + gid;
-    const body = {_id: gid, name: name, type: type, address: address };
+    const body = {name: name, type: type, address: address };
     return this._http.put(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;
