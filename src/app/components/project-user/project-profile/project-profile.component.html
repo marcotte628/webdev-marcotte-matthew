@@ -106,8 +106,8 @@
     <label for="followedWorkouts">Workouts I Like</label>
     <div *ngFor="let workout of followedWorkouts" class="container" id="followedWorkouts">
       <div class="form-group">
-        <a [routerLink]="['/user', userId, 'website', workout._id, 'page']"> {{workout.name}} </a>
-        <a [routerLink]="['/user', userId, 'website', workout._id]">
+        <a [routerLink]="['/user', userId, 'website', workout, 'page']"> {{workout}} </a>
+        <a [routerLink]="['/user', userId, 'website', workout]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>

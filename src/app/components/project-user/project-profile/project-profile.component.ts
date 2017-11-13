@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PersonService} from '../../../services/project.user.service.client';
+import {WorkoutService} from '../../../services/project.workout.service.client';
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-project-profile',
@@ -22,8 +24,10 @@ export class ProjectProfileComponent implements OnInit {
   followedWorkouts: [String];
   gymMemberships: [String];
   storeMemberships: [String];
+  workoutData = [];
 
-  constructor(private personService: PersonService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private personService: PersonService, private activatedRoute: ActivatedRoute, private router: Router,
+              private workoutService: WorkoutService) { }
 
   ngOnInit() {
     this.activatedRoute.params

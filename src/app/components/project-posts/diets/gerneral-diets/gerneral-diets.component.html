@@ -1,27 +1,44 @@
-
-
 <div class="container">
 
-  <h1>Search Foods By Type</h1>
-
-  <form (ngSubmit)="search()" #f="ngForm">
-    <input placeholder="enter a food type to get food info"
+  <h5> Search Food By Name</h5>
+  <form (ngSubmit)="searchFoodByName()" #f="ngForm">
+    <input placeholder="enter a name (chicken, fish, lettuce)"
            type="text"
-           name="type"
-           class="form-control"
-           ngModel
-           #username="ngModel"/>
+           [(ngModel)]="foodName"
+           [ngModelOptions]="{standalone: true}"
+           type="text"
+           class="form-control"/>
     <button class="btn btn-primary btn-block"
             type="submit">
-      Search Food
+      Search Workout
     </button>
   </form>
 
-  <div *ngFor="let food of foodsByType" class="container post-nav">
-    <div class="form-group">
-      <a [routerLink]="['/project', 'user', ':uid', 'diets', food._id]"> {{food.name}} </a>
-    </div>
-  </div>
-
+  <h5> Search Food By Type</h5>
+  <form (ngSubmit)="searchFoodByType()" #f="ngForm">
+    <input placeholder="enter type (protein, vegetable, carb)"
+           type="text"
+           [(ngModel)]="foodType"
+           [ngModelOptions]="{standalone: true}"
+           type="text"
+           class="form-control"/>
+    <button class="btn btn-primary btn-block"
+            type="submit">
+      Search Workout
+    </button>
+  </form>
 
 </div>
+
+<br>
+<label for="allWorkouts">All Workouts:</label>
+<div *ngFor="let each of allFoods" class="container" id="allWorkouts">
+  <div class="form-group">
+    <a [routerLink]="['/user', userId, 'website', each._id, 'page']"> {{each.name}} </a>
+    <a [routerLink]="['/user', userId, 'website', each._id]">
+      <span class="glyphicon glyphicon-cog pull-right"></span>
+    </a>
+  </div>
+</div>
+<br><br><br><br><br><br><br>
+

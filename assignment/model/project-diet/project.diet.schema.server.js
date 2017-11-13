@@ -8,7 +8,8 @@ var ProjectFoodSchema = mongoose.Schema({
   userId: String,
   protein: String,
   carbs: String,
-  fats: String
+  fats: String,
+  image: String
 }, {collection: 'projectFood'});
 
 module.exports = ProjectFoodSchema;

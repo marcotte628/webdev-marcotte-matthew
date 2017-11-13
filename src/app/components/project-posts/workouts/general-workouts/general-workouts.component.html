@@ -1,15 +1,28 @@
 
 <div class="container">
 
-  <h1> Search Workouts By Name</h1>
-  <form (ngSubmit)="searchWorkout()" #f="ngForm">
-    <input placeholder="enter a username to get user info"
+  <h5> Search Workouts By Name</h5>
+  <form (ngSubmit)="searchWorkoutByName()" #f="ngForm">
+    <input placeholder="enter ane exercise (squat, etc.)"
            type="text"
-           name="workout"
-           class="form-control"
-           ngModel
-           required
-           #username="ngModel"/>
+           [(ngModel)]="workoutName"
+           [ngModelOptions]="{standalone: true}"
+           type="text"
+           class="form-control"/>
+    <button class="btn btn-primary btn-block"
+            type="submit">
+      Search Workout
+    </button>
+  </form>
+
+  <h5> Search Workouts By Type</h5>
+  <form (ngSubmit)="searchWorkoutByType()" #f="ngForm">
+    <input placeholder="enter a body part (chest, abs, etc.)"
+           type="text"
+           [(ngModel)]="workoutType"
+           [ngModelOptions]="{standalone: true}"
+           type="text"
+           class="form-control"/>
     <button class="btn btn-primary btn-block"
             type="submit">
       Search Workout
@@ -18,22 +31,15 @@
 
 </div>
 
-<div class="post-nav">
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>type</th>
-      <th>difficulty</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>{{name}}</td>
-      <td>{{type}}</td>
-      <td>{{difficulty}}</td>
-    </tr>
-    </tbody>
-  </table>
+<br>
+<label for="allWorkouts">All Workouts:</label>
+<div *ngFor="let each of allWorkouts" class="container" id="allWorkouts">
+  <div class="form-group">
+    <a [routerLink]="['/project', 'user', userId, 'workouts', each._id ]"> {{each.name}} </a>
+    <a (click)="addToProfile(each._id)">
+      <span class="glyphicon glyphicon-plus pull-right"></span>
+    </a>
+  </div>
 </div>
+<br><br><br><br><br><br><br>
 

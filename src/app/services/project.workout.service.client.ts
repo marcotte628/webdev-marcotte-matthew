@@ -12,7 +12,7 @@ export class WorkoutService {
   baseUrl = environment.baseUrl;
 
 
-  getWorkouts() {
+  getAllWorkouts() {
     return this._http.get(this.baseUrl + '/api/project/workout' ).map(
       (res: Response) => {
         const data = res.json();
@@ -32,6 +32,15 @@ export class WorkoutService {
 
   getWorkoutByName(name: String) {
     return this._http.get(this.baseUrl + '/api/project/workout?name=' + name).map(
+      (res: Response) => {
+        const data = res.json();
+        return data;
+      }
+    );
+  }
+
+  getWorkoutByType(type: String) {
+    return this._http.get(this.baseUrl + '/api/project/workout?type=' + type).map(
       (res: Response) => {
         const data = res.json();
         return data;

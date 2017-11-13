@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgForm} from '@angular/forms';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FoodService} from '../../../../services/project.food.service.client';
 
 @Component({
@@ -11,49 +11,48 @@ import {FoodService} from '../../../../services/project.food.service.client';
 export class GerneralDietsComponent implements OnInit {
   @ViewChild('f') searchForm: NgForm;
 
+  userId: String;
   foodName: String;
   foodType: String;
-  foodsByName;
-  foodsByType;
-
-  /*
-
-      NEEDS TO GET USER INFO, ASK SERVER FOR ID OF FOOD, QUERY API, SET JSON OBJECT, THEN UPLOAD TO DB
-
-   */
-  constructor(private router: Router, private foodService: FoodService ) { }
+  allFoods;
+  constructor(private router: Router, private foodService: FoodService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-  }
-
-  search() {
-    this.foodType = this.searchForm.value.type;
-
-    if (this.foodType) {
-      this.searchFoodByType();
-    }
+    this.activatedRoute.params
+      .subscribe(
+        (params: any) => {
+          this.userId = params['uid'];
+        });
+    this.foodService.getAllFoodPosts().subscribe(
+      (data: any) => {
+        this.allFoods = data;
+      },
+      (error: any) => {}
+    );
   }
 
   searchFoodByName() {
+
     this.foodService.getFoodPostByName(this.foodName).subscribe(
       (data: any) => {
-        this.foodsByName = data;
+        this.allFoods = data;
       },
       (error: any) => {
 
       }
     );
-
   }
 
   searchFoodByType() {
+
     this.foodService.getFoodPostByType(this.foodType).subscribe(
       (data: any) => {
-        this.foodsByType = data;
+        this.allFoods = data;
       },
       (error: any) => {
 
       }
     );
   }
+
 }
