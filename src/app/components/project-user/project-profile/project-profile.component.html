@@ -96,8 +96,8 @@
     <label for="followedDiets">Followed Diets</label>
     <div *ngFor="let food of followedDiets" class="container" id="followedDiets">
       <div class="form-group">
-        <a [routerLink]="['/project', 'user', userId, 'gen-diets', food]"> {{food}} </a>
-        <a [routerLink]="['/project', 'user', userId, 'gen-diets', food]">
+        <a [routerLink]="['/project', 'user', userId, 'diets', food]"> {{food}} </a>
+        <a [routerLink]="['/project', 'user', userId, 'diets', food]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
@@ -106,8 +106,8 @@
     <label for="followedWorkouts">Workouts I Like</label>
     <div *ngFor="let workout of followedWorkouts" class="container" id="followedWorkouts">
       <div class="form-group">
-        <a [routerLink]="['/project', 'user', userId, 'gen-workouts', workout]"> {{workout}} </a>
-        <a [routerLink]="['/project', 'user', userId, 'gen-workouts', workout]">
+        <a [routerLink]="['/project', 'user', userId, 'workouts', workout]"> {{workout}} </a>
+        <a [routerLink]="['/project', 'user', userId, 'workouts', workout]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
@@ -120,8 +120,8 @@
     </label>
     <div *ngFor="let gym of gymMemberships" class="container" id="gymMemberships">
       <div class="form-group">
-        <a [routerLink]="['/user', userId, 'website', gym, 'page']"> {{gym}} </a>
-        <a [routerLink]="['/user', userId, 'website', gym]">
+        <a [routerLink]="['/project', 'user', userId, 'gyms', gym]"> {{gym}} </a>
+        <a [routerLink]="['/project', 'user', userId, 'gyms', gym]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
@@ -148,6 +148,10 @@
      [routerLink]="['/project', 'user', userId, 'gen-workouts']" >Search Workouts</a>
   <a class="btn btn-primary btn-block"
      [routerLink]="['/project', 'user', userId, 'gen-diets']" >Search Diets</a>
+  <a class="btn btn-primary btn-block"
+     [routerLink]="['/project', 'user', userId, 'stores']" >Search Stores</a>
+  <a class="btn btn-primary btn-block"
+     [routerLink]="['/project', 'user', userId, 'gyms']" >Search Gyms</a>
   <a class="btn btn-danger btn-block "
      [routerLink]="['/project/login']">Logout</a>
 

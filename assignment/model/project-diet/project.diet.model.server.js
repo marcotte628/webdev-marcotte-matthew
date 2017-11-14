@@ -13,7 +13,7 @@ ProjectFoodModel.findAllFoods = findAllFoods;
 module.exports = ProjectFoodModel;
 
 function createFood(food){
-  return ProjectFoodModel.create(user);
+  return ProjectFoodModel.create(food);
 }
 
 function findFoodById(fid){

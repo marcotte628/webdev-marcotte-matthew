@@ -1,4 +1,79 @@
 
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="banner">Post New Food</b>
+      </a>
+    </p>
+
+    <!--tick mark-->
+    <p class="navbar-text pull-right">
+      <a class="navbar-link">
+        <span class="glyphicon glyphicon-ok banner"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+
+<div class="container post-nav">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="foodName">Food Name</label>
+      <input name="foodName"
+             id="foodName"
+             #name="ngModel"
+             placeholder="food name"
+             type="text"
+             class="form-control"
+             ngModel
+             required>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Food Type</label>
+      <input name="type"
+             id="type"
+             #type="ngModel"
+             placeholder="food type"
+             type="text"
+             class="form-control"
+             ngModel
+             required>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Food Image</label>
+      <input name="image"
+             id="image"
+             #image="ngModel"
+             placeholder="food image url"
+             type="text"
+             class="form-control"
+             ngModel
+             required>
+    </div>
+
+    <a class="btn btn-primary btn-block"
+       (click)="getAPIid()" >Add Food</a>
+  </form>
+</div>
+
+
+<!--nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/project', 'user', userId]">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>
+
 <div class="container post-nav">
 
   <h1> Enter Information to create a new food post </h1>
@@ -54,4 +129,4 @@
     </tr>
     </tbody>
   </table>
-</div>
+</div-->
