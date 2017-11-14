@@ -1,3 +1,77 @@
-<p>
-  new-workout works!
-</p>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="banner">Post New Food</b>
+      </a>
+    </p>
+
+    <!--tick mark-->
+    <p class="navbar-text pull-right">
+      <a class="navbar-link">
+        <span class="glyphicon glyphicon-ok banner"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+
+<div class="container post-nav">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="workoutName">Workout Name</label>
+      <input name="workoutName"
+             id="workoutName"
+             #workoutName="ngModel"
+             placeholder="workout name"
+             type="text"
+             class="form-control"
+             ngModel
+             required>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Workout Type</label>
+      <input name="type"
+             id="type"
+             #type="ngModel"
+             placeholder="workout type"
+             type="text"
+             class="form-control"
+             ngModel
+             required>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Workout Image</label>
+      <input name="image"
+             id="image"
+             #image="ngModel"
+             placeholder="workout image url"
+             type="text"
+             class="form-control"
+             ngModel
+             required>
+    </div>
+
+    <div class="form-group">
+      <label for="diff">Workout Difficulty</label>
+      <input name="diff"
+             id="diff"
+             #diff="ngModel"
+             placeholder="workout difficulty"
+             type="number"
+             class="form-control"
+             ngModel
+             required>
+    </div>
+
+
+    <a class="btn btn-primary btn-block"
+       (click)="createWorkout()" >Add Food</a>
+  </form>
+</div>
+

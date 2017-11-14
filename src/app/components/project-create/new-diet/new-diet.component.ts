@@ -53,14 +53,12 @@ export class NewDietComponent implements OnInit {
   }
 
   getAPIid() {
-    console.log('beginning process...');
     this.foodName = this.foodForm.value.foodName;
     this.foodType = this.foodForm.value.type;
     this.foodImage = this.foodForm.value.image;
     this.foodService.getFoodApiId(this.foodName).subscribe(
       (data: any) => {
         this.foodId = data._id;
-        console.log('got api id: ' + this.foodId);
         this.getNutritionInfo();
       },
       (error: any) => {
@@ -74,8 +72,6 @@ export class NewDietComponent implements OnInit {
         this.protein = ret[0].value;
         this.carbs = ret[1].value;
         this.fats = ret[2].value;
-
-        console.log('got nutrition info.. protein =  ' + this.protein);
         this.addFoodToDB();
       },
       (error: any) => {
@@ -91,7 +87,6 @@ export class NewDietComponent implements OnInit {
     this.foodService.createFoodPost(body).subscribe(
       (data: any) => {
         this.newFood = data;
-        console.log('added to database' + this.newFood);
         this.getProfileInfo();
       },
       (error: any) => {
@@ -113,7 +108,6 @@ export class NewDietComponent implements OnInit {
         this.followedWorkouts = data.followedWorkouts;
         this.gymMemberships = data.gymMemberships;
         this.storeMemberships = data.storeMemberships;
-        console.log('got profile info: ' + this.username);
         this.addToProfile();
       },
       (error: any) => {
@@ -126,7 +120,6 @@ export class NewDietComponent implements OnInit {
       this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
       this.gymMemberships, this.storeMemberships).subscribe(
       (data: any) => {
-        console.log('sent to profile... ' + data);
         this.router.navigate(['/project/user/' + this.userId]);
       },
       (error: any) => {
