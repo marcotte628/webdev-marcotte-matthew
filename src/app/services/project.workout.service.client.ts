@@ -22,7 +22,7 @@ export class WorkoutService {
   }
 
   getWorkoutById(wid: String) {
-    return this._http.get(this.baseUrl + '/api/project/workout' + wid).map(
+    return this._http.get(this.baseUrl + '/api/project/workout/' + wid).map(
       (res: Response) => {
         const data = res.json();
         return data;
@@ -48,18 +48,18 @@ export class WorkoutService {
     );
   }
 
-  createWorkout(name: String, type: String, difficulty: number, image: String) {
+  createWorkout(name: String, type: String, difficulty: number, image: String, user: String) {
     const url = this.baseUrl + '/api/project/workout';
-    const body = {name: name, type: type, difficulty: difficulty, image: image};
+    const body = {name: name, type: type, difficulty: difficulty, userId: user, image: image};
     return this._http.post(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;
     });
   }
 
-  updateWorkout(wid: String, name: String, type: String, difficulty: number, image: String) {
+  updateWorkout(wid: String, name: String, type: String, difficulty: number, image: String, user: String) {
     const url = this.baseUrl + '/api/project/workout/' + wid;
-    const body = {name: name, type: type, difficulty: difficulty, image: image};
+    const body = {name: name, type: type, difficulty: difficulty, userID: user, image: image};
     return this._http.put(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;

@@ -1,22 +1,52 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="banner">Profile</b>
+      </a>
+    </p>
+
+    <!--tick mark-->
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/project', 'user', userId]" class="navbar-link">
+        <span class="glyphicon glyphicon-ok banner"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+
 <div class="post-nav">
-<table class="table">
-  <thead>
-  <tr>
-    <th>Food Name</th>
-    <th>Food Type</th>
-    <th>Protein</th>
-    <th>Carbs</th>
-    <th>Fats</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>{{foodName}}</td>
-    <td>{{foodType}}</td>
-    <td>{{foodProtein}}</td>
-    <td>{{foodCarbs}}</td>
-    <td>{{foodFat}}</td>
-  </tr>
-  </tbody>
-</table>
+  <div>
+    <img src={{foodData.image}} width="100%">
+  </div>
+  <br>
+  <ul class="list-group">
+    <li class="list-group-item">Name of Food: {{foodData.name}}</li>
+    <li class="list-group-item">Food Type: {{foodData.type}} </li>
+    <li class="list-group-item">Protein: {{foodData.protein}} </li>
+    <li class="list-group-item">Carbs: {{foodData.carbs}} </li>
+    <li class="list-group-item">Fats: {{foodData.fats}} </li>
+    <li class="list-group-item">Poster's Name:
+      <a [routerLink]="['/project', 'user', userId, 'other-user', otherId]">{{username}} </a></li>
+  </ul>
 </div>
+
+
+<br><br>
+<br><br>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/project', 'user', userId]">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>

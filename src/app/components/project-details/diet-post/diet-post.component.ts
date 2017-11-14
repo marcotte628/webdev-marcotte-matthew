@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {FoodService} from '../../../services/project.food.service.client';
+import {PersonService} from '../../../services/project.user.service.client';
 
 @Component({
   selector: 'app-diet-post',
@@ -10,32 +11,40 @@ import {FoodService} from '../../../services/project.food.service.client';
 export class DietPostComponent implements OnInit {
 
   foodId: String;
-  food;
-  foodName: String;
-  foodType: String;
-  foodProtein: number;
-  foodCarbs: number;
-  foodFat: number;
+  userId: String;
+  foodData;
+  username: String;
+  otherId: String;
 
-  constructor(private activatedRoute: ActivatedRoute, private foodService: FoodService) { }
+  constructor(private activatedRoute: ActivatedRoute, private foodService: FoodService,
+              private accountService: PersonService) { }
 
   ngOnInit() {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
+          this.userId = params['uid']
           this.foodId = params['fid'];
         }
       );
-    this.foodService.getFoodPostById(this.foodId).subscribe( (ret) => {
-      this.food = ret;
-      this.foodName = this.food.name;
-      this.foodType = this.food.type;
-      this.foodProtein = this.food.protein;
-      this.foodCarbs = this.food.carbs;
-      this.foodFat = this.food.fats;
+    this.foodService.getFoodPostById(this.foodId).subscribe( (data: any) => {
+        this.foodData = data;
+        this.otherId = this.foodData.userId;
+        this.getUser();
+      },
+      (error: any) => {
+      }
+    );
+  }
 
-    });
-
+  getUser() {
+    this.accountService.gePersonById(this.otherId).subscribe(
+      (data: any) => {
+        this.username = data.name;
+      },
+      (error: any) => {
+      }
+    );
   }
 
 }

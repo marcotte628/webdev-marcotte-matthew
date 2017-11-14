@@ -5,6 +5,7 @@ var ProjectWorkoutSchema = mongoose.Schema({
   name: String,
   type: String,
   difficulty: String,
+  userId: String,
   image: String
 }, {collection: 'projectWorkout'});
 

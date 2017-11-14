@@ -11,7 +11,7 @@
 
     <!--tick mark-->
     <p class="navbar-text pull-right">
-      <a (click)="updateUser()" class="navbar-link">
+      <a class="navbar-link">
         <span class="glyphicon glyphicon-ok banner"></span>
       </a>
     </p>
@@ -72,32 +72,32 @@
              readonly>
     </div>
 
-    <label for="followedUsers">Followed Users</label>
+    <label for="followedUsers">Users I Follow</label>
     <div *ngFor="let user of followedUsers" class="container" id="followedUsers">
       <div class="form-group">
-        <a [routerLink]="['/user', userId, 'website', user._id, 'page']"> {{user.name}} </a>
-        <a [routerLink]="['/user', userId, 'website', user._id]">
+        <a [routerLink]="['/project', 'user', userId, 'other-user', user]"> {{user}} </a>
+        <a [routerLink]="['/project', 'user', userId, 'other-user', user]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
     </div>
 
-    <br/>
+    <!--br/>
     <label for="followedByUsers">Users Following Me</label>
     <div *ngFor="let user of followedByUsers" class="container" id="followedByUsers">
       <div class="form-group">
-        <a [routerLink]="['/user', userId, 'website', user._id, 'page']"> {{user.name}} </a>
-        <a [routerLink]="['/user', userId, 'website', user._id]">
+        <a [routerLink]="['/project', 'user', userId, 'other-user', user]"> {{user}} </a>
+        <a [routerLink]="['/project', 'user', userId, 'other-user', user]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
-    </div>
+    </div-->
     <br/>
     <label for="followedDiets">Followed Diets</label>
     <div *ngFor="let food of followedDiets" class="container" id="followedDiets">
       <div class="form-group">
-        <a [routerLink]="['/user', userId, 'website', food._id, 'page']"> {{food.name}} </a>
-        <a [routerLink]="['/user', userId, 'website', food._id]">
+        <a [routerLink]="['/project', 'user', userId, 'gen-diets', food]"> {{food}} </a>
+        <a [routerLink]="['/project', 'user', userId, 'gen-diets', food]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
@@ -106,28 +106,36 @@
     <label for="followedWorkouts">Workouts I Like</label>
     <div *ngFor="let workout of followedWorkouts" class="container" id="followedWorkouts">
       <div class="form-group">
-        <a [routerLink]="['/user', userId, 'website', workout, 'page']"> {{workout}} </a>
-        <a [routerLink]="['/user', userId, 'website', workout]">
+        <a [routerLink]="['/project', 'user', userId, 'gen-workouts', workout]"> {{workout}} </a>
+        <a [routerLink]="['/project', 'user', userId, 'gen-workouts', workout]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
     </div>
     <br/>
-    <label for="gymMemberships">Gyms I belong to</label>
+    <label for="gymMemberships">Gyms I belong to
+        <a [routerLink]="['/project', 'user', userId, 'new-gym']">
+         <span class="glyphicon glyphicon-plus pull-right"></span>
+        </a>
+    </label>
     <div *ngFor="let gym of gymMemberships" class="container" id="gymMemberships">
       <div class="form-group">
-        <a [routerLink]="['/user', userId, 'website', gym._id, 'page']"> {{gym.name}} </a>
-        <a [routerLink]="['/user', userId, 'website', gym._id]">
+        <a [routerLink]="['/user', userId, 'website', gym, 'page']"> {{gym}} </a>
+        <a [routerLink]="['/user', userId, 'website', gym]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
     </div>
     <br/>
-    <label for="storeMemberships">Stores I frequent</label>
+    <label for="storeMemberships">Stores I frequent
+      <a [routerLink]="['/project', 'user', userId, 'new-store']">
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+      </a>
+    </label>
     <div *ngFor="let store of storeMemberships" class="container" id="storeMemberships">
       <div class="form-group">
-        <a [routerLink]="['/user', userId, 'website', store._id, 'page']"> {{store.name}} </a>
-        <a [routerLink]="['/user', userId, 'website', store._id]">
+        <a [routerLink]="['/project', 'user', userId]"> {{store}} </a>
+        <a [routerLink]="['/project', 'user', userId]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
@@ -137,13 +145,9 @@
 
   <!-- Buttons for Websites and Logout -->
   <a class="btn btn-primary btn-block"
-     [routerLink]="['/project', 'user', userId, 'gen-workouts']" >Search General Workouts</a>
+     [routerLink]="['/project', 'user', userId, 'gen-workouts']" >Search Workouts</a>
   <a class="btn btn-primary btn-block"
-     [routerLink]="['/project', 'user', userId, 'cert-workouts']" >Search Certified Workouts</a>
-  <a class="btn btn-primary btn-block"
-     [routerLink]="['/project', 'user', userId, 'gen-diets']" >Search General Diets</a>
-  <a class="btn btn-primary btn-block"
-     [routerLink]="['/project', 'user', userId, 'cert-diets']" >Search Certified Diets</a>
+     [routerLink]="['/project', 'user', userId, 'gen-diets']" >Search Diets</a>
   <a class="btn btn-danger btn-block "
      [routerLink]="['/project/login']">Logout</a>
 
@@ -153,7 +157,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['/user', userId]">
+      <a [routerLink]="['/project', 'user', userId]">
         <span class="glyphicon glyphicon-user banner"></span>
       </a>
     </p>

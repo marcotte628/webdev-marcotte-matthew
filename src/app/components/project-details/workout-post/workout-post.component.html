@@ -1,3 +1,50 @@
-<p>
-  workout-post works!
-</p>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="banner">Profile</b>
+      </a>
+    </p>
+
+    <!--tick mark-->
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/project', 'user', userId]" class="navbar-link">
+        <span class="glyphicon glyphicon-ok banner"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+<div class="container post-nav">
+
+  <div>
+    <img src={{workoutData.image}} width="100%">
+  </div>
+  <br>
+  <ul class="list-group">
+    <li class="list-group-item">Name of Exercise: {{workoutData.name}}</li>
+    <li class="list-group-item">Target of Exercise: {{workoutData.type}} </li>
+    <li class="list-group-item">Difficulty Level: {{workoutData.difficulty}} </li>
+    <li class="list-group-item">Poster's Name:
+      <a [routerLink]="['/project', 'user', userId, 'other-user', otherId]">{{username}} </a>
+    </li>
+  </ul>
+</div>
+
+<br><br>
+<br><br>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/project', 'user', userId]">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>

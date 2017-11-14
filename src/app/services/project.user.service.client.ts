@@ -67,7 +67,7 @@ export class PersonService {
       rating: rating, followedUsers: followedUsers, followedByUsers: followedByUsers,
       followedDiets: followedDiets, followedWorkouts: followedWorkouts,
       gymMemberships: gymMemberships, storeMemberships: storeMemberships};
-    return this._http.put(url, body).map( (res: Response) =>  {
+return this._http.put(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;
     });

@@ -1,3 +1,145 @@
-<p>
-  view-other works!
-</p>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="banner">Other User's Profile</b>
+      </a>
+    </p>
+
+    <!--tick mark-->
+    <p class="navbar-text pull-right">
+      <a class="navbar-link">
+        <span class="glyphicon glyphicon-ok banner"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+<div class="container post-nav">
+  <!-- Form for Username, Email, First and Last Names -->
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input [(ngModel)]="name"
+             [ngModelOptions]="{standalone: true}"
+             type="text"
+             class="form-control"
+             id="name"
+             placeholder="name"
+             readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input [(ngModel)]="email"
+             [ngModelOptions]="{standalone: true}"
+             type="email"
+             class="form-control"
+             id="email"
+             placeholder="email@example.com"
+             readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role</label>
+      <input [(ngModel)]="role"
+             [ngModelOptions]="{standalone: true}"
+             type="text"
+             class="form-control"
+             id="role"
+             placeholder="role"
+             readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <input [(ngModel)]="rating"
+             [ngModelOptions]="{standalone: true}"
+             type="text"
+             class="form-control"
+             id="rating"
+             placeholder="rating"
+             readonly>
+    </div>
+
+    <label for="followedUsers">Followed Users</label>
+    <div *ngFor="let user of followedUsers" class="container" id="followedUsers">
+      <div class="form-group">
+        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user]"> {{user}} </a>
+        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user]">
+          <span class="glyphicon glyphicon-plus pull-right"></span>
+        </a>
+      </div>
+    </div>
+
+    <br/>
+    <!--label for="followedByUsers">Users Following Me</label>
+    <div *ngFor="let user of followedByUsers" class="container" id="followedByUsers">
+      <div class="form-group">
+        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user]"> {{user}} </a>
+        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user]">
+          <span class="glyphicon glyphicon-plus pull-right"></span>
+        </a>
+      </div>
+    </div>
+    <br/-->
+    <label for="followedDiets">Liked Foods</label>
+    <div *ngFor="let food of followedDiets" class="container" id="followedDiets">
+      <div class="form-group">
+        <a [routerLink]="['/project', 'user', myuserId, 'diets', food]"> {{food}} </a>
+        <a [routerLink]="['/project', 'user', myuserId, 'diets', food]">
+          <span class="glyphicon glyphicon-plus pull-right"></span>
+        </a>
+      </div>
+    </div>
+    <br/>
+    <label for="followedWorkouts">Workouts I Like</label>
+    <div *ngFor="let workout of followedWorkouts" class="container" id="followedWorkouts">
+      <div class="form-group">
+        <a [routerLink]="['/project', 'user', myuserId, 'workouts', workout]"> {{workout}} </a>
+        <a [routerLink]="['/project', 'user', myuserId, 'workouts', workout]">
+          <span class="glyphicon glyphicon-plus pull-right"></span>
+        </a>
+      </div>
+    </div>
+    <br/>
+    <label for="gymMemberships">Gyms I belong to: </label>
+    <div *ngFor="let gym of gymMemberships" class="container" id="gymMemberships">
+      <div class="form-group">
+        <a [routerLink]="['/project', 'user', myuserId]"> {{gym}} </a>
+        <a [routerLink]="['/project', 'user', myuserId]">
+          <span class="glyphicon glyphicon-plus pull-right"></span>
+        </a>
+      </div>
+    </div>
+    <br/>
+    <label for="storeMemberships">Stores I frequent: </label>
+    <div *ngFor="let store of storeMemberships" class="container" id="storeMemberships">
+      <div class="form-group">
+        <a [routerLink]="['/project', 'user', myuserId]"> {{store}} </a>
+        <a [routerLink]="['/project', 'user', myuserId]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
+        </a>
+      </div>
+    </div>
+  </form>
+
+  <a class="btn btn-primary btn-block" (click)="follow()">Follow</a>
+
+
+</div>
+<br/><br/><br/><br/><br/>
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/project', 'user', myuserId]">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>

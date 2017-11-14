@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PersonService} from '../../../services/project.user.service.client';
 import {WorkoutService} from '../../../services/project.workout.service.client';
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-project-profile',
