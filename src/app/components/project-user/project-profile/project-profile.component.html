@@ -82,7 +82,7 @@
       </div>
     </div>
 
-    <!--br/>
+    <br/>
     <label for="followedByUsers">Users Following Me</label>
     <div *ngFor="let user of followedByUsers" class="container" id="followedByUsers">
       <div class="form-group">
@@ -91,9 +91,13 @@
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
-    </div-->
+    </div>
     <br/>
-    <label for="followedDiets">Followed Diets</label>
+    <label for="followedDiets">Followed Diets
+      <a [routerLink]="['/project', 'user', userId, 'new-food']">
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+      </a>
+    </label>
     <div *ngFor="let food of followedDiets" class="container" id="followedDiets">
       <div class="form-group">
         <a [routerLink]="['/project', 'user', userId, 'diets', food]"> {{food}} </a>
@@ -103,7 +107,11 @@
       </div>
     </div>
     <br/>
-    <label for="followedWorkouts">Workouts I Like</label>
+    <label for="followedWorkouts">Workouts I Like
+      <a [routerLink]="['/project', 'user', userId, 'new-workout']">
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+      </a>
+    </label>
     <div *ngFor="let workout of followedWorkouts" class="container" id="followedWorkouts">
       <div class="form-group">
         <a [routerLink]="['/project', 'user', userId, 'workouts', workout]"> {{workout}} </a>

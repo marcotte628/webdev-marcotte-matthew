@@ -96,7 +96,7 @@ export class ViewOtherComponent implements OnInit {
       this.myrating, this.myfollowedUsers, this.myfollowedByUsers, this.myfollowedDiets, this.myfollowedWorkouts,
       this.mygymMemberships, this.mystoreMemberships).subscribe(
       (data: any) => {
-        this.router.navigate(['/project', 'user', this.myuserId, 'other-user', this.theiruserId]);
+        this.updateThem();
       },
       (error: any) => {
       }
@@ -104,12 +104,12 @@ export class ViewOtherComponent implements OnInit {
   }
 
   updateThem() {
-    this.myfollowedByUsers.push(this.myuserId);
+    this.followedByUsers.push(this.myuserId);
     this.personService.updateAccount(this.theiruserId, this.username, this.email, this.password, this.name, this.role,
       this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
       this.gymMemberships, this.storeMemberships).subscribe(
       (data: any) => {
-        console.log('success data = ' + data);
+        this.router.navigate(['/project', 'user', this.myuserId, 'other-user', this.theiruserId]);
       },
       (error: any) => {
       }

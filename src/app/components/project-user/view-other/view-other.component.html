@@ -76,7 +76,7 @@
     </div>
 
     <br/>
-    <!--label for="followedByUsers">Users Following Me</label>
+    <label for="followedByUsers">Users Following Me</label>
     <div *ngFor="let user of followedByUsers" class="container" id="followedByUsers">
       <div class="form-group">
         <a [routerLink]="['/project', 'user', myuserId, 'other-user', user]"> {{user}} </a>
@@ -85,7 +85,7 @@
         </a>
       </div>
     </div>
-    <br/-->
+    <br/>
     <label for="followedDiets">Liked Foods</label>
     <div *ngFor="let food of followedDiets" class="container" id="followedDiets">
       <div class="form-group">
