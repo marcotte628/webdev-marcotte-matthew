@@ -23,8 +23,7 @@ export class StoresComponent implements OnInit {
 
   searchStore() {
     this.storeInfo = this.searchForm.value.store;
-    console.log('you entered ==========> ');
-    console.log('store = ' +  this.storeInfo);
+
     this.storeService.getStoreByName(this.storeInfo).subscribe(
       (data: any) => {
         this.stores = data;
@@ -36,8 +35,6 @@ export class StoresComponent implements OnInit {
 
       }
     );
-    console.log('you got back  ==========> ');
-    console.log(this.stores);
   }
 
 }

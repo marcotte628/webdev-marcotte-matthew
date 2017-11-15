@@ -54,7 +54,7 @@
 <div *ngFor="let each of allWorkouts" class="container" id="allWorkouts">
   <div class="form-group">
     <a [routerLink]="['/project', 'user', userId, 'workouts', each._id ]"> {{each.name}} </a>
-    <a (click)="addToProfile(each._id)">
+    <a (click)="addToProfile(each._id, each.name)">
       <span class="glyphicon glyphicon-plus pull-right"></span>
     </a>
   </div>

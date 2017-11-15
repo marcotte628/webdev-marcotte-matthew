@@ -17,12 +17,12 @@ export class ViewOtherComponent implements OnInit {
   myemail: String;
   myrole: String;
   myrating: number;
-  myfollowedUsers: [String];
-  myfollowedByUsers: [String];
-  myfollowedDiets: [String];
-  myfollowedWorkouts: [String];
-  mygymMemberships: [String];
-  mystoreMemberships: [String];
+  myfollowedUsers: [{}];
+  myfollowedByUsers: [{}];
+  myfollowedDiets: [{}];
+  myfollowedWorkouts: [{}];
+  mygymMemberships: [{}];
+  mystoreMemberships: [{}];
   theiruserId: String;
   username: String;
   password: String;
@@ -30,12 +30,12 @@ export class ViewOtherComponent implements OnInit {
   email: String;
   role: String;
   rating: number;
-  followedUsers: [String];
-  followedByUsers: [String];
-  followedDiets: [String];
-  followedWorkouts: [String];
-  gymMemberships: [String];
-  storeMemberships: [String];
+  followedUsers: [{}];
+  followedByUsers: [{}];
+  followedDiets: [{}];
+  followedWorkouts: [{}];
+  gymMemberships: [{}];
+  storeMemberships: [{}];
 
   constructor(private personService: PersonService, private activatedRoute: ActivatedRoute, private router: Router,
               private workoutService: WorkoutService) {
@@ -91,7 +91,7 @@ export class ViewOtherComponent implements OnInit {
   }
 
   updateMe() {
-    this.myfollowedUsers.push(this.theiruserId);
+    this.myfollowedUsers.push({userId: this.theiruserId, name: this.name});
     this.personService.updateAccount(this.myuserId, this.myusername, this.myemail, this.mypassword, this.myname, this.myrole,
       this.myrating, this.myfollowedUsers, this.myfollowedByUsers, this.myfollowedDiets, this.myfollowedWorkouts,
       this.mygymMemberships, this.mystoreMemberships).subscribe(
@@ -104,7 +104,7 @@ export class ViewOtherComponent implements OnInit {
   }
 
   updateThem() {
-    this.followedByUsers.push(this.myuserId);
+    this.followedByUsers.push({userId: this.myuserId, name: this.myname});
     this.personService.updateAccount(this.theiruserId, this.username, this.email, this.password, this.name, this.role,
       this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
       this.gymMemberships, this.storeMemberships).subscribe(

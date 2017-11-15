@@ -20,12 +20,12 @@ export class NewGymComponent implements OnInit {
   email: String;
   role: String;
   rating: number;
-  followedUsers: [String];
-  followedByUsers: [String];
-  followedDiets: [String];
-  followedWorkouts: [String];
-  gymMemberships: [String];
-  storeMemberships: [String];
+  followedUsers: [{}];
+  followedByUsers: [{}];
+  followedDiets: [{}];
+  followedWorkouts: [{}];
+  gymMemberships: [{}];
+  storeMemberships: [{}];
   gymId: String;
   constructor(private activatedRoute: ActivatedRoute, private personService: PersonService,
               private gymService: GymService, private router: Router) { }
@@ -69,7 +69,7 @@ export class NewGymComponent implements OnInit {
     );
   }
   updateProfile() {
-    this.gymMemberships.push(this.gymId);
+    this.gymMemberships.push({gymId: this.gymId, name: this.gymName});
     this.personService.updateAccount(this.userId, this.username, this.email, this.password, this.name, this.role,
       this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
       this.gymMemberships, this.storeMemberships).subscribe(

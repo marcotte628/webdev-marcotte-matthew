@@ -14,8 +14,8 @@ export class GerneralDietsComponent implements OnInit {
 
   userId: String;
   username: String; email: String; password: String; name: String; role: String;
-  rating: number; followedUsers: [String]; followedByUsers: [String]; followedDiets: [String];
-  followedWorkouts: [String]; gymMemberships: [String]; storeMemberships: [String];
+  rating: number; followedUsers: [{}]; followedByUsers: [{}]; followedDiets: [{}];
+  followedWorkouts: [{}]; gymMemberships: [{}]; storeMemberships: [{}];
   foodName: String;
   foodType: String;
   allFoods;
@@ -48,7 +48,7 @@ export class GerneralDietsComponent implements OnInit {
     );
   }
 
-  addToProfile(id) {
+  addToProfile(id, fn) {
     this.accountService.gePersonById(this.userId).subscribe(
       (data: any) => {
         this.username = data.username;
@@ -63,7 +63,7 @@ export class GerneralDietsComponent implements OnInit {
         this.followedWorkouts = data.followedWorkouts;
         this.gymMemberships = data.gymMemberships;
         this.storeMemberships = data.storeMemberships;
-        this.updateProfile(id);
+        this.updateProfile(id, fn);
       },
       (error: any) => {
 
@@ -71,8 +71,8 @@ export class GerneralDietsComponent implements OnInit {
     );
   }
 
-  updateProfile(id) {
-    this.followedDiets.push(id);
+  updateProfile(id, fn) {
+    this.followedDiets.push({foodId: id, name: fn} );
     this.accountService.updateAccount(this.userId, this.username, this.email, this.password, this.name,
       this.role, this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
       this.gymMemberships, this.storeMemberships).subscribe(

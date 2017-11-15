@@ -14,8 +14,8 @@ export class GeneralWorkoutsComponent implements OnInit {
 
   userId: String;
   username: String; email: String; password: String; name: String; role: String;
-  rating: number; followedUsers: [String]; followedByUsers: [String]; followedDiets: [String];
-  followedWorkouts: [String]; gymMemberships: [String]; storeMemberships: [String];
+  rating: number; followedUsers: [{}]; followedByUsers: [{}]; followedDiets: [{}];
+  followedWorkouts: [{}]; gymMemberships: [{}]; storeMemberships: [{}];
   workoutName: String;
   workoutType: String;
   allWorkouts;
@@ -61,7 +61,7 @@ export class GeneralWorkoutsComponent implements OnInit {
     );
   }
 
-  addToProfile(id) {
+  addToProfile(id, wktname) {
     this.accountService.gePersonById(this.userId).subscribe(
       (data: any) => {
         this.username = data.username;
@@ -76,7 +76,7 @@ export class GeneralWorkoutsComponent implements OnInit {
         this.followedWorkouts = data.followedWorkouts;
         this.gymMemberships = data.gymMemberships;
         this.storeMemberships = data.storeMemberships;
-        this.updateProfile(id);
+        this.updateProfile(id, wktname);
       },
       (error: any) => {
 
@@ -84,8 +84,8 @@ export class GeneralWorkoutsComponent implements OnInit {
     );
   }
 
-  updateProfile(id) {
-    this.followedWorkouts.push(id);
+  updateProfile(id, wktname) {
+    this.followedWorkouts.push({workoutId: id, name: wktname} );
     this.accountService.updateAccount(this.userId, this.username, this.email, this.password, this.name,
       this.role, this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
       this.gymMemberships, this.storeMemberships).subscribe(

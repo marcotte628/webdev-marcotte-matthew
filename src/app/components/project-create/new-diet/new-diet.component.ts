@@ -31,12 +31,12 @@ export class NewDietComponent implements OnInit {
   email: String;
   role: String;
   rating: number;
-  followedUsers: [String];
-  followedByUsers: [String];
-  followedDiets: [String];
-  followedWorkouts: [String];
-  gymMemberships: [String];
-  storeMemberships: [String];
+  followedUsers: [{}];
+  followedByUsers: [{}];
+  followedDiets: [{}];
+  followedWorkouts: [{}];
+  gymMemberships: [{}];
+  storeMemberships: [{}];
 
   constructor(private activatedRoute: ActivatedRoute,
               private  personService: PersonService,
@@ -115,7 +115,7 @@ export class NewDietComponent implements OnInit {
     );
   }
   addToProfile() {
-    this.followedDiets.push(this.newFood._id);
+    this.followedDiets.push({foodId: this.newFood._id, name: this.foodName});
     this.personService.updateAccount(this.userId, this.username, this.email, this.password, this.name, this.role,
       this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
       this.gymMemberships, this.storeMemberships).subscribe(

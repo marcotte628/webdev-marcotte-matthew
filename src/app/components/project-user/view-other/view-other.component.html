@@ -65,12 +65,13 @@
              readonly>
     </div>
 
-    <label for="followedUsers">Followed Users</label>
+
+    <label for="followedUsers">Users I Follow</label>
     <div *ngFor="let user of followedUsers" class="container" id="followedUsers">
       <div class="form-group">
-        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user]"> {{user}} </a>
-        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user]">
-          <span class="glyphicon glyphicon-plus pull-right"></span>
+        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user.userId]"> {{user.name}} </a>
+        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user.userId]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
     </div>
@@ -79,48 +80,64 @@
     <label for="followedByUsers">Users Following Me</label>
     <div *ngFor="let user of followedByUsers" class="container" id="followedByUsers">
       <div class="form-group">
-        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user]"> {{user}} </a>
-        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user]">
-          <span class="glyphicon glyphicon-plus pull-right"></span>
+        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user.userId]"> {{user.name}} </a>
+        <a [routerLink]="['/project', 'user', myuserId, 'other-user', user.userId]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
     </div>
     <br/>
-    <label for="followedDiets">Liked Foods</label>
+    <label for="followedDiets">Followed Diets
+      <a [routerLink]="['/project', 'user', myuserId, 'new-food']">
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+      </a>
+    </label>
     <div *ngFor="let food of followedDiets" class="container" id="followedDiets">
       <div class="form-group">
-        <a [routerLink]="['/project', 'user', myuserId, 'diets', food]"> {{food}} </a>
-        <a [routerLink]="['/project', 'user', myuserId, 'diets', food]">
-          <span class="glyphicon glyphicon-plus pull-right"></span>
+        <a [routerLink]="['/project', 'user', myuserId, 'diets', food.foodId]"> {{food.name}} </a>
+        <a [routerLink]="['/project', 'user', myuserId, 'diets', food.foodId]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
     </div>
     <br/>
-    <label for="followedWorkouts">Workouts I Like</label>
+    <label for="followedWorkouts">Workouts I Like
+      <a [routerLink]="['/project', 'user', myuserId, 'new-workout']">
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+      </a>
+    </label>
     <div *ngFor="let workout of followedWorkouts" class="container" id="followedWorkouts">
       <div class="form-group">
-        <a [routerLink]="['/project', 'user', myuserId, 'workouts', workout]"> {{workout}} </a>
-        <a [routerLink]="['/project', 'user', myuserId, 'workouts', workout]">
-          <span class="glyphicon glyphicon-plus pull-right"></span>
+        <a [routerLink]="['/project', 'user', myuserId, 'workouts', workout.workoutId]"> {{workout.name}} </a>
+        <a [routerLink]="['/project', 'user', myuserId, 'workouts', workout.workoutId]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
     </div>
     <br/>
-    <label for="gymMemberships">Gyms I belong to: </label>
+    <label for="gymMemberships">Gyms I belong to
+      <a [routerLink]="['/project', 'user', myuserId, 'new-gym']">
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+      </a>
+    </label>
     <div *ngFor="let gym of gymMemberships" class="container" id="gymMemberships">
       <div class="form-group">
-        <a [routerLink]="['/project', 'user', myuserId]"> {{gym}} </a>
-        <a [routerLink]="['/project', 'user', myuserId]">
-          <span class="glyphicon glyphicon-plus pull-right"></span>
+        <a [routerLink]="['/project', 'user', myuserId, 'gyms', gym.gymId]"> {{gym.name}} </a>
+        <a [routerLink]="['/project', 'user', myuserId, 'gyms', gym.gymId]">
+          <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>
     </div>
     <br/>
-    <label for="storeMemberships">Stores I frequent: </label>
+    <label for="storeMemberships">Stores I frequent
+      <a [routerLink]="['/project', 'user', myuserId, 'new-store']">
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+      </a>
+    </label>
     <div *ngFor="let store of storeMemberships" class="container" id="storeMemberships">
       <div class="form-group">
-        <a [routerLink]="['/project', 'user', myuserId]"> {{store}} </a>
-        <a [routerLink]="['/project', 'user', myuserId]">
+        <a [routerLink]="['/project', 'user', myuserId, 'stores', store.gymId]"> {{store.name}} </a>
+        <a [routerLink]="['/project', 'user', myuserId, 'stores', store.gymId]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>

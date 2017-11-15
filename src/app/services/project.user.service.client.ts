@@ -60,8 +60,8 @@ export class PersonService {
   }
 
   updateAccount(uid: String, username: String, email: String, password: String, name: String, role: String,
-                rating: number, followedUsers: [String], followedByUsers: [String], followedDiets: [String],
-                followedWorkouts: [String], gymMemberships: [String], storeMemberships: [String]) {
+                rating: number, followedUsers: [{}], followedByUsers: [{}], followedDiets: [{}],
+                followedWorkouts: [{}], gymMemberships: [{}], storeMemberships: [{}]) {
     const url = this.baseUrl + '/api/project/user/' + uid;
     const body = {username: username, password: password, email: email, name: name, role: role,
       rating: rating, followedUsers: followedUsers, followedByUsers: followedByUsers,

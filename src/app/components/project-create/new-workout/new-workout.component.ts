@@ -19,12 +19,12 @@ export class NewWorkoutComponent implements OnInit {
   email: String;
   role: String;
   rating: number;
-  followedUsers: [String];
-  followedByUsers: [String];
-  followedDiets: [String];
-  followedWorkouts: [String];
-  gymMemberships: [String];
-  storeMemberships: [String];
+  followedUsers: [{}];
+  followedByUsers: [{}];
+  followedDiets: [{}];
+  followedWorkouts: [{}];
+  gymMemberships: [{}];
+  storeMemberships: [{}];
   difficulty: number;
   image: String;
   newWorkout;
@@ -85,7 +85,7 @@ export class NewWorkoutComponent implements OnInit {
   }
 
   addToProfile() {
-    this.followedWorkouts.push(this.newWorkout._id);
+    this.followedWorkouts.push({workoutId: this.newWorkout._id, name: this.workoutName});
     this.personService.updateAccount(this.userId, this.username, this.email, this.password, this.name, this.role,
       this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
       this.gymMemberships, this.storeMemberships).subscribe(

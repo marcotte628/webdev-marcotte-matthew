@@ -8,12 +8,12 @@ var ProjectUserSchema = mongoose.Schema({
   email: String,
   role: String,
   rating: Number,
-  followedUsers: [String],
-  followedByUsers: [String],
-  followedDiets: [String],
-  followedWorkouts: [String],
-  gymMemberships: [String],
-  storeMemberships: [String],
+  followedUsers: [{}],
+  followedByUsers: [{}],
+  followedDiets: [{}],
+  followedWorkouts: [{}],
+  gymMemberships: [{}],
+  storeMemberships: [{}],
 }, {collection: 'projectUser'});
 
 module.exports = ProjectUserSchema;
