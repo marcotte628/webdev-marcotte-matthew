@@ -19,7 +19,7 @@ export class GymPostComponent implements OnInit {
   followedByUsers: [{}];
   followedDiets: [{}];
   followedWorkouts: [{}];
-  gymMemberships: [{}];
+  gymMemberships: [{gymId: String, name: String}];
   storeMemberships: [{}];
   gymId: String;
   gymData;
@@ -70,6 +70,45 @@ export class GymPostComponent implements OnInit {
       this.gymMemberships, this.storeMemberships).subscribe(
       (data: any) => {
         alert('you now follow this store');
+      },
+      (error: any) => {
+      }
+    );
+  }
+
+  unfollow() {this.accountService.gePersonById(this.userId).subscribe(
+    (data: any) => {
+      this.username = data.username;
+      this.password = data.password;
+      this.name = data.name;
+      this.email = data.email;
+      this.role = data.role;
+      this.rating = data.rating;
+      this.followedUsers = data.followedUsers;
+      this.followedByUsers = data.followedByUsers;
+      this.followedDiets = data.followedDiets;
+      this.followedWorkouts = data.followedWorkouts;
+      this.gymMemberships = data.gymMemberships;
+      this.storeMemberships = data.storeMemberships;
+      this.removeFromProfile();
+    },
+    (error: any) => {
+    }
+  );
+  }
+
+  removeFromProfile() {
+    for (let i = 0; i < this.gymMemberships.length; i++) {
+      if (this.gymMemberships[i].gymId === this.gymId ) {
+        this.gymMemberships.splice(i, 1);
+      }
+    }
+
+    this.accountService.updateAccount(this.userId, this.username, this.email, this.password, this.name, this.role,
+      this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
+      this.gymMemberships, this.storeMemberships).subscribe(
+      (data: any) => {
+        alert('you no longer follow this gym');
       },
       (error: any) => {
       }
