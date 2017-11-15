@@ -11,10 +11,22 @@ import {PersonService} from '../../../services/project.user.service.client';
 export class WorkoutPostComponent implements OnInit {
 
   userId: String;
+  username: String;
+  password: String;
+  name: String;
+  email: String;
+  role: String;
+  rating: number;
+  followedUsers: [{}];
+  followedByUsers: [{}];
+  followedDiets: [{}];
+  followedWorkouts: [{}];
+  gymMemberships: [{}];
+  storeMemberships: [{}];
   workoutId: String;
   workoutData;
-  username: String;
   otherId: String;
+  otherName: String
   constructor(private activatedRoute: ActivatedRoute, private workoutService: WorkoutService,
               private accountService: PersonService) { }
 
@@ -31,17 +43,53 @@ export class WorkoutPostComponent implements OnInit {
       (data: any) => {
         this.workoutData = data;
         this.otherId = this.workoutData.userId;
-        this.getUser();
+        this.getOtherUser();
       },
       (error: any) => {
       }
     );
   }
 
-  getUser() {
+  getOtherUser() {
     this.accountService.gePersonById(this.otherId).subscribe(
       (data: any) => {
-        this.username = data.name;
+        this.otherName = data.name;
+      },
+      (error: any) => {
+      }
+    );
+  }
+
+  follow() {
+    this.accountService.gePersonById(this.userId).subscribe(
+      (data: any) => {
+        this.username = data.username;
+        this.password = data.password;
+        this.name = data.name;
+        this.email = data.email;
+        this.role = data.role;
+        this.rating = data.rating;
+        this.followedUsers = data.followedUsers;
+        this.followedByUsers = data.followedByUsers;
+        this.followedDiets = data.followedDiets;
+        this.followedWorkouts = data.followedWorkouts;
+        this.gymMemberships = data.gymMemberships;
+        this.storeMemberships = data.storeMemberships;
+        this.addToProfile();
+      },
+      (error: any) => {
+      }
+    );
+  }
+
+  addToProfile() {
+    console.log(this.userId);
+    this.followedWorkouts.push({workoutId: this.workoutId, name: this.workoutData.name});
+    this.accountService.updateAccount(this.userId, this.username, this.email, this.password, this.name, this.role,
+      this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
+      this.gymMemberships, this.storeMemberships).subscribe(
+      (data: any) => {
+        alert('you now follow this gym');
       },
       (error: any) => {
       }

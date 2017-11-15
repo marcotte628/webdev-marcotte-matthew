@@ -1,3 +1,48 @@
-<p>
-  gym-post works!
-</p>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="banner">Gym Details</b>
+      </a>
+    </p>
+
+    <!--tick mark-->
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/project', 'user', userId]" class="navbar-link">
+        <span class="glyphicon glyphicon-ok banner"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+
+<div class="post-nav">
+
+  <ul class="list-group">
+    <li class="list-group-item">Name of Gym: {{gymData.name}}</li>
+    <li class="list-group-item">Store Type: {{gymData.type}} </li>
+    <li class="list-group-item">Address: {{gymData.address}} </li>
+  </ul>
+
+</div>
+
+<a class="btn btn-primary btn-block" (click)="follow()">Follow Gym</a>
+
+
+<br><br>
+<br><br>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/project', 'user', userId]">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>

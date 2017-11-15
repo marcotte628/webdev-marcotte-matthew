@@ -142,8 +142,8 @@
     </label>
     <div *ngFor="let store of storeMemberships" class="container" id="storeMemberships">
       <div class="form-group">
-        <a [routerLink]="['/project', 'user', userId, 'stores', store.gymId]"> {{store.name}} </a>
-        <a [routerLink]="['/project', 'user', userId, 'stores', store.gymId]">
+        <a [routerLink]="['/project', 'user', userId, 'stores', store.storeId]"> {{store.name}} </a>
+        <a [routerLink]="['/project', 'user', userId, 'stores', store.storeId]">
           <span class="glyphicon glyphicon-cog pull-right"></span>
         </a>
       </div>

@@ -5,7 +5,7 @@
     <!--heading on the nav bar-->
     <p class="navbar-header pull-left">
       <a class="navbar-brand thick">
-        <b class="banner">Profile</b>
+        <b class="banner">Workout Details</b>
       </a>
     </p>
 
@@ -29,10 +29,12 @@
     <li class="list-group-item">Target of Exercise: {{workoutData.type}} </li>
     <li class="list-group-item">Difficulty Level: {{workoutData.difficulty}} </li>
     <li class="list-group-item">Poster's Name:
-      <a [routerLink]="['/project', 'user', userId, 'other-user', otherId]">{{username}} </a>
+      <a [routerLink]="['/project', 'user', userId, 'other-user', otherId]">{{otherName}} </a>
     </li>
   </ul>
 </div>
+
+<a class="btn btn-primary btn-block" (click)="follow()">Follow Workout Item</a>
 
 <br><br>
 <br><br>

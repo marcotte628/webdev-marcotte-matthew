@@ -30,7 +30,7 @@ export class GymService {
   }
 
   getGymById(gid: String) {
-    return this._http.get(this.baseUrl + '/api/project/gym' + gid).map(
+    return this._http.get(this.baseUrl + '/api/project/gym/' + gid).map(
         (res: Response) => {
           const data = res.json();
           return data;

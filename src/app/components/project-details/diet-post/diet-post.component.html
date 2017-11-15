@@ -5,7 +5,7 @@
     <!--heading on the nav bar-->
     <p class="navbar-header pull-left">
       <a class="navbar-brand thick">
-        <b class="banner">Profile</b>
+        <b class="banner">Food Details</b>
       </a>
     </p>
 
@@ -31,9 +31,11 @@
     <li class="list-group-item">Carbs: {{foodData.carbs}} </li>
     <li class="list-group-item">Fats: {{foodData.fats}} </li>
     <li class="list-group-item">Poster's Name:
-      <a [routerLink]="['/project', 'user', userId, 'other-user', otherId]">{{username}} </a></li>
+      <a [routerLink]="['/project', 'user', userId, 'other-user', otherId]">{{otherName}} </a></li>
   </ul>
 </div>
+
+<a class="btn btn-primary btn-block" (click)="follow()">Follow Food Item</a>
 
 
 <br><br>

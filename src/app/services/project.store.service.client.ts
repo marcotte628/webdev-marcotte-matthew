@@ -20,7 +20,7 @@ export class StoreService {
     );
   }
   getStoreById(sid: String) {
-    return this._http.get(this.baseUrl + '/api/project/stores' + sid).map(
+    return this._http.get(this.baseUrl + '/api/project/stores/' + sid).map(
       (res: Response) => {
         const data = res.json();
         return data;
