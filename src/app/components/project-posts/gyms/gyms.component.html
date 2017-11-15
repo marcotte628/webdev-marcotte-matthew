@@ -1,42 +1,80 @@
 
 
-<div class="container">
 
-  <h1>Search Gyms By Name</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
 
-  <form (ngSubmit)="searchGym()" #f="ngForm">
-    <input placeholder="enter a gym name to get gym info"
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="banner">Gyms List</b>
+      </a>
+    </p>
+
+    <!--tick mark-->
+    <p class="navbar-text pull-right">
+      <a class="navbar-link">
+        <span class="glyphicon glyphicon-ok banner"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+<div class="container post-nav">
+  <h5> Search Gyms By Name </h5>
+  <form (ngSubmit)="searchGymByName()" #f="ngForm">
+    <input placeholder="enter a store name to search"
            type="text"
-           name="gym"
+           name="name"
            class="form-control"
            ngModel
            required
            #username="ngModel"/>
     <button class="btn btn-primary btn-block"
             type="submit">
-      Search Gym
+      Search Gyms
     </button>
   </form>
+
+  <h5> Search Gyms By Type</h5>
+  <form (ngSubmit)="searchGymByType()" #f="ngForm">
+    <input placeholder="enter a store type to search"
+           type="text"
+           name="type"
+           class="form-control"
+           ngModel
+           required
+           #username="ngModel"/>
+    <button class="btn btn-primary btn-block"
+            type="submit">
+      Search Gyms
+    </button>
+  </form>
+
   <br>
+  <label for="allStores">All Stores:</label>
+  <div *ngFor="let each of allGyms" class="container" id="allStores">
+    <div class="form-group">
+      <a [routerLink]="['/project', 'user', userId, 'diets', each._id]"> {{each.name}} </a>
+      <a (click)="addToProfile(each._id, each.name)">
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+      </a>
+    </div>
+  </div>
+
+
+
 </div>
 
+<br><br><br><br><br><br><br>
 
-<div class="post-nav">
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>type</th>
-      <th>address</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>{{name}}</td>
-      <td>{{type}}</td>
-      <td>{{address}}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/project', 'user', userId]">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
 
+  </div>
+</nav>
