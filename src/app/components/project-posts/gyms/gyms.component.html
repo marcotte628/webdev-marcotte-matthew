@@ -23,13 +23,12 @@
 <div class="container post-nav">
   <h5> Search Gyms By Name </h5>
   <form (ngSubmit)="searchGymByName()" #f="ngForm">
-    <input placeholder="enter a store name to search"
+    <input placeholder="enter a gym name"
            type="text"
-           name="name"
-           class="form-control"
-           ngModel
-           required
-           #username="ngModel"/>
+           [(ngModel)]="gymName"
+           [ngModelOptions]="{standalone: true}"
+           type="text"
+           class="form-control"/>
     <button class="btn btn-primary btn-block"
             type="submit">
       Search Gyms
@@ -38,13 +37,12 @@
 
   <h5> Search Gyms By Type</h5>
   <form (ngSubmit)="searchGymByType()" #f="ngForm">
-    <input placeholder="enter a store type to search"
+    <input placeholder="enter a gym type (classic, etc)"
            type="text"
-           name="type"
-           class="form-control"
-           ngModel
-           required
-           #username="ngModel"/>
+           [(ngModel)]="gymType"
+           [ngModelOptions]="{standalone: true}"
+           type="text"
+           class="form-control"/>
     <button class="btn btn-primary btn-block"
             type="submit">
       Search Gyms
@@ -55,7 +53,7 @@
   <label for="allStores">All Stores:</label>
   <div *ngFor="let each of allGyms" class="container" id="allStores">
     <div class="form-group">
-      <a [routerLink]="['/project', 'user', userId, 'diets', each._id]"> {{each.name}} </a>
+      <a [routerLink]="['/project', 'user', userId, 'gyms', each._id]"> {{each.name}} </a>
       <a (click)="addToProfile(each._id, each.name)">
         <span class="glyphicon glyphicon-plus pull-right"></span>
       </a>

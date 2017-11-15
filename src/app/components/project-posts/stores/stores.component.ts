@@ -17,10 +17,9 @@ export class StoresComponent implements OnInit {
   rating: number; followedUsers: [{}]; followedByUsers: [{}]; followedDiets: [{}];
   followedWorkouts: [{}]; gymMemberships: [{}]; storeMemberships: [{}];
   allStores;
-  storeInfo: String;
-  type: String;
-  address: String;
   storeName: String;
+  storeType: String;
+
   constructor(private router: Router, private storeService: StoreService,
               private activatedRoute: ActivatedRoute, private accountService: PersonService) { }
 
@@ -41,9 +40,7 @@ export class StoresComponent implements OnInit {
   }
 
   searchStoreByName() {
-    this.storeInfo = this.searchForm.value.name;
-
-    this.storeService.getStoreByName(this.storeInfo).subscribe(
+    this.storeService.getStoreByName(this.storeName).subscribe(
       (data: any) => {
         this.allStores = data;
       },
@@ -54,9 +51,7 @@ export class StoresComponent implements OnInit {
   }
 
   searchStoreByType() {
-    this.storeInfo = this.searchForm.value.type;
-
-    this.storeService.getStoreByName(this.storeInfo).subscribe(
+    this.storeService.getStoreByType(this.storeType).subscribe(
       (data: any) => {
         this.allStores = data;
       },

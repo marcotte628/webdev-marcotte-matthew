@@ -21,13 +21,12 @@
 <div class="container post-nav">
   <h5> Search Stores By Name </h5>
   <form (ngSubmit)="searchStoreByName()" #f="ngForm">
-    <input placeholder="enter a store name to search"
+    <input placeholder="enter a store name"
            type="text"
-           name="name"
-           class="form-control"
-           ngModel
-           required
-           #username="ngModel"/>
+           [(ngModel)]="storeName"
+           [ngModelOptions]="{standalone: true}"
+           type="text"
+           class="form-control"/>
     <button class="btn btn-primary btn-block"
             type="submit">
       Search Stores
@@ -36,13 +35,12 @@
 
   <h5> Search Stores By Type</h5>
   <form (ngSubmit)="searchStoreByType()" #f="ngForm">
-    <input placeholder="enter a store type to search"
+    <input placeholder="enter a store type (nutrition, grocery, etc.)"
            type="text"
-           name="type"
-           class="form-control"
-           ngModel
-           required
-           #username="ngModel"/>
+           [(ngModel)]="storeType"
+           [ngModelOptions]="{standalone: true}"
+           type="text"
+           class="form-control"/>
     <button class="btn btn-primary btn-block"
             type="submit">
       Search Stores

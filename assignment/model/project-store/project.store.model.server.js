@@ -25,7 +25,7 @@ function findStoreByName(name){
 }
 
 function findStoreByType(type){
-  return ProjectStoreModel.findOne({type: type});
+  return ProjectStoreModel.find({type: type});
 }
 
 function updateStore(sid, info){

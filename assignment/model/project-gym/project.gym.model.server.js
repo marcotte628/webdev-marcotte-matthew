@@ -25,7 +25,7 @@ function findGymByName(name){
 }
 
 function findGymByType(type){
-  return ProjectGymModel.findOne({type: type});
+  return ProjectGymModel.find({type: type});
 }
 
 function updateGym(gid, info){

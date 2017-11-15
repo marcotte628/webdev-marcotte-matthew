@@ -29,6 +29,16 @@ export class GymService {
     );
   }
 
+  getGymByType(type: String) {
+    return this._http.get(this.baseUrl + '/api/project/gym?type=' + type).map(
+      (res: Response) => {
+        const data = res.json();
+        return data;
+      }
+    );
+  }
+
+
   getGymById(gid: String) {
     return this._http.get(this.baseUrl + '/api/project/gym/' + gid).map(
         (res: Response) => {

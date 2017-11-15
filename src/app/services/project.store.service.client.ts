@@ -35,6 +35,14 @@ export class StoreService {
       }
     );
   }
+  getStoreByType(type: String) {
+    return this._http.get(this.baseUrl + '/api/project/stores?type=' + type).map(
+      (res: Response) => {
+        const data = res.json();
+        return data;
+      }
+    );
+  }
   createStore(name: String, type: String, address: String) {
     const url = this.baseUrl + '/api/project/stores';
     const body = {name: name, type: type, address: address};

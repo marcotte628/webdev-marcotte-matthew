@@ -16,7 +16,7 @@ export class GymsComponent implements OnInit {
   username: String; email: String; password: String; name: String; role: String;
   rating: number; followedUsers: [{}]; followedByUsers: [{}]; followedDiets: [{}];
   followedWorkouts: [{}]; gymMemberships: [{}]; storeMemberships: [{}];
-  allGyms;
+  allGyms = [];
   gymName: String;
   gymType: String;
 
@@ -40,7 +40,6 @@ export class GymsComponent implements OnInit {
   }
 
   searchGymByName() {
-    this.gymName = this.searchForm.value.name;
     this.gymService.getGymByName(this.gymName).subscribe(
       (data: any) => {
         this.allGyms = data;
@@ -52,8 +51,7 @@ export class GymsComponent implements OnInit {
   }
 
   searchGymByType() {
-    this.gymType = this.searchForm.value.type;
-    this.gymService.getGymByName(this.gymType).subscribe(
+    this.gymService.getGymByType(this.gymType).subscribe(
       (data: any) => {
         this.allGyms = data;
       },
