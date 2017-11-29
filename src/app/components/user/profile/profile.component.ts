@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../../services/user.service.client';
 import {ActivatedRoute, Router} from '@angular/router';
+import {SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -9,6 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
+  user;
   userId: String;
   username: String;
   email: String;
@@ -18,27 +20,36 @@ export class ProfileComponent implements OnInit {
   phone: String;
   websites = [];
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute,
+              private router: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
+          this.user = this.sharedService.user || {};
           this.userId = params['uid'];
         });
-    const user = this.userService.findUserById(this.userId).subscribe(
-      (data: any) => {
-        this.username = data.username;
-        this.email = data.email;
-        this.first = data.firstName;
-        this.last = data.lastName;
-        this.password = data.password;
-        this.phone = data.phone
-        this.websites = data.websites;
-        },
-      (error: any) => {
-      }
-    );
+    this.username = this.user.username;
+    this.email = this.user.email;
+    this.first = this.user.firstName;
+    this.last = this.user.lastName;
+    this.password = this.user.password;
+    this.phone = this.user.phone
+    this.websites = this.user.websites;
+    // this.userService.findUserById(this.userId).subscribe(
+    //   (data: any) => {
+    //     this.username = data.username;
+    //     this.email = data.email;
+    //     this.first = data.firstName;
+    //     this.last = data.lastName;
+    //     this.password = data.password;
+    //     this.phone = data.phone
+    //     this.websites = data.websites;
+    //     },
+    //   (error: any) => {
+    //   }
+    // );
   }
 
   updateUser() {
@@ -51,7 +62,7 @@ export class ProfileComponent implements OnInit {
       this.password = data.password;
       this.phone = data.phone
       this.websites = data.websites;
-      this.router.navigate(['/user/' + this.userId ]);
+      this.router.navigate(['/user' ]);
     } );
   }
 }

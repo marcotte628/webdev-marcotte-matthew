@@ -1,13 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
 import {environment} from '../../environments/environment';
 
-/*
-import { Http, RequestOptions, Response } from '@angular/http';
-import { Router } from '@angular/router';
-import { User} from '../models/user.model.client';
-*/
+
 // injecting service into module
 @Injectable()
 
@@ -15,21 +11,43 @@ export class UserService {
 
   constructor(private _http: Http) {}
 
+  options: RequestOptions = new RequestOptions();
   baseUrl = environment.baseUrl;
 
   // perform register
   register(username: String, password: String) {
-    const user = this.createUser(username, password);
-    if (user) {
-      return user;
-    }
+    const url = 'http://localhost:3100/api/register';
+    const credentials = {
+      username: username,
+      password: password
+    };
+    this.options.withCredentials = true;
+    return this._http.post(url, credentials, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+    // const user = this.createUser(username, password);
+    // if (user) {
+    //   return user;
+    // }
   }
   // perform login
   login(username: String, password: String) {
-    const user = this.findUserByCredentials(username, password);
-    if (user) {
-      return user;
-    }
+    const url = 'http://localhost:3100/api/login';
+    const credentials = {
+      username: username,
+      password: password
+    };
+    this.options.withCredentials = true;
+    return this._http.post(url, credentials, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+    //
+    // const user = this.findUserByCredentials(username, password);
+    // if (user) {
+    //   return user;
+    // }
   }
   // findUserById
   findUserById(userId: String) {
@@ -63,7 +81,8 @@ export class UserService {
     const date = new Date();
     const body = {username: username, password: password, firstName: username, lastName: username,
                   email: username + '@gmail.com', phone: '', websites: [], dateCreated: date};
-    return this._http.post(url, body).map( (res: Response) =>  {
+    this.options.withCredentials = true;
+    return this._http.post(url, body, this.options).map( (res: Response) =>  {
       const data = res.json();
       return data;
     });

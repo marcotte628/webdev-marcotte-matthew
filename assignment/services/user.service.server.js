@@ -2,13 +2,11 @@
 module.exports = function(app) {
 
   var userModel = require("../model/user/user.model.server");
-
-  var users = [
-    {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-    {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-    {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-    {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-  ];
+  var passport  = require('passport');
+  var LocalStrategy = require('passport-local').Strategy;
+  passport.use(new LocalStrategy(localStrategy));
+  passport.serializeUser(serializeUser);
+  passport.deserializeUser(deserializeUser);
 
   app.get("/api/user", getUser);
   app.get("/api/user?username=username&password=password", findUserByCredentials);
@@ -17,6 +15,37 @@ module.exports = function(app) {
   app.post("/api/user", createUser);
   app.put("/api/user/:userId", updateUser);
   app.delete("/api/user/:userId", deleteUser);
+  app.post('/api/register', register);
+  app.post('/api/login', passport.authenticate('local'), login);
+
+  function login(req, res) {
+    res.json(req.user);
+  }
+
+  function localStrategy(usr, pass, done) {
+    userModel
+      .findUserByCredentials(usr, pass)
+      .then(
+        function(user) {
+          if( user ) {
+            return done(null, user);
+          } else {
+            return done(null, false);
+          }
+        }
+      );
+  }
+
+  function register(req, res) {
+    var user = req.body;
+    userModel
+      .createUser(user)
+      .then(function(user){
+        req.login(user, function(err) {
+          res.json(user);
+        });
+      });
+  }
 
   function getUser(req, res){
     var username = req.query["username"];
@@ -82,5 +111,21 @@ module.exports = function(app) {
     });
   }
 
+  function serializeUser(user, done) {
+    done(null, user);
+  }
+
+  function deserializeUser(user, done) {
+    userModel
+      .findUserById(user._id)
+      .then(
+        function(user){
+          done(null, user);
+        },
+        function(err){
+          done(err, null);
+        }
+      );
+  }
 
 };

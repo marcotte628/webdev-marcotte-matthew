@@ -5,22 +5,29 @@
 // Get the dependencies
 
 const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 const path = require('path');
 const http = require('http');
-const bodyParser = require('body-parser');
-const app = express();
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+var passport = require('passport');
+
+app.use(cookieParser());
+app.use(session({ secret: "abcdefghijklmnopqrstuvwxyz" }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-
 // CORS
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
 

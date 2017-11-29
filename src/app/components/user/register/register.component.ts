@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../../services/user.service.client';
 import { Router } from '@angular/router';
+import {SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   @ViewChild('f') registerForm: NgForm;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private sharedService: SharedService) { }
 
   username: String;
   password: String;
@@ -28,9 +29,10 @@ export class RegisterComponent implements OnInit {
     this.password = this.registerForm.value.password;
     this.reenter = this.registerForm.value.reenter;
     if (this.password === this.reenter) {
-      this.userService.createUser(this.username, this.password).subscribe(
+      this.userService.register(this.username, this.password).subscribe(
         (data: any) => {
-          this.router.navigate(['/user/' + data._id]);
+          this.sharedService.user = data;
+          this.router.navigate(['/user']);
         },
         (error: any) => {
         }

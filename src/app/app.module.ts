@@ -34,7 +34,6 @@ import {SafePipe} from './services/widget.service.client.safePipe';
 
 import { QuillEditorModule } from 'ngx-quill-editor';
 
-
 // project components
 import {ProjectLoginComponent} from './components/project-user/project-login/project-login.component';
 import { ProjectProfileComponent } from './components/project-user/project-profile/project-profile.component';
@@ -68,6 +67,7 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
 import { NewTextComponent } from './components/widget/widget-new/new-text/new-text.component';
 import { NewFlickrImageComponent } from './components/widget/widget-new/new-image/new-flickr-image/new-flickr-image.component';
 import {FlickrService} from './services/flickr.service.client';
+import {SharedService} from './services/shared.service.client';
 
 @NgModule({
   // Declare components here
@@ -128,7 +128,7 @@ import {FlickrService} from './services/flickr.service.client';
   ],
   // Client Side services here
   providers: [ TestService, UserService, WebsiteService, PageService, WidgetService,
-    FoodService, GymService, StoreService, PersonService, WorkoutService, FlickrService],
+    FoodService, GymService, StoreService, PersonService, WorkoutService, FlickrService, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
