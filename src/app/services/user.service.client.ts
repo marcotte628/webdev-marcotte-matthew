@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
 import {environment} from '../../environments/environment';
+import {SharedService} from './shared.service.client';
+import {Router} from '@angular/router';
 
 
 // injecting service into module
@@ -9,7 +11,8 @@ import {environment} from '../../environments/environment';
 
 export class UserService {
 
-  constructor(private _http: Http) {}
+  constructor(private _http: Http, private sharedService: SharedService,
+              private router: Router) {}
 
   options: RequestOptions = new RequestOptions();
   baseUrl = environment.baseUrl;
@@ -56,7 +59,21 @@ export class UserService {
       .map((status) => {
         return status;
       });
-
+  }
+  loggedIn() {
+    const url = 'http://localhost:3100/api/loggedIn';
+    this.options.withCredentials = true;
+    return this._http.post(url, '', this.options)
+      .map((res: Response) => {
+        const user = res.json();
+        if (user !== 0) {
+          this.sharedService.user = user;
+          return true;
+        } else {
+          this.router.navigate(['/login']);
+          return false;
+        }
+      });
   }
   // findUserById
   findUserById(userId: String) {

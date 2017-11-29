@@ -46,15 +46,15 @@ import { NewHtmlComponent } from './components/widget/widget-new/new-html/new-ht
 import { NewTextComponent } from './components/widget/widget-new/new-text/new-text.component';
 import { NewFlickrImageComponent } from './components/widget/widget-new/new-image/new-flickr-image/new-flickr-image.component';
 
-
+import {AuthenticationService } from './services/authentication.client.service';
 
 const APP_ROUTES: Routes = [
   {path: '', component : HomeComponent},
   {path: 'test', component: TestComponent},
   { path : 'login' , component: LoginComponent},
   { path : 'register' , component: RegisterComponent },
-  { path : 'user' , component: ProfileComponent},
   { path : 'user/:uid' , component: ProfileComponent},
+  { path: 'user', component: ProfileComponent, canActivate: [AuthenticationService] },
   { path : 'user/:uid/website' , component: WebsiteListComponent},
   { path : 'user/:uid/website/new' , component: WebsiteNewComponent},
   { path : 'user/:uid/website/:wid' , component: WebsiteEditComponent},
