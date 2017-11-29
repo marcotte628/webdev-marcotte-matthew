@@ -52,6 +52,12 @@ export class ProfileComponent implements OnInit {
     // );
   }
 
+  logout() {
+    this.userService.logout().subscribe((status) => {
+      this.router.navigate(['/login']);
+    });
+  }
+
   updateUser() {
     this.userService.updateUser(this.userId, this.username, this.password, this.first,
                                 this.last, this.email, this.phone, this.websites).subscribe((data) => {

@@ -17,6 +17,13 @@ module.exports = function(app) {
   app.delete("/api/user/:userId", deleteUser);
   app.post('/api/register', register);
   app.post('/api/login', passport.authenticate('local'), login);
+  app.post('/api/logout', logout);
+
+  function logout(req, res) {
+    req.logOut();
+    res.send(200);
+  }
+
 
   function login(req, res) {
     res.json(req.user);

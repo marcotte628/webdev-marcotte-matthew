@@ -49,6 +49,15 @@ export class UserService {
     //   return user;
     // }
   }
+  logout() {
+    const url = 'http://localhost:3100/api/logout';
+    this.options.withCredentials = true;
+    return this._http.post(url, {}, this.options)
+      .map((status) => {
+        return status;
+      });
+
+  }
   // findUserById
   findUserById(userId: String) {
     return this._http.get(this.baseUrl + '/api/user/' + userId)
