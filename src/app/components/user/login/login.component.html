@@ -1,4 +1,5 @@
 
+
   <div class="container">
 
     <div *ngIf="errorFlag"
@@ -36,7 +37,12 @@
             [disabled]="!f.valid">
       Login
     </button>
-    <button class="btn btn-success btn-block"
+      <a href="/facebook/login" class="btn btn-primary btn-block">
+        <span class="fa fa-facebook"></span>
+        Facebook
+      </a>
+
+      <button class="btn btn-success btn-block"
             type="submit"
             [routerLink]="['/register']">
       Register

@@ -2,7 +2,10 @@
 module.exports = function(app) {
 
   var userModel = require("../model/user/user.model.server");
+
+  var bcrypt = require("bcrypt-nodejs");
   var passport  = require('passport');
+  var FacebookStrategy = require('passport-facebook').Strategy;
   var LocalStrategy = require('passport-local').Strategy;
   passport.use(new LocalStrategy(localStrategy));
   passport.serializeUser(serializeUser);
@@ -19,6 +22,45 @@ module.exports = function(app) {
   app.post('/api/login', passport.authenticate('local'), login);
   app.post('/api/logout', logout);
   app.post('/api/loggedIn', loggedIn);
+  app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+      successRedirect: '/#/profile',
+      failureRedirect: '/#/login'
+    }));
+
+
+  var facebookConfig = {
+    clientID     : 338818749860053,
+    clientSecret : 'cefbff77745bcee7c83d08eed6517b98',
+    callbackURL  : 'http://localhost:3100/user'
+  };
+  passport.use(
+    new FacebookStrategy(facebookConfig, facebookStrategy));
+
+  function facebookStrategy(token, refreshToken, profile, done)
+  {
+    userModel
+      .findUserByFacebookId(profile.id)
+      .then(function(user) {
+        if(user) { return done(null, user); } // already in db
+        else { // if not, insert into db using profile info
+          var names = profile.displayName.split(" ");
+          var newFacebookUser = { lastName:  names[1],
+            firstName: names[0],
+            email:     profile.emails ? profile.emails[0].value:"",
+            facebook: { id:    profile.id, token: token }
+          };
+          return userModel.createUser(newFacebookUser);
+        }
+      }) // ...next few slides...
+      .then(function(user){
+          return done(null, user);
+        }
+      );
+
+  }
+
 
   function loggedIn(req, res) {
     if(req.isAuthenticated()) {
@@ -41,20 +83,24 @@ module.exports = function(app) {
 
   function localStrategy(usr, pass, done) {
     userModel
-      .findUserByCredentials(usr, pass)
+      .findUserByUsername(usr)
       .then(
         function(user) {
-          if( user ) {
+          if(user.username === usr && user.password == pass){
+            return done(null, user);
+          }else if (user.username === usr &&bcrypt.compareSync(pass, user.password)) {
             return done(null, user);
           } else {
             return done(null, false);
           }
+
         }
       );
   }
 
   function register(req, res) {
     var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
     userModel
       .createUser(user)
       .then(function(user){
