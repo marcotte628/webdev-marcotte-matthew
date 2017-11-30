@@ -117,7 +117,7 @@ export class UserService {
   updateUser(userId: String, username: String, password: String, first: String,
              last: String, email: String, phone: String, websites) {
     const date = new Date();
-    const url = this.baseUrl + '/api/user';
+    const url = this.baseUrl + '/api/user/' + userId;
     const body = {_id: userId, username: username, password: password, firstName: first, lastName: last,
                   email: email, phone: phone, websites: websites, dateCreated: date};
     return this._http.put(url, body).map( (res: Response) =>  {

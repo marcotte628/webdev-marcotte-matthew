@@ -28,7 +28,6 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         (params: any) => {
           this.user = this.sharedService.user || {};
-          this.userId = params['uid'];
         });
     this.username = this.user.username;
     this.email = this.user.email;
@@ -37,6 +36,9 @@ export class ProfileComponent implements OnInit {
     this.password = this.user.password;
     this.phone = this.user.phone
     this.websites = this.user.websites;
+    this.userService.findUserByUsername(this.username).subscribe((data) => {
+      this.userId = data._id;
+    });
     // this.userService.findUserById(this.userId).subscribe(
     //   (data: any) => {
     //     this.username = data.username;
@@ -61,6 +63,7 @@ export class ProfileComponent implements OnInit {
   updateUser() {
     this.userService.updateUser(this.userId, this.username, this.password, this.first,
                                 this.last, this.email, this.phone, this.websites).subscribe((data) => {
+      this.userId = data._id;
       this.username = data.username;
       this.email = data.email;
       this.first = data.firstName;
