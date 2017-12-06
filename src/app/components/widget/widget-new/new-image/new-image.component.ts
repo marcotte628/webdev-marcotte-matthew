@@ -20,7 +20,8 @@ export class NewImageComponent implements OnInit {
   pageId: String;
   widgets= [];
   baseUrl: String;
-
+  invalidWidgetName: boolean;
+  invalidMessage: String;
   constructor(private widgetService: WidgetService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -31,6 +32,8 @@ export class NewImageComponent implements OnInit {
           this.pageId = params['pid'];
           this.websiteId = params['wid'];
         });
+    this.invalidWidgetName = false;
+    this.invalidMessage = '';
     this.baseUrl = environment.baseUrl;
     this.widgetService.findWidgetById(this.pageId).subscribe( (widgets) => {
       this.widgets = widgets;
@@ -39,6 +42,10 @@ export class NewImageComponent implements OnInit {
   }
 
   createImage () {
+    if (! this.widgetName ) {
+      this.invalidMessage = 'widget name is a required field';
+      this.invalidWidgetName = true;
+    } else {
     const date = new Date();
     const info = {_page : this.pageId, type : 'IMAGE', name : this.widgetName, text : this.widgetText,
       placeholder : '', description : '', url : this.widgetUrl, width : this.widgetWidth,
@@ -47,5 +54,5 @@ export class NewImageComponent implements OnInit {
     this.widgetService.createWidget(this.pageId, info).subscribe((resp) => { this.widgets = resp; });
     this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
   }
-
+  }
 }

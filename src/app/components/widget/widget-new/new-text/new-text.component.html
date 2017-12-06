@@ -57,6 +57,12 @@
           (click)="cancel()">
     Cancel
   </button>
+
+  <br>
+  <span class="alert alert-danger form-control" *ngIf="invalidWidgetName">
+          {{invalidMessage}}
+      </span>
+
 </div>
 
 <!-- Footer -->

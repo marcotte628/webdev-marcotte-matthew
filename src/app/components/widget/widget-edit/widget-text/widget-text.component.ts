@@ -19,7 +19,8 @@ export class WidgetTextComponent implements OnInit {
   widgetFormatted: Boolean;
   widgetRows: number;
   widget;
-
+  invalidWidgetName: boolean;
+  invalidMessage: String;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
   ngOnInit() {
@@ -31,6 +32,8 @@ export class WidgetTextComponent implements OnInit {
           this.websiteId = params['wid'];
           this.widgetId = params['wgid'];
         });
+    this.invalidWidgetName = false;
+    this.invalidMessage = '';
     this.widgetService.findWidgetById(this.widgetId).subscribe((widget) => {
       this.widget = widget;
       this.widgetName = this.widget.name;
@@ -39,6 +42,10 @@ export class WidgetTextComponent implements OnInit {
   }
 
   updateWidget() {
+    if (! this.widgetName ) {
+      this.invalidMessage = 'widget name is a required field';
+      this.invalidWidgetName = true;
+    } else {
     const updatedWidget = {_page : this.widget._page, type : this.widget.type, name : this.widgetName, text : this.widgetText,
       placeholder : this.widgetPlaceholder, description : this.widget.description, url : this.widget.url, width : this.widget.url,
       height : this.widget.height, rows : this.widgetRows, size : this.widget.size, class : this.widget.class, icon : this.widget.icon,
@@ -47,7 +54,7 @@ export class WidgetTextComponent implements OnInit {
     this.widgetService.updateWidget(this.widgetId, updatedWidget).subscribe(() => {
       this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget' ]);
     } );
-
+    }
   }
 
   cancel() {

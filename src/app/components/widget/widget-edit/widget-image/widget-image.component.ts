@@ -21,7 +21,8 @@ export class WidgetImageComponent implements OnInit {
   websiteId: String;
   pageId: String;
   userId: String;
-
+  invalidWidgetName: boolean;
+  invalidMessage: String;
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute,
               private router: Router) { }
 
@@ -34,6 +35,8 @@ export class WidgetImageComponent implements OnInit {
           this.pageId = params['pid'];
           this.websiteId = params['wid'];
         });
+    this.invalidWidgetName = false;
+    this.invalidMessage = '';
     this.baseUrl = environment.baseUrl;
     this.widgetService.findWidgetById(this.widgetId).subscribe((widget) => {
       this.widget = widget;
@@ -52,9 +55,14 @@ export class WidgetImageComponent implements OnInit {
   }
 
   updateWidget() {
+    if (! this.widgetName ) {
+      this.invalidMessage = 'widget name is a required field';
+      this.invalidWidgetName = true;
+    } else {
     const info = { _id: this.widgetId, widgetType: 'IMAGE', pageId: this.pageId, width: this.widgetWidth, url: this.widgetUrl};
     this.widgetService.updateWidget(this.widgetId, info).subscribe((widget) => { this.widget = widget; });
     this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget' ]);
+    }
   }
 
 }

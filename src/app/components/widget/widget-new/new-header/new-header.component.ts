@@ -19,6 +19,8 @@ export class NewHeaderComponent implements OnInit {
   headingText: String;
   headingSize: number;
   widgets;
+  invalidWidgetName: boolean;
+  invalidMessage: String;
   constructor(private widgetService: WidgetService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -29,15 +31,22 @@ export class NewHeaderComponent implements OnInit {
           this.pageId = params['pid'];
           this.websiteId = params['wid'];
         });
+    this.invalidWidgetName = false;
+    this.invalidMessage = '';
   }
 
   createWidget() {
-    const date = new Date();
+    if (! this.headingName ) {
+      this.invalidMessage = 'widget name is a required field';
+      this.invalidWidgetName = true;
+    } else {
+      const date = new Date();
     const info = {	_page : this.pageId, type : 'HEADING', name : this.headingName, text : this.headingText,
                     placeholder : '', description : '', url : '', width : '',
                     height : '', rows : '', size : this.headingSize, class : '', icon : '', deletable : true,
                     formatted : true, dateCreated : date};
     this.widgetService.createWidget(this.pageId, info).subscribe((resp) => { this.widgets = resp; });
     this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
+  }
   }
 }

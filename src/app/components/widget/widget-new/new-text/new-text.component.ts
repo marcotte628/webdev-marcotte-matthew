@@ -18,7 +18,8 @@ export class NewTextComponent implements OnInit {
   widgetFormatted: Boolean;
   widgetRows: number;
   widget;
-
+  invalidWidgetName: boolean;
+  invalidMessage: String;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
   ngOnInit() {
@@ -29,9 +30,15 @@ export class NewTextComponent implements OnInit {
           this.pageId = params['pid'];
           this.websiteId = params['wid'];
         });
+    this.invalidWidgetName = false;
+    this.invalidMessage = '';
   }
 
   createWidget() {
+    if (! this.widgetName ) {
+      this.invalidMessage = 'widget name is a required field';
+      this.invalidWidgetName = true;
+    } else {
     const date = new Date();
     const newWidget = {_page : this.pageId, type : 'INPUT', name : this.widgetName, text : this.widgetText,
       placeholder : this.widgetPlaceholder, description : '', url : '', width : '',
@@ -41,6 +48,7 @@ export class NewTextComponent implements OnInit {
     this.widgetService.createWidget(this.pageId, newWidget).subscribe(() => {
       this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget' ]);
     } );
+    }
   }
 
   cancel() {

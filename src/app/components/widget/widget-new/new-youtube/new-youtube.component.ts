@@ -17,7 +17,8 @@ export class NewYoutubeComponent implements OnInit {
   widgetUrl: String;
   widgetWidth: String;
   widgets;
-
+  invalidWidgetName: boolean;
+  invalidMessage: String;
   constructor(private widgetService: WidgetService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -28,12 +29,19 @@ export class NewYoutubeComponent implements OnInit {
           this.pageId = params['pid'];
           this.websiteId = params['wid'];
         });
+    this.invalidWidgetName = false;
+    this.invalidMessage = '';
+
     this.widgetService.findWidgetById(this.pageId).subscribe((wdtgs) => {
       this.widgets = wdtgs;
     } );
   }
 
   createYoutube() {
+    if (! this.widgetName ) {
+      this.invalidMessage = 'widget name is a required field';
+      this.invalidWidgetName = true;
+    } else {
     const date = new Date();
     const info = {_page : this.pageId, type : 'YOUTUBE', name : this.widgetName, text : this.widgetText,
       placeholder : '', description : '', url : this.widgetUrl, width : this.widgetWidth,
@@ -42,6 +50,6 @@ export class NewYoutubeComponent implements OnInit {
     this.widgetService.createWidget(this.pageId, info).subscribe((resp) => { this.widgets = resp; });
     this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
   }
-
+  }
 
 }
