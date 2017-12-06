@@ -39,8 +39,10 @@ export class WebsiteNewComponent implements OnInit {
       this.invalidMessage = 'website name is a required field';
       this.invalidWebsiteName = true;
     } else {
-     this.websiteService.createWebsite(this.userId, info).subscribe( (websites) => { this.websites = websites; });
-     this.router.navigate(['/user/' + this.userId + '/website' ]);
+     this.websiteService.createWebsite(this.userId, info).subscribe( (websites) => {
+       this.websites = websites;
+       this.router.navigate(['/user/' + this.userId + '/website' ]);
+     });
     }
   }
 
