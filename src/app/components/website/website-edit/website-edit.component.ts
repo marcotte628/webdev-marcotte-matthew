@@ -15,7 +15,8 @@ export class WebsiteEditComponent implements OnInit {
   websiteDescription: String;
   userId: String;
   websites = [];
-
+  invalidWebsiteName: boolean;
+  invalidMessage: String;
   constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -26,6 +27,8 @@ export class WebsiteEditComponent implements OnInit {
           this.websiteId = params['wid'];
         }
       );
+    this.invalidWebsiteName = false;
+    this.invalidMessage = '';
     this.websiteService.findAllWebsitesForUser(this.userId).subscribe( (websites) => { this.websites = websites; });
     this.website = this.websiteService.findWebsiteById(this.websiteId).subscribe( (website) => {
       this.website = website;
@@ -42,7 +45,12 @@ export class WebsiteEditComponent implements OnInit {
 
   updateWebsite() {
     const info = { _id: this.websiteId, name: this.websiteName, developerId: this.userId, description: this.websiteDescription };
+    if (! this.websiteName ) {
+      this.invalidMessage = 'website name is a required field';
+      this.invalidWebsiteName = true;
+    } else {
     this.websiteService.updateWebsite(this.websiteId, info).subscribe((website) => { this.website = website; });
     this.router.navigate(['/user/' + this.userId + '/website' ]);
+    }
   }
 }

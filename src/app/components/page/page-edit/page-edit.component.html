@@ -45,6 +45,10 @@
       <!-- Delete Button-->
       <a class="btn btn-danger btn-block"
          (click)="deletePage()"> Delete </a>
+      <br>
+      <span class="alert alert-danger form-control" *ngIf="invalidPageName">
+          {{invalidMessage}}
+      </span>
     </form>
 </div>
 

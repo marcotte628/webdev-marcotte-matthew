@@ -38,7 +38,7 @@ module.exports = function (app) {
 
   function findWebsiteById(req, res) {
     var websiteId = req.params['websiteId'];
-    websiteModel.findWebsiteById(websteId).then(function(site){
+    websiteModel.findWebsiteById(websiteId).then(function(site){
       res.json(site);
     });
   }

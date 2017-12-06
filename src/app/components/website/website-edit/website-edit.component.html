@@ -66,6 +66,12 @@
           </div>
           <a class="btn btn-primary btn-block" (click)="updateWebsite()">Update</a>
           <a class="btn btn-danger btn-block" (click)="deleteWebsite()">Delete</a>
+
+          <br>
+          <span class="alert alert-danger form-control" *ngIf="invalidWebsiteName">
+          {{invalidMessage}}
+         </span>
+
         </form>
 
      </div>

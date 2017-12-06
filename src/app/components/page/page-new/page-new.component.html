@@ -40,6 +40,11 @@
       <!-- Update Button-->
       <a class="btn btn-primary btn-block"
          type="submit" (click)="createPage()"> Create Page </a>
+
+      <br>
+      <span class="alert alert-danger form-control" *ngIf="invalidPageName">
+          {{invalidMessage}}
+      </span>
   </form>
   </div>
 
