@@ -32,5 +32,10 @@
     </button>
     <button class="btn btn-danger btn-block"
        [routerLink]="['/login']">Cancel</button>
+
+      <br>
+      <span class="alert alert-danger form-control" *ngIf="registerInfoNotValid">
+          {{invalidMessage}}
+      </span>
     </form>
   </div>

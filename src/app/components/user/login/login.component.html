@@ -28,7 +28,6 @@
            #username="ngModel"/>
     <button class="btn btn-primary btn-block"
             type="submit"
-            name="login"
             [routerLink]=profileURL>
       Login
     </button>
@@ -44,7 +43,7 @@
     </button>
       <br>
       <br>
-      <span class="alert alert-danger form-control" *ngIf="loginInfoValid">
+      <span class="alert alert-danger form-control" *ngIf="loginInfoNotValid">
           Please enter valid username and password!
       </span>
     </form>

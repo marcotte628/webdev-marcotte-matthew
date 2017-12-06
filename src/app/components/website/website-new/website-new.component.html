@@ -56,6 +56,11 @@
                     [(ngModel)]="websiteDescription" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
         <button class="btn btn-primary btn-block" type="submit" (click)="createWebsite()"> Create Website </button>
+
+        <br>
+        <span class="alert alert-danger form-control" *ngIf="invalidWebsiteName">
+          {{invalidMessage}}
+      </span>
       </form>
     </div>
   </div>

@@ -20,15 +20,27 @@ export class RegisterComponent implements OnInit {
   reenter: String;
   userId: String;
   profileURL: String;
+  registerInfoNotValid: boolean;
+  invalidMessage: String;
 
   ngOnInit() {
+    this.registerInfoNotValid = false;
+    this.invalidMessage = '';
   }
 
   register(event: any) {
     this.username = this.registerForm.value.username;
     this.password = this.registerForm.value.password;
     this.reenter = this.registerForm.value.reenter;
-    if (this.password === this.reenter) {
+
+    if (! this.username || ! this.password || ! this.reenter) {
+      this.invalidMessage = 'please enter username, password, and reenter the password';
+      this.registerInfoNotValid = true;
+    } else if ( this.password !== this.reenter) {
+      this.invalidMessage = 'please make sure the passwords match';
+
+      this.registerInfoNotValid = true;
+    } else {
       this.userService.register(this.username, this.password).subscribe(
         (data: any) => {
           this.sharedService.user = data;
