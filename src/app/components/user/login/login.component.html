@@ -16,9 +16,8 @@
            name="username"
            class="form-control"
            ngModel
-           required
            #username="ngModel"/>
-      <span class="help-block" *ngIf="!username.valid && username.touched">
+      <span class="alert alert-danger form-control" *ngIf="!username.valid && username.touched">
         Please enter username!
       </span>
     <input placeholder="password"
@@ -26,15 +25,11 @@
            class="form-control"
            name="password"
            ngModel
-           required
            #username="ngModel"/>
-        <span class="help-block" *ngIf="!username.valid && username.touched">
-          Please enter password!
-      </span>
     <button class="btn btn-primary btn-block"
             type="submit"
-            [routerLink]=profileURL
-            [disabled]="!f.valid">
+            name="login"
+            [routerLink]=profileURL>
       Login
     </button>
       <a href="/facebook/login" class="btn btn-primary btn-block">
@@ -47,5 +42,10 @@
             [routerLink]="['/register']">
       Register
     </button>
+      <br>
+      <br>
+      <span class="alert alert-danger form-control" *ngIf="loginInfoValid">
+          Please enter valid username and password!
+      </span>
     </form>
   </div>

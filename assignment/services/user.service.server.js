@@ -33,7 +33,7 @@ module.exports = function(app) {
   var facebookConfig = {
     clientID     : 338818749860053,
     clientSecret : 'cefbff77745bcee7c83d08eed6517b98',
-    callbackURL  : 'http://localhost:3100/user'
+    callbackURL  : 'http://localhost:3100/auth/facebook/callback'
   };
   passport.use(
     new FacebookStrategy(facebookConfig, facebookStrategy));
@@ -86,8 +86,10 @@ module.exports = function(app) {
       .findUserByUsername(usr)
       .then(
         function(user) {
+          // if to allow login on previous users without encrypted passwords
           if(user.username === usr && user.password == pass){
             return done(null, user);
+            // if to allow new registered users to use encrypted passwords
           }else if (user.username === usr &&bcrypt.compareSync(pass, user.password)) {
             return done(null, user);
           } else {

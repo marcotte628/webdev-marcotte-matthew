@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   profileURL: String;
   errorFlag: boolean;
   errorMsg= 'Invalid username or password !';
+  toggle: String;
+  loginInfoValid: boolean;
 
   title: string; // see usage as string interpolation (data flows from .ts to HTML template)
   disabledFlag: boolean; // see usage as property binding (binds to various properties of HTML component)
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.title = 'Login';
     this.disabledFlag = true;
+    this.loginInfoValid = false;
   }
 
   // binding click event
@@ -38,13 +41,16 @@ export class LoginComponent implements OnInit {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
 
-    console.log('logging in..' + this.username + ' ' + this.password);
-    this.userService
-      .login(this.username, this.password)
-      .subscribe((user) => {
-        this.sharedService.user = user;
-        this.router.navigate(['/user']);
-      });
+    if (! this.username || ! this.password ) {
+      this.loginInfoValid = true;
+    } else {
+      this.userService
+        .login(this.username, this.password)
+        .subscribe((user) => {
+          this.sharedService.user = user;
+          this.router.navigate(['/user']);
+        });
+    }
     //
     //
     // this.userService.login(this.username, this.password).subscribe(
