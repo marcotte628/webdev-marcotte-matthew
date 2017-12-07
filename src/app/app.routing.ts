@@ -47,6 +47,7 @@ import { NewTextComponent } from './components/widget/widget-new/new-text/new-te
 import { NewFlickrImageComponent } from './components/widget/widget-new/new-image/new-flickr-image/new-flickr-image.component';
 
 import {ProjectAuthenticatorClient} from './services/project.authenticator.client';
+import {AdminUserListComponent} from './components/project-user/admin-user-list/admin-user-list.component';
 
 const APP_ROUTES: Routes = [
   {path: '', component : HomeComponent},
@@ -75,6 +76,7 @@ const APP_ROUTES: Routes = [
   { path: 'project/register', component: ProjectRegisterComponent},
   { path: 'project/user', component: ProjectProfileComponent, canActivate: [ProjectAuthenticatorClient] },
   { path: 'project/user/:uid', component: ProjectProfileComponent},
+  { path: 'project/admin/user', component: AdminUserListComponent },
   { path: 'project/user/:uid/new-workout', component: NewWorkoutComponent},
   { path: 'project/user/:uid/new-food', component: NewDietComponent},
   { path: 'project/user/:uid/new-store', component: NewStoreComponent},

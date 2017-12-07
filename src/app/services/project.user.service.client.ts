@@ -16,6 +16,16 @@ export class PersonService {
 
   baseUrl = environment.baseUrl;
 
+  findAllUsers() {
+    const url = this.baseUrl + '/api/project/getAllUsers';
+    this.options.withCredentials = true;
+    return this._http.get(url, this.options)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+
   logout() {
     const url = this.baseUrl + '/api/project/logout';
     this.options.withCredentials = true;

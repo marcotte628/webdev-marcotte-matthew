@@ -18,7 +18,13 @@ module.exports = function(app) {
   app.post('/api/project/login', passport.authenticate('local'), login);
   app.post('/api/project/loggedIn', loggedIn);
   app.post('/api/project/logout', logout);
+  app.get("/api/project/getAllUsers", getAllAccounts);
 
+  function getAllAccounts(req, res) {
+    userModel.findAllAccounts().then(function(users){
+      res.json(users);
+    });
+  }
   function logout(req, res) {
     req.logOut();
     res.send(200);
@@ -80,9 +86,7 @@ module.exports = function(app) {
         res.json(user);
       });
     }else{
-      userModel.findAllAccounts().then(function(users){
-        res.json(users);
-      });
+      res.sendStatus(404);
     }
   }
 

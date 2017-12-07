@@ -69,6 +69,7 @@ import { NewFlickrImageComponent } from './components/widget/widget-new/new-imag
 import {FlickrService} from './services/flickr.service.client';
 import {SharedService} from './services/shared.service.client';
 import {ProjectAuthenticatorClient} from './services/project.authenticator.client';
+import { AdminUserListComponent } from './components/project-user/admin-user-list/admin-user-list.component';
 
 @NgModule({
   // Declare components here
@@ -118,7 +119,8 @@ import {ProjectAuthenticatorClient} from './services/project.authenticator.clien
     WidgetHtmlComponent,
     WidgetTextComponent,
     NewTextComponent,
-    NewFlickrImageComponent
+    NewFlickrImageComponent,
+    AdminUserListComponent
   ],
   imports: [
     QuillEditorModule,
