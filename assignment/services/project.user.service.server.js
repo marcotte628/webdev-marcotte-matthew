@@ -3,39 +3,64 @@ module.exports = function(app) {
 
 
   var userModel = require("../model/project-user/project.user.model.server");
-
-  var PEOPLE = [
-    {_id: "012", username: "matt",    password: "matt",    name: "Matt Marcotte", role: "athlete",
-      rating: 1000, followedIds: ["123", "234", "345", "456", "567", "678", "789"], postIds: ["000", "001", "002" ],
-      gymIds: [], storeIds: [] },
-    {_id: "123", username: "alice",    password: "alice", name: "Alice Wonder",  role: "trainer",
-      rating: 1000,  followedIds: [ "234", "345", "456", "567", "678", "789"], postIds: ["003", "004", "005" ],
-      gymIds: [], storeIds: [] },
-    {_id: "234", username: "bob",      password: "bob",  name: "Bob Marley",  role: "nutritionist",
-      rating: 1000,  followedIds: ["123", "345", "456", "567" ], postIds: ["006", "007", "008" ],
-      gymIds: [], storeIds: [] },
-    {_id: "345", username: "tyrone",   password: "tyrone", name: "Tyrone Woodly", role: "athlete",
-      rating: 750,  followedIds: ["123", "234" ], postIds: ["009", "010", "011" ],
-      gymIds: [], storeIds: []},
-    {_id: "456", username: "tyler", password: "tyler", name: "Tyler Durden", role: "athlete",
-      rating: 500, followedIds: [ ], postIds: ["012", "013" ],
-      gymIds: [], storeIds: []},
-    {_id: "567", username: "joe", password: "joe", name: "Joe Rogan", role: "athlete",
-      rating: 250, followedIds: ["123", "234", "345", "678", "789"], postIds: ["014", "015", "016" ],
-      gymIds: [], storeIds: []},
-    {_id: "678", username: "owen", password: "owen", name: "Owen Woods", role: "athlete",
-      rating: 100, followedIds: ["123", "234", "345", "456", "567"], postIds: ["017", "018", "019" ],
-      gymIds: [], storeIds: []},
-    {_id: "789", username: "ronald", password: "mcdonald", name: "Ronald McDonald", role: "athlete",
-      rating: 1, followedIds: ["012"], postIds: ["020", "021", "022" ],
-      gymIds: [], storeIds: []}
-  ];
+  var passport  = require('passport');
+  var LocalStrategy = require('passport-local').Strategy;
+  passport.use(new LocalStrategy(localStrategy));
+  passport.serializeUser(serializeUser);
+  passport.deserializeUser(deserializeUser);
 
   app.get("/api/project/user", getPerson);
   app.get("/api/project/user/:uid", getPersonById);
   app.post("/api/project/user", createAccount);
   app.put("/api/project/user/:uid", updateAccount);
   app.delete("/api/project/user/:uid", deleteAccount);
+  app.post('/api/project/register', register);
+  app.post('/api/project/login', passport.authenticate('local'), login);
+  app.post('/api/project/loggedIn', loggedIn);
+
+
+  function loggedIn(req, res) {
+    if(req.isAuthenticated()) {
+      res.json(req.user);
+    } else {
+      res.send('0');
+    }
+  }
+
+  function login(req, res) {
+    res.json(req.user);
+  }
+
+  function localStrategy(usr, pass, done) {
+    userModel
+      .findAccountByUsername(usr)
+      .then(
+        function(user) {
+          // if to allow login on previous users without encrypted passwords
+          if(user.username === usr && user.password == pass){
+            return done(null, user);
+            // if to allow new registered users to use encrypted passwords
+          }else if (user.username === usr &&bcrypt.compareSync(pass, user.password)) {
+            return done(null, user);
+          } else {
+            return done(null, false);
+          }
+
+        }
+      );
+  }
+
+  function register(req, res) {
+    var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
+    userModel
+      .createAccount(user)
+      .then(function(user){
+        req.login(user, function(err) {
+          res.json(user);
+        });
+      });
+  }
 
   function getPerson(req, res){
     var username = req.query["username"];
@@ -87,4 +112,21 @@ module.exports = function(app) {
     });
   }
 
-}
+  function serializeUser(user, done) {
+    done(null, user);
+  }
+
+  function deserializeUser(user, done) {
+    userModel
+      .findAccountById(user._id)
+      .then(
+        function(user){
+          done(null, user);
+        },
+        function(err){
+          done(err, null);
+        }
+      );
+  }
+
+};

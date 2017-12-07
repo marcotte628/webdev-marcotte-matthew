@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
 import {PersonService} from '../../../services/project.user.service.client';
+import {SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-project-login',
@@ -21,7 +22,8 @@ export class ProjectLoginComponent implements OnInit {
   disabledFlag: boolean;
 
   constructor(private router: Router,
-              private personService: PersonService) { }
+              private personService: PersonService,
+              private sharedService: SharedService) { }
 
   ngOnInit() {
     this.disabledFlag = true;
@@ -30,15 +32,12 @@ export class ProjectLoginComponent implements OnInit {
   login(event: any) {
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
-    this.personService.getPersonByCredentials(this.username, this.password).subscribe(
-      (data: any) => {
-        this.errorFlag = false;
-        this.router.navigate(['/project/user/' + data._id]);
-      },
-      (error: any) => {
-        this.errorFlag = true;
-      }
-    );
+    this.personService
+      .login(this.username, this.password)
+      .subscribe((user) => {
+        this.sharedService.user = user;
+        this.router.navigate(['/project/user']);
+      });
   }
 
   /*

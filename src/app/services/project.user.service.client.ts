@@ -1,15 +1,67 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
 import {environment} from '../../environments/environment';
+import {SharedService} from './shared.service.client';
+import {Router} from '@angular/router';
 
 @Injectable()
 
 export class PersonService {
 
-  constructor(private _http: Http) {}
+  options: RequestOptions = new RequestOptions();
+
+  constructor(private _http: Http, private sharedService: SharedService,
+              private router: Router) {}
 
   baseUrl = environment.baseUrl;
+
+  // perform register
+  register(username: String, password: String) {
+    const url = this.baseUrl + '/api/project/register';
+    const credentials = {
+      username: username,
+      password: password
+    };
+    this.options.withCredentials = true;
+    return this._http.post(url, credentials, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  // perform login
+  login(username: String, password: String) {
+    const url = this.baseUrl + '/api/project/login';
+    const credentials = {
+      username: username,
+      password: password
+    };
+    this.options.withCredentials = true;
+    return this._http.post(url, credentials, this.options)
+      .map((response: Response) => {
+        return response.json();
+      });
+  }
+
+  loggedIn() {
+    const url = this.baseUrl + '/api/project/loggedIn';
+    this.options.withCredentials = true;
+
+    console.log('checking if project user is logged in...');
+    return this._http.post(url, '', this.options)
+      .map((res: Response) => {
+        const user = res.json();
+        console.log('got this user back -> ' + user)
+        if (user !== 0) {
+          this.sharedService.user = user;
+          return true;
+        } else {
+          this.router.navigate(['/project/login']);
+          return false;
+        }
+      });
+  }
 
   getPerson() {
     return this._http.get(this.baseUrl + '/api/project/user' ).map(

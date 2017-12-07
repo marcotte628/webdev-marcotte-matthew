@@ -1,79 +1,35 @@
 import {Injectable} from '@angular/core';
-import {Http, RequestOptions, Response} from '@angular/http';
+import {Http, Response} from '@angular/http';
 import 'rxjs/Rx';
 import {environment} from '../../environments/environment';
-import {SharedService} from './shared.service.client';
-import {Router} from '@angular/router';
 
-
+/*
+import { Http, RequestOptions, Response } from '@angular/http';
+import { Router } from '@angular/router';
+import { User} from '../models/user.model.client';
+*/
 // injecting service into module
 @Injectable()
 
 export class UserService {
 
-  constructor(private _http: Http, private sharedService: SharedService,
-              private router: Router) {}
+  constructor(private _http: Http) {}
 
-  options: RequestOptions = new RequestOptions();
   baseUrl = environment.baseUrl;
 
   // perform register
   register(username: String, password: String) {
-    const url = this.baseUrl + '/api/register';
-    const credentials = {
-      username: username,
-      password: password
-    };
-    this.options.withCredentials = true;
-    return this._http.post(url, credentials, this.options)
-      .map((response: Response) => {
-        return response.json();
-      });
-    // const user = this.createUser(username, password);
-    // if (user) {
-    //   return user;
-    // }
+    const user = this.createUser(username, password);
+    if (user) {
+      return user;
+    }
   }
   // perform login
   login(username: String, password: String) {
-    const url = this.baseUrl + '/api/login';
-    const credentials = {
-      username: username,
-      password: password
-    };
-    this.options.withCredentials = true;
-    return this._http.post(url, credentials, this.options)
-      .map((response: Response) => {
-        return response.json();
-      });
-    //
-    // const user = this.findUserByCredentials(username, password);
-    // if (user) {
-    //   return user;
-    // }
-  }
-  logout() {
-    const url = this.baseUrl + '/api/logout';
-    this.options.withCredentials = true;
-    return this._http.post(url, {}, this.options)
-      .map((status) => {
-        return status;
-      });
-  }
-  loggedIn() {
-    const url = this.baseUrl + '/api/loggedIn';
-    this.options.withCredentials = true;
-    return this._http.post(url, '', this.options)
-      .map((res: Response) => {
-        const user = res.json();
-        if (user !== 0) {
-          this.sharedService.user = user;
-          return true;
-        } else {
-          this.router.navigate(['/login']);
-          return false;
-        }
-      });
+    const user = this.findUserByCredentials(username, password);
+    if (user) {
+      return user;
+    }
   }
   // findUserById
   findUserById(userId: String) {
@@ -106,9 +62,8 @@ export class UserService {
     const url = this.baseUrl + '/api/user';
     const date = new Date();
     const body = {username: username, password: password, firstName: username, lastName: username,
-                  email: username + '@gmail.com', phone: '', websites: [], dateCreated: date};
-    this.options.withCredentials = true;
-    return this._http.post(url, body, this.options).map( (res: Response) =>  {
+      email: username + '@gmail.com', phone: '', websites: [], dateCreated: date};
+    return this._http.post(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;
     });
@@ -117,9 +72,9 @@ export class UserService {
   updateUser(userId: String, username: String, password: String, first: String,
              last: String, email: String, phone: String, websites) {
     const date = new Date();
-    const url = this.baseUrl + '/api/user/' + userId;
+    const url = this.baseUrl + '/api/user';
     const body = {_id: userId, username: username, password: password, firstName: first, lastName: last,
-                  email: email, phone: phone, websites: websites, dateCreated: date};
+      email: email, phone: phone, websites: websites, dateCreated: date};
     return this._http.put(url, body).map( (res: Response) =>  {
       const data = res.json();
       return data;

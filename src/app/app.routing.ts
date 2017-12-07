@@ -46,7 +46,7 @@ import { NewHtmlComponent } from './components/widget/widget-new/new-html/new-ht
 import { NewTextComponent } from './components/widget/widget-new/new-text/new-text.component';
 import { NewFlickrImageComponent } from './components/widget/widget-new/new-image/new-flickr-image/new-flickr-image.component';
 
-import {AuthenticationService } from './services/authentication.client.service';
+import {ProjectAuthenticatorClient} from './services/project.authenticator.client';
 
 const APP_ROUTES: Routes = [
   {path: '', component : HomeComponent},
@@ -54,7 +54,6 @@ const APP_ROUTES: Routes = [
   { path : 'login' , component: LoginComponent},
   { path : 'register' , component: RegisterComponent },
   { path : 'user/:uid' , component: ProfileComponent},
-  { path: 'user', component: ProfileComponent, canActivate: [AuthenticationService] },
   { path : 'user/:uid/website' , component: WebsiteListComponent},
   { path : 'user/:uid/website/new' , component: WebsiteNewComponent},
   { path : 'user/:uid/website/:wid' , component: WebsiteEditComponent},
@@ -74,6 +73,7 @@ const APP_ROUTES: Routes = [
   // project routes
   { path: 'project/login', component: ProjectLoginComponent},
   { path: 'project/register', component: ProjectRegisterComponent},
+  { path: 'project/user', component: ProjectProfileComponent, canActivate: [ProjectAuthenticatorClient] },
   { path: 'project/user/:uid', component: ProjectProfileComponent},
   { path: 'project/user/:uid/new-workout', component: NewWorkoutComponent},
   { path: 'project/user/:uid/new-food', component: NewDietComponent},

@@ -68,8 +68,7 @@ import { NewTextComponent } from './components/widget/widget-new/new-text/new-te
 import { NewFlickrImageComponent } from './components/widget/widget-new/new-image/new-flickr-image/new-flickr-image.component';
 import {FlickrService} from './services/flickr.service.client';
 import {SharedService} from './services/shared.service.client';
-import {AuthenticationService } from './services/authentication.client.service';
-
+import {ProjectAuthenticatorClient} from './services/project.authenticator.client';
 
 @NgModule({
   // Declare components here
@@ -131,7 +130,7 @@ import {AuthenticationService } from './services/authentication.client.service';
   // Client Side services here
   providers: [ TestService, UserService, WebsiteService, PageService, WidgetService,
     FoodService, GymService, StoreService, PersonService, WorkoutService, FlickrService,
-    SharedService, AuthenticationService],
+    SharedService, ProjectAuthenticatorClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

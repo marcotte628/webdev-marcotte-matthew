@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PersonService} from '../../../services/project.user.service.client';
 import {WorkoutService} from '../../../services/project.workout.service.client';
+import {SharedService} from '../../../services/shared.service.client';
 
 @Component({
   selector: 'app-project-profile',
@@ -10,6 +11,7 @@ import {WorkoutService} from '../../../services/project.workout.service.client';
 })
 export class ProjectProfileComponent implements OnInit {
 
+  user;
   userId: String;
   username: String;
   password: String;
@@ -26,28 +28,29 @@ export class ProjectProfileComponent implements OnInit {
   workoutData = [];
 
   constructor(private personService: PersonService, private activatedRoute: ActivatedRoute, private router: Router,
-              private workoutService: WorkoutService) { }
+              private workoutService: WorkoutService, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
-          this.userId = params['uid'];
+          this.user = this.sharedService.user || {};
         });
-    const user = this.personService.gePersonById(this.userId).subscribe(
+    this.username = this.user.username;
+    this.password = this.user.password;
+    this.name = this.user.name;
+    this.email = this.user.email;
+    this.role = this.user.role;
+    this.rating = this.user.rating;
+    this.followedUsers = this.user.followedUsers;
+    this.followedByUsers = this.user.followedByUsers;
+    this.followedDiets = this.user.followedDiets;
+    this.followedWorkouts = this.user.followedWorkouts;
+    this.gymMemberships = this.user.gymMemberships;
+    this.storeMemberships = this.user.storeMemberships;
+    this.personService.getPersonByUsername(this.userId).subscribe(
       (data: any) => {
-        this.username = data.username;
-        this.password = data.password;
-        this.name = data.name;
-        this.email = data.email;
-        this.role = data.role;
-        this.rating = data.rating;
-        this.followedUsers = data.followedUsers;
-        this.followedByUsers = data.followedByUsers;
-        this.followedDiets = data.followedDiets;
-        this.followedWorkouts = data.followedWorkouts;
-        this.gymMemberships = data.gymMemberships;
-        this.storeMemberships = data.storeMemberships;
+        this.userId = data._id;
       },
       (error: any) => {
       }

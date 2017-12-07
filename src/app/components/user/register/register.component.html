@@ -1,41 +1,36 @@
 
-  <div class="container">
-    <!-- Form for Registering with Username and Password -->
-    <h1>Register</h1>
-    <form (ngSubmit)="register()" #f="ngForm">
-      <input placeholder="username"
-             type="text"
-             name="username"
-             ngModel
-             required
-             #username="ngModel"
-             class="form-control"/>
-      <input placeholder="password"
-             type="password"
-             class="form-control"
-             name="password"
-             ngModel
-             required
-             #username="ngModel"/>
-      <input placeholder="verify password"
-             type="password"
-             class="form-control"
-             name="reenter"
-             ngModel
-             required
-             #username="ngModel"/>
+<div class="container">
+  <!-- Form for Registering with Username and Password -->
+  <h1>Register</h1>
+  <form (ngSubmit)="register()" #f="ngForm">
+    <input placeholder="username"
+           type="text"
+           name="username"
+           ngModel
+           required
+           #username="ngModel"
+           class="form-control"/>
+    <input placeholder="password"
+           type="password"
+           class="form-control"
+           name="password"
+           ngModel
+           required
+           #username="ngModel"/>
+    <input placeholder="verify password"
+           type="password"
+           class="form-control"
+           name="reenter"
+           ngModel
+           required
+           #username="ngModel"/>
     <!-- Buttons for Submit and Cancel -->
     <button class="btn btn-primary btn-block"
-       type="submit"
-       [routerLink]=profileURL>
+            type="submit"
+            [routerLink]=profileURL>
       Register
     </button>
     <button class="btn btn-danger btn-block"
-       [routerLink]="['/login']">Cancel</button>
-
-      <br>
-      <span class="alert alert-danger form-control" *ngIf="registerInfoNotValid">
-          {{invalidMessage}}
-      </span>
-    </form>
-  </div>
+            [routerLink]="['/login']">Cancel</button>
+  </form>
+</div>

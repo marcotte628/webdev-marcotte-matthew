@@ -1,23 +1,23 @@
 
+<div class="container">
 
-  <div class="container">
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
 
-    <div *ngIf="errorFlag"
-         class="alert alert-danger">
-      {{errorMsg}}
-    </div>
+  <h1>{{title}}</h1>
 
-    <h1>{{title}}</h1>
-
-    <!-- Input for Username and Password -->
-    <form (ngSubmit)="login()" #f="ngForm">
+  <!-- Input for Username and Password -->
+  <form (ngSubmit)="login()" #f="ngForm">
     <input placeholder="username"
            type="text"
            name="username"
            class="form-control"
            ngModel
+           required
            #username="ngModel"/>
-      <span class="alert alert-danger form-control" *ngIf="!username.valid && username.touched">
+    <span class="help-block" *ngIf="!username.valid && username.touched">
         Please enter username!
       </span>
     <input placeholder="password"
@@ -25,26 +25,22 @@
            class="form-control"
            name="password"
            ngModel
+           required
            #username="ngModel"/>
+    <span class="help-block" *ngIf="!username.valid && username.touched">
+          Please enter password!
+      </span>
     <button class="btn btn-primary btn-block"
             type="submit"
-            [routerLink]=profileURL>
+            [routerLink]=profileURL
+            [disabled]="!f.valid">
       Login
     </button>
-      <a href="/facebook/login" class="btn btn-primary btn-block">
-        <span class="fa fa-facebook"></span>
-        Facebook
-      </a>
-
-      <button class="btn btn-success btn-block"
+    <button class="btn btn-success btn-block"
             type="submit"
             [routerLink]="['/register']">
       Register
     </button>
-      <br>
-      <br>
-      <span class="alert alert-danger form-control" *ngIf="loginInfoNotValid">
-          Please enter valid username and password!
-      </span>
-    </form>
-  </div>
+  </form>
+</div>
+

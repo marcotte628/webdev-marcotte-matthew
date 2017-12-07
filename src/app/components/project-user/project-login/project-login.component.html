@@ -32,7 +32,7 @@
       </span>
     <button class="btn btn-primary btn-block"
             type="submit"
-            [routerLink]=profileURL
+            (click)="login()"
             [disabled]="!f.valid">
       Login
     </button>
