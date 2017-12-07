@@ -16,6 +16,15 @@ export class PersonService {
 
   baseUrl = environment.baseUrl;
 
+  logout() {
+    const url = this.baseUrl + '/api/project/logout';
+    this.options.withCredentials = true;
+    return this._http.post(url, {}, this.options)
+      .map((status) => {
+        return status;
+      });
+  }
+
   // perform register
   register(username: String, password: String) {
     const url = this.baseUrl + '/api/project/register';

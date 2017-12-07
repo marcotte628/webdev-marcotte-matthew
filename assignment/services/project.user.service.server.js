@@ -17,7 +17,12 @@ module.exports = function(app) {
   app.post('/api/project/register', register);
   app.post('/api/project/login', passport.authenticate('local'), login);
   app.post('/api/project/loggedIn', loggedIn);
+  app.post('/api/project/logout', logout);
 
+  function logout(req, res) {
+    req.logOut();
+    res.send(200);
+  }
 
   function loggedIn(req, res) {
     if(req.isAuthenticated()) {

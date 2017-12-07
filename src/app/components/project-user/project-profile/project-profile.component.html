@@ -160,8 +160,7 @@
      [routerLink]="['/project', 'user', userId, 'stores']" >Search Stores</a>
   <a class="btn btn-primary btn-block"
      [routerLink]="['/project', 'user', userId, 'gyms']" >Search Gyms</a>
-  <a class="btn btn-danger btn-block "
-     [routerLink]="['/project/login']">Logout</a>
+  <a class="btn btn-danger btn-block " (click)="logout()">Logout</a>
 
 </div>
 <br/><br/><br/><br/><br/>

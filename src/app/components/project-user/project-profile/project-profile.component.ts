@@ -57,6 +57,13 @@ export class ProjectProfileComponent implements OnInit {
     );
   }
 
+  logout() {
+    this.personService.logout()
+      .subscribe((status) => {
+        this.router.navigate(['/login']);
+      });
+  }
+
   updateUser() {
     this.personService.updateAccount(this.userId, this.username, this.email, this.password, this.name, this.role,
       this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
@@ -68,5 +75,6 @@ export class ProjectProfileComponent implements OnInit {
       }
     );
   }
-
 }
+
+
