@@ -48,7 +48,7 @@ export class ProjectProfileComponent implements OnInit {
     this.followedWorkouts = this.user.followedWorkouts;
     this.gymMemberships = this.user.gymMemberships;
     this.storeMemberships = this.user.storeMemberships;
-    this.personService.getPersonByUsername(this.userId).subscribe(
+    this.personService.getPersonByUsername(this.username).subscribe(
       (data: any) => {
         this.userId = data._id;
       },
@@ -69,7 +69,7 @@ export class ProjectProfileComponent implements OnInit {
       this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
       this.gymMemberships, this.storeMemberships).subscribe(
       (data: any) => {
-        this.router.navigate(['/project/user/' + this.userId]);
+        this.router.navigate(['/project/user']);
       },
       (error: any) => {
       }

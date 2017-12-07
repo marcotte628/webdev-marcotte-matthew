@@ -70,6 +70,8 @@ import {FlickrService} from './services/flickr.service.client';
 import {SharedService} from './services/shared.service.client';
 import {ProjectAuthenticatorClient} from './services/project.authenticator.client';
 import { AdminUserListComponent } from './components/project-user/admin-user-list/admin-user-list.component';
+import {AdminServiceClient} from './services/admin.secret.client';
+
 
 @NgModule({
   // Declare components here
@@ -132,7 +134,7 @@ import { AdminUserListComponent } from './components/project-user/admin-user-lis
   // Client Side services here
   providers: [ TestService, UserService, WebsiteService, PageService, WidgetService,
     FoodService, GymService, StoreService, PersonService, WorkoutService, FlickrService,
-    SharedService, ProjectAuthenticatorClient],
+    SharedService, ProjectAuthenticatorClient, AdminServiceClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

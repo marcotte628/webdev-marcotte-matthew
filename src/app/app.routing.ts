@@ -48,6 +48,8 @@ import { NewFlickrImageComponent } from './components/widget/widget-new/new-imag
 
 import {ProjectAuthenticatorClient} from './services/project.authenticator.client';
 import {AdminUserListComponent} from './components/project-user/admin-user-list/admin-user-list.component';
+import {AdminServiceClient} from './services/admin.secret.client';
+
 
 const APP_ROUTES: Routes = [
   {path: '', component : HomeComponent},
@@ -77,6 +79,7 @@ const APP_ROUTES: Routes = [
   { path: 'project/user', component: ProjectProfileComponent, canActivate: [ProjectAuthenticatorClient] },
   { path: 'project/user/:uid', component: ProjectProfileComponent},
   { path: 'project/admin/user', component: AdminUserListComponent },
+  { path: 'admin/user', component: AdminUserListComponent, canActivate: [AdminServiceClient] },
   { path: 'project/user/:uid/new-workout', component: NewWorkoutComponent},
   { path: 'project/user/:uid/new-food', component: NewDietComponent},
   { path: 'project/user/:uid/new-store', component: NewStoreComponent},

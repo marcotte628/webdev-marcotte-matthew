@@ -1,7 +1,7 @@
 
 module.exports = function(app) {
 
-
+  var bcrypt = require("bcrypt-nodejs");
   var userModel = require("../model/project-user/project.user.model.server");
   var passport  = require('passport');
   var LocalStrategy = require('passport-local').Strategy;
@@ -18,7 +18,25 @@ module.exports = function(app) {
   app.post('/api/project/login', passport.authenticate('local'), login);
   app.post('/api/project/loggedIn', loggedIn);
   app.post('/api/project/logout', logout);
-  app.get("/api/project/getAllUsers", getAllAccounts);
+  app.get("/api/project/getAllUsers", checkIsAdmin, getAllAccounts);
+  app.get('/api/admin/isAdmin', isAdmin);
+
+  function checkIsAdmin(req, res, next) {
+    if(req.isAuthenticated() && req.user.username === 'admin') {
+      next();
+    } else {
+      res.send(403);
+    }
+  }
+
+  function isAdmin(req, res) {
+    if(req.isAuthenticated() && req.user.username === 'admin') {
+      res.json(req.user);
+    } else {
+      res.send('0');
+    }
+  }
+
 
   function getAllAccounts(req, res) {
     userModel.findAllAccounts().then(function(users){

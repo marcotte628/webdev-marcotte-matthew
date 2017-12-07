@@ -25,7 +25,19 @@ export class PersonService {
       });
   }
 
-
+  isAdmin() {
+    const url = 'http://localhost:3000/api/admin/isAdmin';
+    this.options.withCredentials = true;
+    return this._http.get(url, this.options)
+      .map((res: Response) => {
+        const user = res.json();
+        if (user !== 0) {
+          this.sharedService.user = user; return true;
+        } else {
+          this.router.navigate(['/login']); return false;
+        }
+      });
+  }
   logout() {
     const url = this.baseUrl + '/api/project/logout';
     this.options.withCredentials = true;
