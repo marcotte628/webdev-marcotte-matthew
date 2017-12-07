@@ -152,6 +152,7 @@
   </form>
 
   <!-- Buttons for Websites and Logout -->
+  <a class="btn btn-primary btn-block" href="project/admin/user" [hidden]="user.username!=='admin'"> Users </a>
   <a class="btn btn-primary btn-block"
      [routerLink]="['/project', 'user', userId, 'gen-workouts']" >Search Workouts</a>
   <a class="btn btn-primary btn-block"

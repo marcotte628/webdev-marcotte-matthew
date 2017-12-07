@@ -1,7 +1,127 @@
-<h1>User List</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
 
-<ul>
-  <li *ngFor="let user of users">
-    {{user.username}}
-  </li>
-</ul>
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="banner">Administration</b>
+      </a>
+    </p>
+
+    <!--tick mark-->
+    <p class="navbar-text pull-right">
+      <a href="#" class="navbar-link">
+        <span class="glyphicon glyphicon-ok banner"></span>
+      </a>
+    </p>
+  </div>
+</nav>
+
+
+<div class="post-nav container">
+  <!-- list all users-->
+
+  <h3>User List</h3>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Username</th>
+      <th>Name</th>
+      <th>email</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let user of users">
+    <tr>
+      <td><a (click)="selectUser(user.username)">{{user.username}}</a></td>
+      <td><a (click)="selectUser(user.username)"> {{user.name}} </a></td>
+      <td><a (click)="selectUser(user.username)"> {{user.email}} </a></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <br><br>
+
+  <!-- edit user -->
+  <div>
+    <h3>Edit User</h3>
+    <form>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input [(ngModel)]="username"
+               [ngModelOptions]="{standalone: true}"
+               type="text"
+               class="form-control"
+               id="username"
+               placeholder="username">
+      </div>
+
+      <div class="form-group">
+        <label for="pwd">Password</label>
+        <input [(ngModel)]="password"
+               [ngModelOptions]="{standalone: true}"
+               type="text"
+               class="form-control"
+               id="pwd"
+               placeholder="username">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input [(ngModel)]="name"
+               [ngModelOptions]="{standalone: true}"
+               type="text"
+               class="form-control"
+               id="name"
+               placeholder="name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input [(ngModel)]="email"
+               [ngModelOptions]="{standalone: true}"
+               type="email"
+               class="form-control"
+               id="email"
+               placeholder="email@example.com">
+      </div>
+
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input [(ngModel)]="role"
+               [ngModelOptions]="{standalone: true}"
+               type="text"
+               class="form-control"
+               id="role"
+               placeholder="role">
+      </div>
+
+      <div class="form-group">
+        <label for="rating">Rating</label>
+        <input [(ngModel)]="rating"
+               [ngModelOptions]="{standalone: true}"
+               type="text"
+               class="form-control"
+               id="rating"
+               placeholder="rating">
+      </div>
+      <a class="btn btn-primary btn-block " (click)="updateUser()">Update User</a>
+      <a class="btn btn-success btn-block " (click)="createUser()">Update User</a>
+      <a class="btn btn-danger btn-block " (click)="deleteUser()">Delete User</a>
+    </form>
+  </div>
+
+</div>
+<br><br>
+<br><br>
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/project', 'user', userId]">
+        <span class="glyphicon glyphicon-user banner"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>
