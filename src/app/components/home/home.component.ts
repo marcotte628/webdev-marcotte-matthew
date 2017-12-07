@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {WidgetService} from '../../services/widget.service.client';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  baseUrl: String;
+  pageId: String;
+  imgUrl: String;
+  constructor(private imageGetter: WidgetService) { }
 
   ngOnInit() {
+    this.pageId = '5a29723194249574b501238f';
+
+    this.imageGetter.findAllWidgetsForPage(this.pageId).subscribe(
+      (img) => {
+        this.imgUrl = img[0].url;
+      });
   }
 
 }
