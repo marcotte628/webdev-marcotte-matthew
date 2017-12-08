@@ -40,21 +40,4 @@ export class ProjectLoginComponent implements OnInit {
       });
   }
 
-  /*
-  searchUser() {
-    this.userInfo = this.searchForm.value.user;
-    this.personService.getPersonByUsername(this.userInfo).subscribe(
-      (data: any) => {
-        this.users = data;
-        this.username = data.username;
-        this.name = data.name;
-        this.role = data.role;
-      },
-      (error: any) => {
-
-      }
-    );
-  }
-
-*/
 }

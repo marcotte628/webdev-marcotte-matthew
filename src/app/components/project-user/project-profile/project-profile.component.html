@@ -93,7 +93,7 @@
       </div>
     </div>
     <br/>
-    <label for="followedDiets">Followed Diets
+    <label for="followedDiets">Foods I Like
       <a [routerLink]="['/project', 'user', userId, 'new-food']">
         <span class="glyphicon glyphicon-plus pull-right"></span>
       </a>
@@ -121,7 +121,7 @@
       </div>
     </div>
     <br/>
-    <label for="gymMemberships">Gyms I belong to
+    <label for="gymMemberships">Gyms I Like
         <a [routerLink]="['/project', 'user', userId, 'new-gym']">
          <span class="glyphicon glyphicon-plus pull-right"></span>
         </a>
@@ -135,7 +135,7 @@
       </div>
     </div>
     <br/>
-    <label for="storeMemberships">Stores I frequent
+    <label for="storeMemberships">Stores I Like
       <a [routerLink]="['/project', 'user', userId, 'new-store']">
         <span class="glyphicon glyphicon-plus pull-right"></span>
       </a>
@@ -152,7 +152,7 @@
   </form>
 
   <!-- Buttons for Websites and Logout -->
-  <a class="btn btn-primary btn-block" href="project/admin/user" [hidden]="user.username!=='admin'"> Users </a>
+  <a class="btn btn-success btn-block" href="project/admin/user" [hidden]="isNotAdmin"> Manage Users </a>
   <a class="btn btn-primary btn-block"
      [routerLink]="['/project', 'user', userId, 'gen-workouts']" >Search Workouts</a>
   <a class="btn btn-primary btn-block"
@@ -169,7 +169,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['/project', 'user', userId]">
+      <a [routerLink]="['/project', 'user']">
         <span class="glyphicon glyphicon-user banner"></span>
       </a>
     </p>

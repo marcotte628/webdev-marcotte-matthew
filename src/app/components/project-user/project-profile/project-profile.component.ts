@@ -26,7 +26,7 @@ export class ProjectProfileComponent implements OnInit {
   gymMemberships: [{}];
   storeMemberships: [{}];
   workoutData = [];
-
+  isNotAdmin: boolean;
   constructor(private personService: PersonService, private activatedRoute: ActivatedRoute, private router: Router,
               private workoutService: WorkoutService, private sharedService: SharedService) { }
 
@@ -48,6 +48,11 @@ export class ProjectProfileComponent implements OnInit {
     this.followedWorkouts = this.user.followedWorkouts;
     this.gymMemberships = this.user.gymMemberships;
     this.storeMemberships = this.user.storeMemberships;
+    if (this.username === 'admin') {
+      this.isNotAdmin = false;
+    } else {
+      this.isNotAdmin = true;
+    }
     this.personService.getPersonByUsername(this.username).subscribe(
       (data: any) => {
         this.userId = data._id;

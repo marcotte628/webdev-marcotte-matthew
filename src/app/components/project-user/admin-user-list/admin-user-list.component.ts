@@ -119,7 +119,7 @@ export class AdminUserListComponent implements OnInit {
     // username: String, password: String, name: String, role: String
     this.personService.createAccount(this.username, this.password, this.name, this.role).subscribe(
       (data: any) => {
-        alert('successfully created a user!')
+        alert('successfully created a user!');
         this.router.navigate(['/project/admin/user']);
       }, (error: any) => {
       });

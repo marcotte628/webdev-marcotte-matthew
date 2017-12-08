@@ -20,22 +20,29 @@
 
 <div class="container post-nav">
 
-  <div>
-    <img src={{workoutData.image}} width="100%">
+  <div class="row">
+    <!-- List of Websites for left side of page -->
+    <div class="col-sm-6">
+      <div>
+        <img src={{workoutData.image}} width="100%">
+      </div>
+    </div>
+    <!-- Form for Website Name and Description for right side -->
+    <div class="col-sm-6">
+      <ul class="list-group">
+        <li class="list-group-item">Name of Exercise: {{workoutData.name}}</li>
+        <li class="list-group-item">Target of Exercise: {{workoutData.type}} </li>
+        <li class="list-group-item">Difficulty Level: {{workoutData.difficulty}} </li>
+        <li class="list-group-item">Poster's Name:
+          <a [routerLink]="['/project', 'user', userId, 'other-user', otherId]">{{otherName}} </a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <br>
-  <ul class="list-group">
-    <li class="list-group-item">Name of Exercise: {{workoutData.name}}</li>
-    <li class="list-group-item">Target of Exercise: {{workoutData.type}} </li>
-    <li class="list-group-item">Difficulty Level: {{workoutData.difficulty}} </li>
-    <li class="list-group-item">Poster's Name:
-      <a [routerLink]="['/project', 'user', userId, 'other-user', otherId]">{{otherName}} </a>
-    </li>
-  </ul>
-</div>
-
 <a class="btn btn-primary btn-block" (click)="follow()">Follow Exercise</a>
 <a class="btn btn-danger btn-block" (click)="unfollow()">Unfollow Exercise </a>
+
+</div>
 
 <br><br>
 <br><br>
