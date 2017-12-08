@@ -5,6 +5,7 @@ module.exports = function(app) {
   var userModel = require("../model/project-user/project.user.model.server");
   var passport  = require('passport');
   var LocalStrategy = require('passport-local').Strategy;
+  var FacebookStrategy = require('passport-facebook').Strategy;
   passport.use(new LocalStrategy(localStrategy));
   passport.serializeUser(serializeUser);
   passport.deserializeUser(deserializeUser);
@@ -20,6 +21,44 @@ module.exports = function(app) {
   app.post('/api/project/logout', logout);
   app.get("/api/project/getAllUsers", checkIsAdmin, getAllAccounts);
   app.get('/api/admin/isAdmin', isAdmin);
+  app.get ('/facebook/login', passport.authenticate('facebook', { scope : 'email' }));
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+      successRedirect: '/#/profile',
+      failureRedirect: '/#/login'
+    }));
+
+  var facebookConfig = {
+    clientID     : 338818749860053,
+    clientSecret : 'cefbff77745bcee7c83d08eed6517b98',
+    callbackURL  : 'http://localhost:3100/auth/facebook/callback'
+  };
+
+  passport.use(
+    new FacebookStrategy(facebookConfig, facebookStrategy));
+
+  function facebookStrategy(token, refreshToken, profile, done)
+  {
+    userModel
+      .findUserByFacebookId(profile.id)
+      .then(function(user) {
+        if(user) { return done(null, user); } // already in db
+        else { // if not, insert into db using profile info
+          var names = profile.displayName.split(" ");
+          var newFacebookUser = { lastName:  names[1],
+            firstName: names[0],
+            email:     profile.emails ? profile.emails[0].value:"",
+            facebook: { id:    profile.id, token: token }
+          };
+          return userModel.createUser(newFacebookUser);
+        }
+      }) // ...next few slides...
+      .then(function(user){
+          return done(null, user);
+        }
+      );
+
+  }
 
   function checkIsAdmin(req, res, next) {
     if(req.isAuthenticated() && req.user.username === 'admin') {
