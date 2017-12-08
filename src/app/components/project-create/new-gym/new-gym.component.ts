@@ -74,7 +74,7 @@ export class NewGymComponent implements OnInit {
       this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
       this.gymMemberships, this.storeMemberships).subscribe(
       (data: any) => {
-        this.router.navigate(['/project/user/' + this.userId]);
+        this.router.navigate(['/project/user']);
       },
       (error: any) => {
       }

@@ -60,7 +60,7 @@ export class ProjectProfileComponent implements OnInit {
   logout() {
     this.personService.logout()
       .subscribe((status) => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/project/login']);
       });
   }
 
