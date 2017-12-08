@@ -19,20 +19,6 @@
 </nav>
 
 <div class="container post-nav">
-  <h5> Search Stores By Name </h5>
-  <form (ngSubmit)="searchStoreByName()" #f="ngForm">
-    <input placeholder="enter a store name"
-           type="text"
-           [(ngModel)]="storeName"
-           [ngModelOptions]="{standalone: true}"
-           type="text"
-           class="form-control"/>
-    <button class="btn btn-primary btn-block"
-            type="submit">
-      Search Stores
-    </button>
-  </form>
-
   <h5> Search Stores By Type</h5>
   <form (ngSubmit)="searchStoreByType()" #f="ngForm">
     <input placeholder="enter a store type (nutrition, grocery, etc.)"

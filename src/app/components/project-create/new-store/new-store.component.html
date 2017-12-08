@@ -51,6 +51,19 @@
              placeholder="store address">
     </div>
 
+    <div class="form-group">
+      <br>
+      <label for="allWorkouts">All Foods:</label>
+      <div *ngFor="let each of allFoods" class="container" id="allWorkouts">
+        <div class="form-group">
+          <a [routerLink]="['/project', 'user', userId, 'diets', each._id]"> {{each.name}} </a>
+          <a (click)="addToStore(each._id, each.name)">
+            <span class="glyphicon glyphicon-plus pull-right"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
     <a class="btn btn-primary btn-block"
        (click)="submit()" >Add Store</a>
   </form>

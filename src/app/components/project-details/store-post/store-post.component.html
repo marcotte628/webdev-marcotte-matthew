@@ -11,7 +11,7 @@
 
     <!--tick mark-->
     <p class="navbar-text pull-right">
-      <a [routerLink]="['/project', 'user', userId]" class="navbar-link">
+      <a [routerLink]="['/project', 'user']" class="navbar-link">
         <span class="glyphicon glyphicon-ok banner"></span>
       </a>
     </p>
@@ -26,6 +26,13 @@
     <li class="list-group-item">Store Type: {{storeData.type}} </li>
     <li class="list-group-item">Address: {{storeData.address}} </li>
   </ul>
+
+  <label for="foods">Foods at this store:</label>
+  <div *ngFor="let each of storeData.foods" class="container" id="foods">
+    <div class="form-group">
+      <a [routerLink]="['/project', 'user', userId, 'diets', each.foodId]"> {{each.name}} </a>
+    </div>
+  </div>
 
 <a class="btn btn-primary btn-block" (click)="follow()">Follow Store</a>
 <a class="btn btn-danger btn-block" (click)="unfollow()">Unfollow Store</a>

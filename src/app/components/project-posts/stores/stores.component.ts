@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {StoreService} from '../../../services/project.store.service.client';
-import {PersonService} from "../../../services/project.user.service.client";
+import {PersonService} from '../../../services/project.user.service.client';
 
 @Component({
   selector: 'app-stores',
@@ -30,17 +30,6 @@ export class StoresComponent implements OnInit {
           this.userId = params['uid'];
         });
     this.storeService.getStores().subscribe(
-      (data: any) => {
-        this.allStores = data;
-      },
-      (error: any) => {
-
-      }
-    );
-  }
-
-  searchStoreByName() {
-    this.storeService.getStoreByName(this.storeName).subscribe(
       (data: any) => {
         this.allStores = data;
       },

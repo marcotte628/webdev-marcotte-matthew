@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PersonService} from "../../../services/project.user.service.client";
-import {StoreService} from "../../../services/project.store.service.client";
+import {PersonService} from '../../../services/project.user.service.client';
+import {StoreService} from '../../../services/project.store.service.client';
+import {FoodService} from '../../../services/project.food.service.client';
 
 @Component({
   selector: 'app-new-store',
@@ -27,8 +28,10 @@ export class NewStoreComponent implements OnInit {
   gymMemberships: [{}];
   storeMemberships: [{}];
   storeId: String;
+  allFoods;
+  storeFoods;
   constructor(private activatedRoute: ActivatedRoute, private personService: PersonService,
-              private storeService: StoreService, private router: Router) { }
+              private storeService: StoreService, private router: Router, private foodService: FoodService) { }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -36,10 +39,17 @@ export class NewStoreComponent implements OnInit {
         (params: any) => {
           this.userId = params['uid'];
         });
+    this.storeFoods = [];
+    this.foodService.getAllFoodPosts().subscribe(
+      (data: any) => {
+        this.allFoods = data;
+      },
+      (error: any) => {}
+    );
   }
 
   submit() {
-    this.storeService.createStore(this.storeName, this.type, this.address).subscribe(
+    this.storeService.createStore(this.storeName, this.type, this.address, this.storeFoods).subscribe(
       (data: any) => {
         this.storeId = data._id;
         this.getProfileInfo();
@@ -80,5 +90,9 @@ export class NewStoreComponent implements OnInit {
       }
     );
   }
+
+  addToStore(foodId, foodName) {
+    this.storeFoods.push({foodId: foodId, name: foodName});
+}
 
 }

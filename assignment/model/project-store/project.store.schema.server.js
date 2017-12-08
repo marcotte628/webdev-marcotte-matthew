@@ -6,7 +6,8 @@ var mongoose = require('mongoose');
 var ProjectStoreSchema = mongoose.Schema({
   name: String,
   type: String,
-  address: String
+  address: String,
+  foods: [{}]
 }, {collection: 'projectStore'});
 
 module.exports = ProjectStoreSchema;
