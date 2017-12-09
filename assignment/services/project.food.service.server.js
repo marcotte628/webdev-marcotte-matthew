@@ -24,7 +24,7 @@ module.exports = function(app) {
   ];
 
   //http://api.nal.usda.gov/ndb/nutrients/?ndbno=****ID****&format=json&api_key=vR2prVw9pN8TZTsVHb463Da3RoU8zm4PHBUvEUyN&nutrients=203&nutrients=205&nutrients=204
-
+  // demo: beef, fish, carrots, egg
 
   app.get("/api/project/food/identifier", getFoodApiId);
   app.get("/api/project/food", getFoodPost);
