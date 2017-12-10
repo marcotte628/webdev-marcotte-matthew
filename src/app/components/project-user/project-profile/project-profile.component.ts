@@ -70,15 +70,17 @@ export class ProjectProfileComponent implements OnInit {
   }
 
   updateUser() {
-    this.personService.updateAccount(this.userId, this.username, this.email, this.password, this.name, this.role,
-      this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
-      this.gymMemberships, this.storeMemberships).subscribe(
-      (data: any) => {
-        this.router.navigate(['/project/user']);
-      },
-      (error: any) => {
-      }
-    );
+    if (this.username !== 'anonymous') {
+      this.personService.updateAccount(this.userId, this.username, this.email, this.password, this.name, this.role,
+        this.rating, this.followedUsers, this.followedByUsers, this.followedDiets, this.followedWorkouts,
+        this.gymMemberships, this.storeMemberships).subscribe(
+        (data: any) => {
+          this.router.navigate(['/project/user']);
+        },
+        (error: any) => {
+        }
+      );
+    }
   }
 }
 
