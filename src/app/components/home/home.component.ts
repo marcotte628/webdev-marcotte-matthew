@@ -9,16 +9,16 @@ import {WidgetService} from '../../services/widget.service.client';
 export class HomeComponent implements OnInit {
 
   baseUrl: String;
-  pageId: String;
+  widgetId: String;
   imgUrl: String;
   constructor(private imageGetter: WidgetService) { }
 
   ngOnInit() {
-    this.pageId = '5a29723194249574b501238f';
+    this.widgetId = '5a2da4a853f09a0004533f99';
 
-    this.imageGetter.findAllWidgetsForPage(this.pageId).subscribe(
+    this.imageGetter.findWidgetById(this.widgetId).subscribe(
       (img) => {
-        this.imgUrl = img[0].url;
+        console.log(img);
       });
   }
 
