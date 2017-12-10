@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
     this.imageGetter.findWidgetById(this.widgetId).subscribe(
       (img) => {
-        console.log(img);
+        this.imgUrl = img.url;
       });
   }
 
