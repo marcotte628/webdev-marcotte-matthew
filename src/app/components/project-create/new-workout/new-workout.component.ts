@@ -77,7 +77,9 @@ export class NewWorkoutComponent implements OnInit {
         this.followedWorkouts = data.followedWorkouts;
         this.gymMemberships = data.gymMemberships;
         this.storeMemberships = data.storeMemberships;
-        this.addToProfile();
+        if (this.username !== 'anonymous') {
+          this.addToProfile();
+        }
       },
       (error: any) => {
       }

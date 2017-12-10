@@ -40,4 +40,13 @@ export class ProjectLoginComponent implements OnInit {
       });
   }
 
+  anonUser(event: any) {
+    this.personService
+      .login('anonymous', 'anonymous')
+      .subscribe((user) => {
+        this.sharedService.user = user;
+        this.router.navigate(['/project/user']);
+      });
+  }
+
 }

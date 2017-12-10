@@ -6,7 +6,11 @@
     {{errorMsg}}
   </div>
 
-  <h1>Login</h1>
+  <h1>Welcome to Fitter Together!</h1>
+  <h5>Fitter Together is a social media application to connect people who are interested
+    in eating healthy food and exercising. This application allows users to post food
+    items, gyms, stores, and workouts they like, search for posts made by other users,
+    and follow other users and users' posts.</h5>
 
   <!-- Input for Username and Password -->
   <form (ngSubmit)="login()" #f="ngForm">
@@ -40,6 +44,11 @@
       <span class="fa fa-facebook"></span>
       Facebook
     </a>
+    <button class="btn btn-primary btn-block"
+            type="submit"
+            (click)="anonUser()">
+      Continue as Anonymous User
+    </button>
     <button class="btn btn-success btn-block"
             type="submit"
             [routerLink]="['/project/register']">
@@ -47,48 +56,3 @@
     </button>
   </form>
 </div>
-
-
-
-<!--
-
-<div class="container">
-
-  <h1>Search Users By Name</h1>
-
-  <form (ngSubmit)="searchUser()" #f="ngForm">
-    <input placeholder="enter a username to get user info"
-           type="text"
-           name="user"
-           class="form-control"
-           ngModel
-           required
-           #username="ngModel"/>
-    <button class="btn btn-primary btn-block"
-            type="submit">
-      Search User
-    </button>
-  </form>
-
-</div>
-
-<div class="post-nav">
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Username</th>
-      <th>name</th>
-      <th>role</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>{{username}}</td>
-      <td>{{name}}</td>
-      <td>{{role}}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-
--->

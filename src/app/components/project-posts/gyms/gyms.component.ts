@@ -78,7 +78,9 @@ export class GymsComponent implements OnInit {
         this.followedWorkouts = data.followedWorkouts;
         this.gymMemberships = data.gymMemberships;
         this.storeMemberships = data.storeMemberships;
-        this.updateProfile(id, fn);
+        if (this.username !== 'anonymous') {
+          this.updateProfile(id, fn);
+        }
       },
       (error: any) => {
 

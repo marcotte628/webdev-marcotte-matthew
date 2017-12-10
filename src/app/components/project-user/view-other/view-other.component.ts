@@ -83,7 +83,9 @@ export class ViewOtherComponent implements OnInit {
         this.myfollowedWorkouts = data.followedWorkouts;
         this.mygymMemberships = data.gymMemberships;
         this.mystoreMemberships = data.storeMemberships;
-        this.updateMe();
+        if (this.myusername !== 'anonymous') {
+          this.updateMe();
+        }
       },
       (error: any) => {
       }
@@ -132,7 +134,9 @@ export class ViewOtherComponent implements OnInit {
         this.myfollowedWorkouts = data.followedWorkouts;
         this.mygymMemberships = data.gymMemberships;
         this.mystoreMemberships = data.storeMemberships;
-        this.removeFromMine();
+        if (this.myusername !== 'anonymous') {
+          this.removeFromMine();
+        }
       },
       (error: any) => {
       }
